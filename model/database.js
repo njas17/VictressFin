@@ -10,7 +10,7 @@ const con = mysql.createConnection({
   host: DB_HOST || "127.0.0.1",
   user: DB_USER || "root",
   password: DB_PASS,
-  database: DB_NAME || "borrowlend",
+  database: DB_NAME || "sejiwa",
   multipleStatements: true
 });
 
@@ -19,20 +19,17 @@ con.connect(function(err) {
   console.log("Connected!");
 
   let sql =
-	  "DROP DATABASE IF EXISTS borrowlend ; CREATE DATABASE borrowlend; USE borrowlend; "
-    + "CREATE TABLE users (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(255) NOT NULL, email varchar(255) NOT NULL, password varchar(50) NOT NULL, threshold_limit decimal(9,2), threshold_period varchar(10)); "
-    + "CREATE TABLE contacts (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id int NOT NULL, name varchar(255) NOT NULL, contact_number varchar(20), email varchar(50), relationship varchar(50), FOREIGN KEY (user_id) REFERENCES users (id)); "
-    + "CREATE TABLE category (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, category_name varchar(150) NOT NULL); "
-    + "CREATE TABLE loan (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, user_id int NOT NULL, contact_id int NOT NULL, date DATETIME NOT NULL, initial_amount decimal(9,2) NOT NULL, category_id int NOT NULL, remarks TEXT, status varchar(8) NOT NULL DEFAULT 'active', type varchar(8) NOT NULL DEFAULT 'borrow', FOREIGN KEY (user_id) REFERENCES users (id), FOREIGN KEY (contact_id) REFERENCES contacts (id), FOREIGN KEY (category_id) REFERENCES category (id)); "
-    + "CREATE TABLE payment (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, loan_id int NOT NULL, amount_paid decimal(9,2) NOT NULL, date DATETIME NOT NULL, FOREIGN KEY (loan_id) REFERENCES loan (id));"
-
-  let sqlInsert = "INSERT INTO users(email,name,password,threshold_limit, threshold_period) VALUES ('Ms. Lovelyz', 'amazing@somehere.com', 'stillunderdev', 1000.00, 'yearly'); "
-    + "INSERT INTO contacts(user_id,name,contact_number) VALUES (1, 'Leena', '123-456-333'), (1, 'Mee Fah', '123-000-333'), (1, 'Zila', '123-222-555'); "
-    + "INSERT INTO category(category_name) VALUES ('Medical/Healthcare'), ('School/Education'), ('Finance/Debt Payment'), ('Housing'), ('Food'), ('Transportation'), ('Utilities'), ('Insurance'), ('Personal Spending'), ('Recreation/Entertainment'), ('Miscellaneous');";
+	  "DROP DATABASE IF EXISTS sejiwa ; CREATE DATABASE sejiwa; USE sejiwa; "
+    + "CREATE TABLE `organizations` (`oid` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` VARCHAR(255) NOT NULL, `address1` VARCHAR(255), `address2` VARCHAR(255), `website` VARCHAR(255) NOT NULL, `telephone` VARCHAR(25), `busregistration_num` VARCHAR(50), `taxnum` VARCHAR(50)); "
+    + "CREATE TABLE `users` (`uid` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` VARCHAR(100) NOT NULL UNIQUE, `firstname` VARCHAR(100) NOT NULL, `lastname` VARCHAR(100) NOT NULL, `password` VARCHAR(200) NOT NULL, `group` VARCHAR(50) NOT NULL DEFAULT 'organizers', `organization_id` INT, `contactnum` VARCHAR(50), `address1` VARCHAR(255), `address2` VARCHAR(255), `state` VARCHAR(100), `country` VARCHAR(100) DEFAULT 'Malaysia', `postcode` VARCHAR(50), `nric` VARCHAR(255), `nextsignup` BOOLEAN, FOREIGN KEY (`organization_id`) REFERENCES `organizations`(`oid`)); "
+    + "CREATE TABLE `events` (`eid` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` VARCHAR(255) NOT NULL, `datefrom` DATE NOT NULL, `dateto` DATE NOT NULL, `status` VARCHAR(20) NOT NULL, `description` TEXT NOT NULL, `images` TEXT, `organizer_id` int NOT NULL, `contactname` VARCHAR(255), `contactnum` VARCHAR(255), `totalvolunteer` INT NOT NULL, FOREIGN KEY (`organizer_id`) REFERENCES `users`(`uid`)); "
+    + "CREATE TABLE `applications` (`aid` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `event_id` INT NOT NULL, `user_id` INT NOT NULL, `dateapp` DATE NOT NULL, `dateproc` DATE, `appstatus` VARCHAR(15) NOT NULL DEFAULT 'new', FOREIGN KEY (`event_id`) REFERENCES `events`(`eid`), FOREIGN KEY (`user_id`) REFERENCES `users`(`uid`)); "
+    
+  let sqlInsert = "";
   
   con.query(sql + sqlInsert, function(err, result) {
     if (err) throw err;
-    console.log("Tables creation with dummy data for 'borrowlend' db was successful!");
+    console.log("Tables creation with dummy data for 'sejiwa' db was successful!");
 
     console.log("Closing...");
   });
