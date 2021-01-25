@@ -1,0 +1,80 @@
+GET http://localhost:5000/api/events
+
+###
+
+GET  http://localhost:5000/auth/users
+
+###
+
+POST http://localhost:5000/auth/userstest
+Content-Type: application/json
+
+{
+    "name": "Lamb",
+    "password": "password"
+}
+
+###
+
+get http://localhost:5000/auth/users/lilah2@some.com
+
+###
+
+POST http://localhost:5000/auth/users
+Content-Type: application/json
+
+{ 
+    "firstname": "Lilah",
+    "lastname": "The Founder",
+    "email": "lilah2@some.com",
+    "password": "password"
+}
+
+###
+
+POST http://localhost:5000/auth/signin
+Content-Type: application/json
+
+{"email":"lilah2@some.com",
+"password":"password",
+"user":{
+    "id":1,
+    "name":"Lilah The Founder",
+    "email":"lilah2@some.com",
+    "isAdmin":0,
+    "password":"$2b$07$ky68GsxIIxtIAHMVZdI4rudZkyApFf8xDpMuUL7aaJX8dvixGTkKq"
+    }
+}
+
+###
+POST http://localhost:5000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "test@some.com",
+    "password": "password",
+    "user": { 
+        "id": 2,
+        "name": "test test2",
+        "email": "test@some.com",
+        "isAdmin": 0,        
+        "password": "$2b$07$vU4z6l5I6zVMX.LMfAVcEeCxAQQ8kwF6J0tv4kc1H8trtoAC39uJq"
+
+    }
+}
+
+###
+
+POST http://localhost:5000/auth/verify-token
+Content-Type: application/json
+
+{
+    "user":{
+        "id":2,
+        "email":"test@some.com",
+        "name":"test test2",
+        "isAdmin": 0
+    },
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QHNvbWUuY29tIiwibmFtZSI6InRlc3QgdGVzdDIiLCJpc0FkbWluIjowLCJpYXQiOjE2MTA4NDk5NzUsImV4cCI6MTYxMDkzNjM3NX0.FgPtB8iycdsd_s3jF_hK_T9i1tFItIUycVJJCrnFxT8"
+}
+
