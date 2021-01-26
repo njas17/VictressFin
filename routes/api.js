@@ -34,6 +34,16 @@ router.post("/events", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 }); 
 
+//delete an event and anything that tied to the event i.e. volunteers
+router.delete("/events/:id", function(req, res, next) {
+  //your code here
+  db("DELETE FROM volunteers WHERE event_id = ?; DELETE FROM events WHERE eid = ?;", [req.params.id,req.params.id])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
 // get all organizations
 router.get("/organizations/", (req, res) => {
   db("SELECT oid, name FROM organizations;", req.params.id)
@@ -104,15 +114,7 @@ router.put("/volunteers/:id", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-// //delete an event and anything that tied to the event i.e. volunteers
-// router.delete("/events/:id", function(req, res, next) {
-//   //your code here
-//   db("DELETE FROM volunteers WHERE event_id = ?; DELETE FROM events WHERE eid = ?;", [req.params.id,req.params.id])
-//     .then(results => {
-//       res.send(results.data);
-//     })
-//     .catch(err => res.status(500).send(err));
-// });
+
 
 
 module.exports = router;

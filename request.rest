@@ -2,6 +2,26 @@ GET http://localhost:5000/api/events
 
 ###
 
+POST http://localhost:5000/api/events
+Content-Type: application/json
+
+{ 
+    "name": "Special Hike CNY 2021",
+    "closingdate": "2021-02-15",
+    "status": "active",
+    "description": "To send over stuff during Chinese New Year. This will be a short hike and not to complex but the things to move are a lot and not accessible by car or other vehicle.",
+    "organizer_id": 1,
+    "contactname": "Mary Michael",
+    "contactnum": "601332444000",
+    "totalvolunteer": 10
+}
+
+###
+
+DELETE http://localhost:5000/api/events/4
+
+###
+
 GET  http://localhost:5000/api/organizations
 
 ###
@@ -41,18 +61,3 @@ Content-Type: application/json
 }
 
 ###
-
-POST http://localhost:5000/api/events
-Content-Type: application/json
-
-{ 
-    "name": "Special Hike CNY 2021",
-    "closingdate": "2021-02-15",
-    "status": "active",
-    "description": "To send over stuff during Chinese New Year. This will be a short hike and not to complex but the things to move are a lot and not accessible by car or other vehicle.",
-    "organizer_id": 1,
-    "contactname": "Mary Michael",
-    "contactnum": "601332444000",
-    "totalvolunteer": 10
-}
-
