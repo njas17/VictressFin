@@ -51,7 +51,16 @@ router.get("/volunteers/:id", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-
+// get all volunteers/applicants by event id and application status
+// status = 'approved' - this is a volunteer
+// status = 'new' - this is a new volunteer applicant
+router.get("/volunteers/:id/application-status/:status", (req, res) => {
+  db("SELECT * FROM volunteers WHERE event_id = ? AND status = ?;", [req.params.id, req.params.status])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
 
 
 module.exports = router;
