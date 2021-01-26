@@ -24,7 +24,15 @@ router.get("/events/:id", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-// insert an event
+// insert an event under an organizer
+router.post("/events", function(req, res, next) {
+  //your code here
+  db("INSERT INTO events SET ?;", req.body)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+}); 
 
 // get all organizations
 router.get("/organizations/", (req, res) => {
@@ -85,5 +93,7 @@ router.post("/volunteers", function(req, res, next) {
     })
     .catch(err => res.status(500).send(err));
 }); 
+
+
 
 module.exports = router;
