@@ -10,6 +10,14 @@ GET  http://localhost:5000/api/organizations/1
 
 ###
 
+GET http://localhost:5000/api/volunteers/1
+
+###
+
+GET http://localhost:5000/api/volunteers/1/application-status/approved
+
+###
+
 POST http://localhost:5000/auth/userstest
 Content-Type: application/json
 

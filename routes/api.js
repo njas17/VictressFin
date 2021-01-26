@@ -15,9 +15,9 @@ router.get("/events/", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-// get all events
-router.get("/events/", (req, res) => {
-  db("SELECT eid, e.name, closingdate, e.status, e.description, e.contactname, e.contactnum, totalvolunteer, o.name as organization_name FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id;", req.params.id)
+// get an event by event id
+router.get("/events/:id", (req, res) => {
+  db("SELECT e.*, o.name as organization_name FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id WHERE eid = ?;", req.params.id)
     .then(results => {
       res.send(results.data);
     })
@@ -42,22 +42,16 @@ router.get("/organizations/:id", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-// get all volunteers by event
+// get all volunteers/applicants by event
 router.get("/volunteers/:id", (req, res) => {
-  db("SELECT * FROM organizations WHERE oid = ?;", req.params.id)
+  db("SELECT * FROM volunteers WHERE event_id = ?;", req.params.id)
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
 
-// get all applicants by event
-router.get("/applicants/:id", (req, res) => {
-  db("SELECT * FROM organizations WHERE oid = ?;", req.params.id)
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
+
+
 
 module.exports = router;
