@@ -94,6 +94,25 @@ router.post("/volunteers", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 }); 
 
+// update application status
+router.put("/volunteers/:id", function(req, res, next) {
+  //your code here
+  db("UPDATE volunteers SET ? WHERE vid = ?;", [req.body, req.params.id])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+// //delete an event and anything that tied to the event i.e. volunteers
+// router.delete("/events/:id", function(req, res, next) {
+//   //your code here
+//   db("DELETE FROM volunteers WHERE event_id = ?; DELETE FROM events WHERE eid = ?;", [req.params.id,req.params.id])
+//     .then(results => {
+//       res.send(results.data);
+//     })
+//     .catch(err => res.status(500).send(err));
+// });
 
 
 module.exports = router;
