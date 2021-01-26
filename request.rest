@@ -22,6 +22,15 @@ DELETE http://localhost:5000/api/events/4
 
 ###
 
+PUT http://localhost:5000/api/events/5
+Content-Type: application/json
+
+{
+    "closingdate": "2021-01-26",
+    "totalvolunteer": 15
+}
+###
+
 GET  http://localhost:5000/api/organizations
 
 ###

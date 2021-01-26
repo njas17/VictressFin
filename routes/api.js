@@ -26,7 +26,6 @@ router.get("/events/:id", (req, res) => {
 
 // insert an event under an organizer
 router.post("/events", function(req, res, next) {
-  //your code here
   db("INSERT INTO events SET ?;", req.body)
     .then(results => {
       res.send(results.data);
@@ -36,8 +35,16 @@ router.post("/events", function(req, res, next) {
 
 //delete an event and anything that tied to the event i.e. volunteers
 router.delete("/events/:id", function(req, res, next) {
-  //your code here
   db("DELETE FROM volunteers WHERE event_id = ?; DELETE FROM events WHERE eid = ?;", [req.params.id,req.params.id])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+// update event
+router.put("/events/:id", function(req, res, next) {
+  db("UPDATE events SET ? WHERE eid = ?;", [req.body, req.params.id])
     .then(results => {
       res.send(results.data);
     })
@@ -96,7 +103,6 @@ router.get("/volunteers/:id/application-status/:status", (req, res) => {
 // insert an application to volunteer for an event
 // when this is first inserted the status should be set to new
 router.post("/volunteers", function(req, res, next) {
-  //your code here
   db("INSERT INTO volunteers SET ?;", req.body)
     .then(results => {
       res.send(results.data);
@@ -104,9 +110,8 @@ router.post("/volunteers", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 }); 
 
-// update application status
+// update application status, date processed
 router.put("/volunteers/:id", function(req, res, next) {
-  //your code here
   db("UPDATE volunteers SET ? WHERE vid = ?;", [req.body, req.params.id])
     .then(results => {
       res.send(results.data);
