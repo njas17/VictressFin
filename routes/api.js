@@ -24,6 +24,8 @@ router.get("/events/:id", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+// insert an event
+
 // get all organizations
 router.get("/organizations/", (req, res) => {
   db("SELECT oid, name FROM organizations;", req.params.id)
@@ -62,5 +64,26 @@ router.get("/volunteers/:id/application-status/:status", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+// get all volunteers/applicants by event id and application status
+// status = 'approved' - this is a volunteer
+// status = 'new' - this is a new volunteer applicant
+router.get("/volunteers/:id/application-status/:status", (req, res) => {
+  db("SELECT * FROM volunteers WHERE event_id = ? AND status = ?;", [req.params.id, req.params.status])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+// insert an application to volunteer for an event
+// when this is first inserted the status should be set to new
+router.post("/volunteers", function(req, res, next) {
+  //your code here
+  db("INSERT INTO volunteers SET ?;", req.body)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+}); 
 
 module.exports = router;
