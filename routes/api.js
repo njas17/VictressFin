@@ -15,9 +15,36 @@ router.get("/events/", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-// get all events
-router.get("/events/", (req, res) => {
-  db("SELECT eid, e.name, closingdate, e.status, e.description, e.contactname, e.contactnum, totalvolunteer, o.name as organization_name FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id;", req.params.id)
+// get an event by event id
+router.get("/events/:id", (req, res) => {
+  db("SELECT e.*, o.name as organization_name FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id WHERE eid = ?;", req.params.id)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+// insert an event under an organizer
+router.post("/events", function(req, res, next) {
+  db("INSERT INTO events SET ?;", req.body)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+}); 
+
+//delete an event and anything that tied to the event i.e. volunteers
+router.delete("/events/:id", function(req, res, next) {
+  db("DELETE FROM volunteers WHERE event_id = ?; DELETE FROM events WHERE eid = ?;", [req.params.id,req.params.id])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+// update event
+router.put("/events/:id", function(req, res, next) {
+  db("UPDATE events SET ? WHERE eid = ?;", [req.body, req.params.id])
     .then(results => {
       res.send(results.data);
     })
@@ -42,22 +69,57 @@ router.get("/organizations/:id", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-// get all volunteers by event
+// get all volunteers/applicants by event
 router.get("/volunteers/:id", (req, res) => {
-  db("SELECT * FROM organizations WHERE oid = ?;", req.params.id)
+  db("SELECT * FROM volunteers WHERE event_id = ?;", req.params.id)
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
 
-// get all applicants by event
-router.get("/applicants/:id", (req, res) => {
-  db("SELECT * FROM organizations WHERE oid = ?;", req.params.id)
+// get all volunteers/applicants by event id and application status
+// status = 'approved' - this is a volunteer
+// status = 'new' - this is a new volunteer applicant
+router.get("/volunteers/:id/application-status/:status", (req, res) => {
+  db("SELECT * FROM volunteers WHERE event_id = ? AND status = ?;", [req.params.id, req.params.status])
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
+
+// get all volunteers/applicants by event id and application status
+// status = 'approved' - this is a volunteer
+// status = 'new' - this is a new volunteer applicant
+router.get("/volunteers/:id/application-status/:status", (req, res) => {
+  db("SELECT * FROM volunteers WHERE event_id = ? AND status = ?;", [req.params.id, req.params.status])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+// insert an application to volunteer for an event
+// when this is first inserted the status should be set to new
+router.post("/volunteers", function(req, res, next) {
+  db("INSERT INTO volunteers SET ?;", req.body)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+}); 
+
+// update application status, date processed
+router.put("/volunteers/:id", function(req, res, next) {
+  db("UPDATE volunteers SET ? WHERE vid = ?;", [req.body, req.params.id])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+
+
 
 module.exports = router;
