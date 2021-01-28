@@ -6,14 +6,14 @@ POST http://localhost:5000/api/events
 Content-Type: application/json
 
 { 
-    "name": "Special Hike CNY 2021",
-    "closingdate": "2021-02-15",
+    "name": "Taman Walkathon 2021",
+    "closingdate": "2021-10-15",
     "status": "active",
-    "description": "To send over stuff during Chinese New Year. This will be a short hike and not to complex but the things to move are a lot and not accessible by car or other vehicle.",
+    "description": "Walk around your Taman to checkout on your elderly neighbours and distribute emergency pamplets as well some groceries.",
     "organizer_id": 1,
     "contactname": "Mary Michael",
     "contactnum": "601332444000",
-    "totalvolunteer": 10
+    "totalvolunteer": 20
 }
 
 ###
