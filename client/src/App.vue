@@ -15,9 +15,9 @@
       />
 
     <v-spacer></v-spacer>
-      <v-btn flat to="/" exact>Home</v-btn>
-      <v-btn flat to="/events">Events</v-btn>
-      <v-btn flat to="/member">Member</v-btn>
+      <v-btn text to="/" exact>Home</v-btn>
+      <v-btn text to="/events">Events</v-btn>
+      <v-btn text to="/member">Member</v-btn>
     </v-app-bar>
 
     <v-main>
