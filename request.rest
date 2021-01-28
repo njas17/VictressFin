@@ -6,14 +6,15 @@ POST http://localhost:5000/api/events
 Content-Type: application/json
 
 { 
-    "name": "Taman Walkathon 2021",
+    "name": "CNY Cleanup",
     "closingdate": "2021-10-15",
     "status": "active",
-    "description": "Walk around your Taman to checkout on your elderly neighbours and distribute emergency pamplets as well some groceries.",
+    "description": "Gotong-royong at the old folk home.",
     "organizer_id": 1,
     "contactname": "Mary Michael",
     "contactnum": "601332444000",
-    "totalvolunteer": 20
+    "totalvolunteer": 20,
+    "location": "Taiping"
 }
 
 ###

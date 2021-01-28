@@ -1,4 +1,4 @@
-export const commonMixin = {
+export const CommonMixin = {
     methods: {
         getLocaleDate(date) {
             let d = new Date(date);
@@ -6,9 +6,9 @@ export const commonMixin = {
         }
     },
     filters: {
-        truncate: function (text, length, suffix) {
-            if (text.length > length) {
-                return text.substring(0, length) + suffix;
+        truncate(text = '', len, suffix) {
+            if (text.length > len) {
+                return text.substring(0, len) + suffix;
             } else {
                 return text;
             }

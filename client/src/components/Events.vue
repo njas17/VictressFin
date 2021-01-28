@@ -31,24 +31,28 @@
                     <template v-slot:default="props">
                         <v-row>
                             <v-col v-for="item in props.items" :key="item.eid" cols="12" sm="6" md="4" lg="3">
-                                <v-card class="mx-auto my-12" max-width="380" height="500">
+                                <v-card class="mx-auto my-12" max-width="380">
                                     <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/cooking.png">
                                     </v-img>
-                                    <v-card-title class="pb-2">{{ item.name | truncate(27, '..') }}</v-card-title>
+                                    <v-card-title class="pb-2">{{ item.name | truncate(27, '...') }}</v-card-title>
                                     <v-card-text>
                                         <div class="my-3 subtitle-2">By: {{ item.organization }}</div>
-                                        <div class="my-1 descr">{{ item.description | truncate(60, '...') }}</div>
+                                        <div class="my-1 descr">{{ item.description }}</div>
                                     </v-card-text>
                                     <v-divider class="mx-2"></v-divider>
                                     <v-card-text>
-                                        <div class="font-weight-medium">Total volunteer required: {{ item.totalvolunteer }}</div>
+                                        <div class="font-weight-medium">Total volunteer required: {{ item.totalvolunteer
+                                            }}</div>
                                         <div>Closing date: {{ getLocaleDate(item.closing) }}</div>
                                     </v-card-text>
-                                    <v-card-actions>
-                                        <v-btn text color="deep-purple accent-4">
-                                            Apply
-                                        </v-btn>
-                                    </v-card-actions>
+                                    <v-dialog v-model="dialog" persistent max-width="600px">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-btn text color="deep-purple accent-4" v-bind="attrs" v-on="on">
+                                                Apply
+                                            </v-btn>
+                                        </template>
+                                        <volunteer-application-form @handleDialog="handleDialog" />
+                                    </v-dialog>
                                 </v-card>
                             </v-col>
                         </v-row>
@@ -95,11 +99,15 @@
 </template>
 
 <script>
-    import { commonMixin } from '../mixins/commonMixin'
+    import { CommonMixin } from '../mixins/CommonMixin';
+    import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
+
     export default {
-        name: "events",
-        mixins: [commonMixin],
+        components: { VolunteerApplicationForm },
+        name: "Events",
+        mixins: [CommonMixin],
         data: () => ({
+            dialog: false,
             itemsPerPageArray: [4, 8, 12],
             search: '',
             filter: {},
@@ -140,6 +148,9 @@
                     .catch(error => {
                         console.error("Error in get events: ", error);
                     });
+            },
+            handleDialog() {
+                this.dialog = false;
             },
             nextPage() {
                 if (this.page + 1 <= this.numberOfPages) this.page += 1
