@@ -137,6 +137,7 @@
                 </v-row>
             </v-container>
         </template>
+        <ValidationProvider>
             <v-text-field
             v-model="email"
             :error-messages="errors"
