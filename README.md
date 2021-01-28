@@ -39,13 +39,18 @@ Built with Vue.Js, Node.Js/ Express.Js, MySQL, Firebase, OAuth API, Paypal/ Stri
 
 URI | HTTP Method | Description
 --- | ----------- | -----------
-/api/users/:group | GET | Get all organizers or volunteers
 /api/users/:email | GET | Get user by email
 /api/events | GET | Get all events
-/api/applicants | GET | Get all applicants
+/api/events:id | GET | Get an event by id
+/api/events | POST | Add an event
+/api/events:id | DELETE | Delete an event by id
+/api/events:id | PUT | Update an event by id
 /api/organizations | GET | Get all organizations
-/api/applicants | POST | Insert application
-/api/applicants | PUT | Insert application
+/api/organizations:id | GET | Get an organization by id
+/api/volunteers/:id | GET | Get all volunteers by event
+/api/volunteers/:id/application-status/:status | GET | Get all volunteers by event id and application status
+/api/volunteers | POST | Add an application to volunteers for an event
+/api/volunteers/:id | PUT | Update application
 
 ## User Flow Diagram
 
