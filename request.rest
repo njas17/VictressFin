@@ -40,7 +40,7 @@ GET  http://localhost:5000/api/organizations/1
 
 ###
 
-GET http://localhost:5000/api/volunteers/1
+GET http://localhost:5000/api/volunteers/5
 
 ###
 

@@ -1,8 +1,9 @@
 export const CommonMixin = {
     methods: {
-        getLocaleDate(date) {
-            let d = new Date(date);
-            return d.toLocaleDateString();
+        getLocaleDate(date = null) {
+            let d = (date != null) ? new Date(date) : new Date;
+            let tzoffset = (new Date()).getTimezoneOffset() * 60000;
+            return new Date(d - tzoffset).toISOString().slice(0, 10);
         }
     },
     filters: {
