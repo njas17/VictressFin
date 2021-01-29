@@ -12,7 +12,8 @@
                         </v-btn>
                         <v-toolbar-title>Volunteer Application</v-toolbar-title>
                     </v-toolbar>
-                    <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication" @closeForm="volunteerDialog=false" />
+                    <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication"
+                        @closeForm="volunteerDialog=false" />
                 </v-dialog>
 
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
@@ -179,8 +180,22 @@
                 this.volunteerDialog = true;
                 this.selectedEvent = eid;
             },
-            submitApplication() {
-
+            submitApplication(data) {
+                // console.log("in events - data is:", JSON.stringify(data))
+                this.volunteerDialog = false;
+                fetch("/api/volunteers", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => {
+                        response.json();
+                    })
+                    .catch(error => {
+                        console.error("Error in volunteer application submission: ", error);
+                    });
             }
         }
     };
