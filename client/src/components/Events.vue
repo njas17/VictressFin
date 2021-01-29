@@ -5,6 +5,16 @@
         </div>
         <div class="col-md-12">
             <v-container fluid>
+                <v-dialog v-model="volunteerDialog" max-width="500px">
+                    <v-toolbar dark color="primary">
+                        <v-btn icon dark @click="volunteerDialog = false">
+                            <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                        <v-toolbar-title>Volunteer Application</v-toolbar-title>
+                    </v-toolbar>
+                    <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication" @closeForm="volunteerDialog=false" />
+                </v-dialog>
+
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
                     :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" hide-default-footer>
                     <template v-slot:header>
@@ -45,14 +55,21 @@
                                             }}</div>
                                         <div>Closing date: {{ getLocaleDate(item.closing) }}</div>
                                     </v-card-text>
-                                    <v-dialog v-model="dialog" persistent max-width="600px">
+                                    <v-card-actions>
+                                        <v-btn text color="deep-purple accent-4" @click="openVolunteerForm(item.eid)">
+                                            Apply
+                                        </v-btn>
+                                    </v-card-actions>
+
+
+                                    <!-- <v-dialog v-model="dialog" persistent max-width="600px">
                                         <template v-slot:activator="{ on, attrs }">
                                             <v-btn text color="deep-purple accent-4" v-bind="attrs" v-on="on">
                                                 Apply
                                             </v-btn>
                                         </template>
                                         <volunteer-application-form @handleDialog="handleDialog" />
-                                    </v-dialog>
+                                    </v-dialog> -->
                                 </v-card>
                             </v-col>
                         </v-row>
@@ -107,7 +124,8 @@
         name: "Events",
         mixins: [CommonMixin],
         data: () => ({
-            dialog: false,
+            volunteerDialog: false,
+            selectedEvent: 0,
             itemsPerPageArray: [4, 8, 12],
             search: '',
             filter: {},
@@ -123,7 +141,7 @@
                 'TotalVolunteer',
             ],
             items: [{}],
-            events: [],
+            newVolunteer: [],
         }),
         created() {
             this.getEvents();
@@ -142,15 +160,11 @@
                 fetch("/api/events")
                     .then(response => response.json())
                     .then(data => {
-                        this.events = data;
                         this.items = data;
                     })
                     .catch(error => {
                         console.error("Error in get events: ", error);
                     });
-            },
-            handleDialog() {
-                this.dialog = false;
             },
             nextPage() {
                 if (this.page + 1 <= this.numberOfPages) this.page += 1
@@ -160,6 +174,13 @@
             },
             updateItemsPerPage(number) {
                 this.itemsPerPage = number
+            },
+            openVolunteerForm(eid) {
+                this.volunteerDialog = true;
+                this.selectedEvent = eid;
+            },
+            submitApplication() {
+
             }
         }
     };
