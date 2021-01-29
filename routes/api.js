@@ -8,7 +8,16 @@ router.get("/", (req, res) => {
 
 // get all events
 router.get("/events/", (req, res) => {
-  db("SELECT eid, e.name, closingdate, e.status, e.description, e.contactname, e.contactnum, totalvolunteer, o.name as organization_name FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id;", req.params.id)
+  db("SELECT eid, e.name, closingdate as closing, e.status, e.description, e.contactname, e.contactnum, totalvolunteer, o.name as organization FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id;", req.params.id)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+// get all events by an organizer
+router.get("/events/organizer/:id", (req, res) => {
+  db("SELECT e.*, o.name as organization FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id WHERE e.organizer_id = ?;", req.params.id)
     .then(results => {
       res.send(results.data);
     })
@@ -72,17 +81,6 @@ router.get("/organizations/:id", (req, res) => {
 // get all volunteers/applicants by event
 router.get("/volunteers/:id", (req, res) => {
   db("SELECT * FROM volunteers WHERE event_id = ?;", req.params.id)
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
-
-// get all volunteers/applicants by event id and application status
-// status = 'approved' - this is a volunteer
-// status = 'new' - this is a new volunteer applicant
-router.get("/volunteers/:id/application-status/:status", (req, res) => {
-  db("SELECT * FROM volunteers WHERE event_id = ? AND status = ?;", [req.params.id, req.params.status])
     .then(results => {
       res.send(results.data);
     })
