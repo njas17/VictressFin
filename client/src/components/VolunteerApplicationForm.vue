@@ -58,10 +58,10 @@
 </template>
 
 <script>
-    import { CommonMixin } from '../mixins/CommonMixin';
+    import { HelperMixin } from '../mixins/HelperMixin';
     export default {
         name: 'VolunteerApplicationForm',
-        mixins: [CommonMixin], 
+        mixins: [HelperMixin], 
         props: {
             eventId: Number
         },

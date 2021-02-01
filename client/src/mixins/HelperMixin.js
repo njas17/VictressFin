@@ -1,4 +1,4 @@
-export const CommonMixin = {
+export const HelperMixin = {
     methods: {
         getLocaleDate(date = null) {
             let d = (date != null) ? new Date(date) : new Date;

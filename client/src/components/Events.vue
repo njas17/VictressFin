@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <div class="events">
-            <h1>Upcoming Events</h1>
+            <h3>Upcoming Events</h3>
         </div>
         <div class="col-md-12">
             <v-container fluid>
@@ -21,7 +21,7 @@
                     <template v-slot:header>
                         <v-toolbar dark color="blue darken-4" class="mb-1">
                             <v-text-field v-model="search" clearable flat solo-inverted hide-details
-                                prepend-inner-icon="mdi-magnify" label="Search"></v-text-field>
+                                prepend-inner-icon="mdi-magnify" label="Search for an Upcoming Event"></v-text-field>
                             <template v-if="$vuetify.breakpoint.mdAndUp">
                                 <v-spacer></v-spacer>
                                 <v-select v-model="sortBy" flat solo-inverted hide-details :items="keys"
@@ -61,16 +61,6 @@
                                             Apply
                                         </v-btn>
                                     </v-card-actions>
-
-
-                                    <!-- <v-dialog v-model="dialog" persistent max-width="600px">
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <v-btn text color="deep-purple accent-4" v-bind="attrs" v-on="on">
-                                                Apply
-                                            </v-btn>
-                                        </template>
-                                        <volunteer-application-form @handleDialog="handleDialog" />
-                                    </v-dialog> -->
                                 </v-card>
                             </v-col>
                         </v-row>
@@ -117,13 +107,13 @@
 </template>
 
 <script>
-    import { CommonMixin } from '../mixins/CommonMixin';
+    import { HelperMixin } from '../mixins/HelperMixin';
     import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
 
     export default {
         components: { VolunteerApplicationForm },
         name: "Events",
-        mixins: [CommonMixin],
+        mixins: [HelperMixin],
         data: () => ({
             volunteerDialog: false,
             selectedEvent: 0,
