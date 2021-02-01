@@ -58,9 +58,13 @@
 </template>
 
 <script>
+    import { HelperMixin } from '../mixins/HelperMixin';
     export default {
         name: 'VolunteerApplicationForm',
-        props: {},
+        mixins: [HelperMixin], 
+        props: {
+            eventId: Number
+        },
         data() {
             return {
                 valid: true,
@@ -69,6 +73,7 @@
                     v => (v && v.length <= 10) || 'Name must be less than 10 characters',
                 ],
                 formValues: {
+                    event_id: this.eventId,
                     firstname: "",
                     lastname: "",
                     email: "",
@@ -86,8 +91,10 @@
         methods: {
             handleSubmit() {
                 this.$refs.form.validate();
+                this.formValues.dateapp = this.getLocaleDate();
+                console.log(this.formValues);
+                this.$emit("volunteerApplication", this.formValues);
                 this.$refs.form.reset();
-                this.$emit('closeForm');
             },
             handleClose() {
                 this.$refs.form.reset();

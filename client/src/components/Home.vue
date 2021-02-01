@@ -21,13 +21,16 @@
         </v-col>
       </v-row>
     </v-parallax>
+    <events />
   </v-app>
 </template>
 
 <script>
+  import Events from './Events.vue';
+
   export default {
     name: 'home',
-
+    components: { Events },
     data: () => ({
       msg: 'Welcome to Your Vue.js App'
     }),
