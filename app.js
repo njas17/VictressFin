@@ -1,14 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 let cors = require("cors");
 
-// var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
+// let indexRouter = require('./routes/index');
+let apiRouter = require('./routes/api');
 
-var app = express();
+let app = express();
 
 app.use(cors());
 app.use(logger('dev'));

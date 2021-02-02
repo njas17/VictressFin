@@ -1,123 +1,222 @@
 <template>
     <ValidationObserver ref="observer">
+ 
+        <h2>Create Event</h2>
+        <ValidationProvider v-slot="{ errors }" name="Organization Id" rules="required">
+            <v-select
+            v-model="organizationid"
+            :items="items"
+            :error-messages="errors"
+            label="Organization Id"
+            data-vv-name="organizationid"
+            required
+            ></v-select>
+        </ValidationProvider>
+        <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:55" autocomplete="off">
+            <v-text-field
+            v-model="name"
+            :counter="55"
+            :error-messages="errors"
+            label="Title"
+            placeholder=" "
+            required
+            ></v-text-field>
+        </ValidationProvider>
         <v-form ref="form" lazy-validation>
-            <h2>Create Event</h2>
-            <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:25" autocomplete="off">
-                <v-text-field v-model="form.name" :counter="55" :error-messages="errors" label="Title" placeholder=" "
-                    required></v-text-field>
-            </ValidationProvider>
-            <template>
-                <v-row>
-                    <v-col cols="12" sm="6" md="6">
-                        <v-dialog ref="dialog" v-model="smodal" :return-value.sync="form.datefrom" persistent width="290px">
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-text-field v-model="form.datefrom" label="Start Date" prepend-icon="event" readonly
-                                    v-bind="attrs" v-on="on" :rules='requiredRules' required></v-text-field>
-                            </template>
-                            <v-date-picker v-model="form.datefrom" :min="new Date().toISOString().substr(0, 10)" scrollable>
-                                <v-btn text color="info" @click="smodal = false">Cancel</v-btn>
-                                <v-btn text color="info" @click="$refs.dialog.save(form.datefrom)">OK</v-btn>
-                            </v-date-picker>
-                        </v-dialog>
-                    </v-col>
-                    <v-spacer></v-spacer>
-                    <v-col cols="12" sm="6" md="6">
-                        <v-dialog ref="dialog2" v-model="emodal" :return-value.sync="form.dateto" persistent width="290px">
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-text-field v-model="form.dateto" label="End Date" prepend-icon="event" readonly
-                                    v-bind="attrs" v-on="on" :rules='requiredRules' required></v-text-field>
-                            </template>
-                            <v-date-picker v-model="form.dateto" :min="new Date().toISOString().substr(0, 10)" scrollable>
-                                <v-spacer></v-spacer>
-                                <v-btn text color="info" @click="emodal = false">Cancel</v-btn>
-                                <v-btn text color="info" @click="$refs.dialog2.save(form.dateto)">OK</v-btn>
-                            </v-date-picker>
-                        </v-dialog>
-                    </v-col>
-                </v-row>
-            </template>
-            <ValidationProvider v-slot="{ errors }" name="Description" rules="required|max:400" autocomplete="off">
-                <v-textarea v-model="form.description" :counter="400" :error-messages="errors" label="Description"
-                    placeholder=" " auto-grow rows="1" required></v-textarea>
-            </ValidationProvider>
-            <ValidationProvider v-slot="{ errors }" name="Contact" rules="required|55" autocomplete="off">
-                <v-text-field v-model="form.contactname" :counter="55" :error-messages="errors" label="Contact Person"
-                    placeholder=" " required></v-text-field>
-            </ValidationProvider>
-            <template>
-                <v-container>
-                    <v-row>
-                        <v-col cols="12">
-                            <vue-tel-input-vuetify v-model="phone" type="text"
-                                :preferred-countries="['my', 'in', 'es', 'gb', 'us']" :valid-characters-only="true"
-                                @input="onInput" />
-                        </v-col>
-                    </v-row>
-                    <v-row>
-                        <v-col cols="12">
-                            <div v-if="phone.number" style="color: #e83e8c">
-                                <span>
-                                    Number:
-                                    <strong>{{ phone.number }}</strong>,&nbsp;
-                                </span>
-                                <span>
-                                    Is valid:
-                                    <strong>{{ phone.valid }}</strong>,&nbsp;
-                                </span>
-                                <span>
-                                    Country:
-                                    <strong>{{ phone.country }}</strong>
-                                </span>
-                            </div>
-                        </v-col>
-                    </v-row>
-                </v-container>
-            </template>
-            <ValidationProvider>
-                <v-text-field v-model="form.contactemail" :error-messages="errors" label="E-mail (optional)" placeholder=" ">
-                </v-text-field>
-            </ValidationProvider>
-            <template>
-                <v-row>
-                    <v-col cols="12" sm="6" md="6">
-                        <v-dialog ref="dialog3" v-model="cmodal" :return-value.sync="form.closingdate" persistent width="290px">
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-text-field v-model="form.closingdate" label="Closing Date (Volunteer Application)" prepend-icon="event" readonly
-                                    v-bind="attrs" v-on="on" :rules='requiredRules' required></v-text-field>
-                            </template>
-                            <v-date-picker v-model="form.closingdate" :min="new Date().toISOString().substr(0, 10)" scrollable>
-                                <v-btn text color="info" @click="cmodal = false">Cancel</v-btn>
-                                <v-btn text color="info" @click="$refs.dialog.save(form.closingdate)">OK</v-btn>
-                            </v-date-picker>
-                        </v-dialog>
-                    </v-col>
-                    <v-spacer></v-spacer>
-                    <v-col cols="12" sm="6" md="6">
-
-                    </v-col>
-                </v-row>
-            </template>
-
-            <ValidationProvider v-slot="{ errors }" name="totalvolunteersneeded" rules="required" autocomplete="off">
-                <v-text-field v-model="form.totalvolunteer" :error-messages="errors" label="Total Volunteers Needed"
-                    placeholder=" " required></v-text-field>
-            </ValidationProvider>
-            <ValidationProvider v-slot="{ errors }" rules="required" name="checkbox">
-                <v-checkbox v-model="checkbox" :error-messages="errors" value="1" label="Option" type="checkbox"
-                    required></v-checkbox>
-            </ValidationProvider>
-
-            <v-btn class="mr-4" @click="submit">submit</v-btn>
-            <v-btn @click="clear">clear</v-btn>
+        <template>
+            <v-row align="center">
+                <v-col cols="12" sm="3" md="3">
+                    <v-dialog
+                        ref="dialog"
+                        v-model="smodal"
+                        :return-value.sync="sdate"
+                        persistent
+                        width="290px"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                            :disabled="enabled"
+                            v-model="sdate"
+                            label="Event Start Date"
+                            prepend-icon="event"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                            ></v-text-field>
+                            <!-- :rules='[v => !!v || "Date is required"]' -->
+                        </template>
+                        <v-date-picker v-model="sdate" :min="new Date().toISOString().substr(0, 10)" scrollable>
+                            <v-btn text color="info" @click="smodal = false">Cancel</v-btn>
+                            <v-btn text color="info" @click="$refs.dialog.save(sdate)">OK</v-btn>
+                        </v-date-picker>
+                    </v-dialog>
+                </v-col>
+                <v-spacer></v-spacer>
+                <v-col cols="12" sm="3" md="3">
+                    <v-dialog
+                        ref="dialog2"
+                        v-model="emodal"
+                        :return-value.sync="edate"
+                        persistent
+                        width="290px"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                            :disabled="enabled"
+                            v-model="edate"
+                            label="Event End Date"
+                            prepend-icon="event"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                        ></v-text-field>
+                        </template>
+                        <v-date-picker v-model="edate" :min="new Date().toISOString().substr(0, 10)" scrollable>
+                        <v-spacer></v-spacer>
+                            <v-btn text color="info" @click="emodal = false">Cancel</v-btn>
+                            <v-btn text color="info" @click="$refs.dialog2.save(edate)">OK</v-btn>
+                        </v-date-picker>
+                    </v-dialog>
+                </v-col>
+                <v-spacer></v-spacer>
+                <v-col cols="12" sm="3" md="3">
+                    <v-dialog
+                        ref="dialog3"
+                        v-model="cmodal"
+                        :return-value.sync="cdate"
+                        persistent
+                        width="290px"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                            :disabled="enabled"
+                            v-model="cdate"
+                            label="Application Closing Date"
+                            prepend-icon="event"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                        ></v-text-field>
+                        </template>
+                        <v-date-picker v-model="cdate" :min="new Date().toISOString().substr(0, 10)" scrollable>
+                        <v-spacer></v-spacer>
+                            <v-btn text color="info" @click="cmodal = false">Cancel</v-btn>
+                            <v-btn text color="info" @click="$refs.dialog3.save(cdate)">OK</v-btn>
+                        </v-date-picker>
+                    </v-dialog>
+                </v-col>
+                <v-spacer></v-spacer>
+                <v-col cols="12" sm="2" md="2">
+                    <v-checkbox
+                    v-model="enabled"
+                    label="Ongoing event"
+                    ></v-checkbox>
+                </v-col>
+            </v-row>   
+        </template>
         </v-form>
+        <ValidationProvider v-slot="{ errors }" name="Description" rules="required|max:255" autocomplete="off">
+            <v-textarea
+            v-model="description"
+            :counter="255"
+            :error-messages="errors"
+            label="Description"
+            placeholder=" "
+            auto-grow
+            rows="1"
+            required
+            ></v-textarea>
+        </ValidationProvider>
+        <ValidationProvider v-slot="{ errors }" name="Location" rules="required" autocomplete="off">
+            <v-text-field
+            v-model="location"
+            :error-messages="errors"
+            label="Location"
+            placeholder=" "
+            required
+            ></v-text-field>
+        </ValidationProvider>
+        <ValidationProvider v-slot="{ errors }" name="Contact Person" rules="required" autocomplete="off">
+            <v-text-field
+            v-model="contactperson"
+            :error-messages="errors"
+            label="Contact Person"
+            placeholder=" "
+            required
+            ></v-text-field>
+        </ValidationProvider>
+        <ValidationProvider v-slot="{ errors }" name="Phone" :rules="{ required: true, regex: /^[\d-\s]+$/ }" autocomplete="off">
+            <vue-tel-input-vuetify
+            v-model="phone"
+            :error-messages="errors"
+            :preferred-countries="['my', 'in', 'es', 'gb', 'us']"
+            :maxLen="11"
+            required
+            />
+        </ValidationProvider>
+        <ValidationProvider v-slot="{ errors }" name="Email" rules="email" autocomplete="off">
+            <v-text-field
+            v-model="email"
+            :error-messages="errors"
+            label="Email (optional)"
+            placeholder=" "
+            ></v-text-field>
+        </ValidationProvider>
+        <ValidationProvider v-slot="{ errors }" name="Total Volunteers Needed" rules="required" autocomplete="off">
+            <v-text-field
+            type="number"
+            v-model="totalvolunteersneeded"
+            :error-messages="errors"
+            label="Total Volunteers Needed"
+            placeholder=" "
+            required
+            ></v-text-field>
+        </ValidationProvider>
+        <ValidationProvider>
+        <template>
+            <v-file-input
+                v-model="imageupload"
+                accept="image/png, image/jpeg"
+                placeholder=" "
+                prepend-icon="mdi-camera"
+                show-size
+                label="Image Upload"
+            ></v-file-input>
+        </template>
+        </ValidationProvider>
+        <!-- <ValidationProvider v-slot="{ errors }" rules="required" name="Checkbox">
+            <v-checkbox
+                v-model="agreement"
+                :error-messages="errors"
+                :rules="[rules.required]"
+                color="deep-purple"
+            >
+                <template v-slot:label>
+                I agree to the &nbsp;
+                <a
+                    href="#"
+                    @click.stop.prevent="dialog = true"
+                >Terms of Service</a> 
+                &nbsp; and &nbsp;
+                <a
+                    href="#"
+                    @click.stop.prevent="dialog = true"
+                >Privacy Policy</a>*
+                </template>
+            </v-checkbox>
+        </ValidationProvider> -->
+
+        <v-btn class="mr-4" @click="submit">submit</v-btn>
+        <v-btn @click="clear">clear</v-btn>
     </ValidationObserver>
 </template>
 
 <script>
-    import { required, email, max } from 'vee-validate/dist/rules'
-    import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 
-    setInteractionMode('eager')
+import { required, email, max, regex } from 'vee-validate/dist/rules';
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate';
+
+setInteractionMode('eager');
 
     extend('required', {
         ...required,
@@ -129,73 +228,65 @@
         message: '{_field_} may not be greater than {length} characters',
     })
 
-    extend('email', {
-        ...email,
-        message: 'Email must be valid',
-    })
+extend('regex', {
+...regex,
+message: 'Phone number must be valid',
+})
 
-    export default {
-        components: {  ValidationProvider, ValidationObserver },        
-        name: "CreateEventForm",
-        props: {
-            organizerId: Number
+export default {
+    name: "CreateEventForm",
+    components: {
+        ValidationProvider,
+        ValidationObserver,
+    },
+    data: () => ({
+        organizationid: '',
+        items: [
+            '1',
+            '2',
+            '3',
+            '4',
+        ],
+        name: '',
+        smodal: false,
+        sdate: null,
+        emodal: false,
+        edate: null,
+        cmodal: false,
+        cdate: null,
+        location: '',
+        description: '',
+        contactperson: '',
+        phone: '',
+        email: '',
+        totalvolunteersneeded: '',
+        imageupload: null,
+        checkbox: null,
+        rules: '',
+        requiredRules: '',
+        enabled: false,
+    }),
+    
+    methods: {
+        submit () {
+            this.$refs.observer.validate()
+            this.$refs.form.validate()
         },
-        data() {
-            return {
-                form: {
-                    organizer_id: this.organizerId,
-                    name: "",
-                    dateto: null,
-                    datefrom: null,
-                    closingdate: null,
-                    status: "active",
-                    description: "",
-                    contactname: "",
-                    contactnum: "",
-                    contactemail: "",
-                    totalvolunteer: 0,
-                    location: ""
-                },
-                errors: '',
-                name: '',
-                email: '',
-                select: null,
-                items: [],
-                checkbox: null,
-                edate: null,
-                sdate: null,
-                smodal: false,
-                emodal: false,
-                cmodel: false,
-                description: '',
-                contactperson: '',
-                totalvolunteersneeded: '',
-                requiredRules: [v => !!v || "Date is required"],
-                phone: {
-                    number: null,
-                    valid: false,
-                    country: 'my'
-                }
-            }
+        clear () {
+            this.organizationid = ''
+            this.name = ''
+            this.location = ''
+            this.description = ''
+            this.contactperson = ''
+            this.phone = ''
+            this.email = ''
+            this.totalvolunteersneeded = ''
+            this.imageupload = null
+            this.checkbox = null
+            this.$refs.observer.reset()
+            this.$refs.form.reset()
         },
-
-        methods: {
-            submit() {
-                this.$refs.observer.validate()
-                this.$refs.form.validate()
-            },
-            clear() {
-                this.$refs.observer.reset()
-                this.$refs.form.reset()
-            },
-            onInput(formattedNumber, { number, valid, country }) {
-                this.phone.number = number.international;
-                this.phone.valid = valid;
-                this.phone.country = country && country.name;
-            }
-        },
-        created() {
-
-        }
-    };
+    },
+};
 </script>
+
