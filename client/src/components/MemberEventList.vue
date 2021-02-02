@@ -3,11 +3,8 @@
         <v-card-title>
             My Event(s)
             <v-spacer></v-spacer>
-            <v-text-field class="mb-5 mr-3" v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details>
+            <v-text-field class="mb-5 mr-3" v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
             </v-text-field>
-            <v-btn color="primary" dark class="mb-2 ml-3">
-                ADD EVENT
-            </v-btn>
         </v-card-title>
         <v-data-table :headers="headers" :items="orgevents" :search="search">
             <template v-slot:[`item.action`]="{ item }">
