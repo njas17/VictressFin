@@ -2,7 +2,6 @@
     <v-container>
         <div class="member">
             <h1>Member</h1>
-            <member-event-list />
             <create-event-form :organizerId="userId" />
         </div>
         <volunteer-list :eventId="selectedEvent" />
@@ -10,11 +9,11 @@
 </template>
 
 <script>
-import MemberEventList from "./MemberEventList";
+import CreateEventForm from './CreateEventForm';
 import VolunteerList from './VolunteerList';
 
 export default {
-    components: { CreateEventForm, VolunteerList, MemberEventList },
+    components: { CreateEventForm, VolunteerList },
     name: "member",
 
     data: () => ({
