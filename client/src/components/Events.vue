@@ -1,17 +1,6 @@
 <template>
     <v-container>
         <div class="events">
-            <v-container class="top">
-                <!-- <v-row> -->
-                    <div class="col-md-6">
-                        <donation-link/>
-                    </div>
-                    <div class="col-md-6">
-                        <h3>Twitter Highlights #VirtualVolunteer</h3><br/>
-                        <ul class="juicer-feed" data-feed-id="virtualvolunteer"><h1 class="referral"></h1></ul>
-                    </div>
-                <!-- </v-row> -->
-            </v-container><br/>
             <h1>Upcoming Events</h1>
         </div>
         <div class="col-md-12">
@@ -118,23 +107,13 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import { CommonMixin } from '../mixins/CommonMixin';
-import DonationLink from './DonationLink.vue';
+import { HelperMixin } from '../mixins/HelperMixin';
 import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
-||||||| fc32ae9
-    import { CommonMixin } from '../mixins/CommonMixin';
-    import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
-=======
-    import { HelperMixin } from '../mixins/HelperMixin';
-    import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
->>>>>>> 90ecc30a135e89249b0c3e8843331aa8cd50d445
 
-<<<<<<< HEAD
 export default {
-    components: { VolunteerApplicationForm, DonationLink },
+    components: { VolunteerApplicationForm },
     name: "Events",
-    mixins: [CommonMixin],
+    mixins: [HelperMixin],
     data: () => ({
         volunteerDialog: false,
         selectedEvent: 0,
@@ -158,69 +137,8 @@ export default {
     created() {
         this.getEvents();
     },
-    computed: {
-        numberOfPages() {
-            return Math.ceil(this.items.length / this.itemsPerPage)
-||||||| fc32ae9
-    export default {
-        components: { VolunteerApplicationForm },
-        name: "Events",
-        mixins: [CommonMixin],
-        data: () => ({
-            volunteerDialog: false,
-            selectedEvent: 0,
-            itemsPerPageArray: [4, 8, 12],
-            search: '',
-            filter: {},
-            sortDesc: false,
-            page: 1,
-            itemsPerPage: 4,
-            sortBy: 'name',
-            keys: [
-                'Name',
-                'Description',
-                'Closing',
-                'Organization',
-                'TotalVolunteer',
-            ],
-            items: [{}],
-            newVolunteer: [],
-        }),
-        created() {
-            this.getEvents();
-=======
-    export default {
-        components: { VolunteerApplicationForm },
-        name: "Events",
-        mixins: [HelperMixin],
-        data: () => ({
-            volunteerDialog: false,
-            selectedEvent: 0,
-            itemsPerPageArray: [4, 8, 12],
-            search: '',
-            filter: {},
-            sortDesc: false,
-            page: 1,
-            itemsPerPage: 4,
-            sortBy: 'name',
-            keys: [
-                'Name',
-                'Description',
-                'Closing',
-                'Organization',
-                'TotalVolunteer',
-            ],
-            items: [{}],
-            newVolunteer: [],
-        }),
-        created() {
-            this.getEvents();
->>>>>>> 90ecc30a135e89249b0c3e8843331aa8cd50d445
-        },
-        filteredKeys() {
-            return this.keys.filter(key => key !== 'Name')
-        },
-<<<<<<< HEAD
+    filteredKeys() {
+        return this.keys.filter(key => key !== 'Name')
     },
     methods: {
         //Get all events
@@ -247,84 +165,25 @@ export default {
             this.volunteerDialog = true;
             this.selectedEvent = eid;
         },
-        submitApplication() {
-
-||||||| fc32ae9
-        methods: {
-            //Get all events
-            getEvents() {
-                fetch("/api/events")
-                    .then(response => response.json())
-                    .then(data => {
-                        this.items = data;
-                    })
-                    .catch(error => {
-                        console.error("Error in get events: ", error);
-                    });
-            },
-            nextPage() {
-                if (this.page + 1 <= this.numberOfPages) this.page += 1
-            },
-            formerPage() {
-                if (this.page - 1 >= 1) this.page -= 1
-            },
-            updateItemsPerPage(number) {
-                this.itemsPerPage = number
-            },
-            openVolunteerForm(eid) {
-                this.volunteerDialog = true;
-                this.selectedEvent = eid;
-            },
-            submitApplication() {
-
-            }
-=======
-        methods: {
-            //Get all events
-            getEvents() {
-                fetch("/api/events")
-                    .then(response => response.json())
-                    .then(data => {
-                        this.items = data;
-                    })
-                    .catch(error => {
-                        console.error("Error in get events: ", error);
-                    });
-            },
-            nextPage() {
-                if (this.page + 1 <= this.numberOfPages) this.page += 1
-            },
-            formerPage() {
-                if (this.page - 1 >= 1) this.page -= 1
-            },
-            updateItemsPerPage(number) {
-                this.itemsPerPage = number
-            },
-            openVolunteerForm(eid) {
-                this.volunteerDialog = true;
-                this.selectedEvent = eid;
-            },
-            submitApplication(data) {
-                // console.log("in events - data is:", JSON.stringify(data))
-                this.volunteerDialog = false;
-                fetch("/api/volunteers", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
+        submitApplication(data) {
+            // console.log("in events - data is:", JSON.stringify(data))
+            this.volunteerDialog = false;
+            fetch("/api/volunteers", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    response.json();
                 })
-                    .then(response => {
-                        response.json();
-                    })
-                    .catch(error => {
-                        console.error("Error in volunteer application submission: ", error);
-                    });
-            }
->>>>>>> 90ecc30a135e89249b0c3e8843331aa8cd50d445
+                .catch(error => {
+                    console.error("Error in volunteer application submission: ", error);
+                });
         }
     }
-};
+}
 </script>
 
 <style scoped>

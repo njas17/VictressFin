@@ -11,10 +11,6 @@
         <v-card-title>You can make a difference</v-card-title>
         </v-img>
 
-        <!-- <v-card-subtitle class="pb-0">
-        Photo by <a href="https://unsplash.com/@processrepeat?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Nathan Lemon</a> on <a href="https://unsplash.com/collections/8469874/volunteer?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-        </v-card-subtitle> -->
-
         <v-card-actions>
         <v-btn
             color="pink"

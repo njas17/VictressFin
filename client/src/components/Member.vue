@@ -2,18 +2,18 @@
     <v-container>
         <div class="member">
             <h1>Member</h1>
-            <twitter-highlights /><br/>
             <create-event-form />
+            <member-event-list />
         </div>
     </v-container>
 </template>
 
 <script>
 import CreateEventForm from './CreateEventForm';
-import TwitterHighlights from './TwitterHighlights.vue';
+import MemberEventList from "./MemberEventList";
 
 export default {
-    components: { CreateEventForm, TwitterHighlights },
+    components: { CreateEventForm, MemberEventList },
     name: "member",
 
     data: () => ({
