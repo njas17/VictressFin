@@ -2,10 +2,7 @@
     <ValidationObserver ref="observer">
 
         <h2>Create Event</h2>
-        <ValidationProvider v-slot="{ errors }" name="Organization Id" rules="required">
-            <v-select v-model="organizationid" :items="items" :error-messages="errors" label="Organization Id"
-                data-vv-name="organizationid" required></v-select>
-        </ValidationProvider>
+
         <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:55" autocomplete="off">
             <v-text-field v-model="name" :counter="55" :error-messages="errors" label="Title" placeholder=" " required>
             </v-text-field>
@@ -155,12 +152,7 @@
         },
         data: () => ({
             organizationid: '',
-            items: [
-                '1',
-                '2',
-                '3',
-                '4',
-            ],
+            items: [],
             name: '',
             smodal: false,
             sdate: null,
