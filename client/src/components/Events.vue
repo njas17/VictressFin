@@ -43,7 +43,7 @@
                         <v-row>
                             <v-col v-for="item in props.items" :key="item.eid" cols="12" sm="6" md="4" lg="3">
                                 <v-card class="mx-auto my-12" max-width="380">
-                                    <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/cooking.png">
+                                    <v-img height="200" src="{item.images}">
                                     </v-img>
                                     <v-card-title class="pb-2">{{ item.name | truncate(27, '...') }}</v-card-title>
                                     <v-card-text>
@@ -107,83 +107,85 @@
 </template>
 
 <script>
-import { HelperMixin } from '../mixins/HelperMixin';
-import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
+    import { HelperMixin } from '../mixins/HelperMixin';
+    import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
 
-export default {
-    components: { VolunteerApplicationForm },
-    name: "Events",
-    mixins: [HelperMixin],
-    data: () => ({
-        volunteerDialog: false,
-        selectedEvent: 0,
-        itemsPerPageArray: [4, 8, 12],
-        search: '',
-        filter: {},
-        sortDesc: false,
-        page: 1,
-        itemsPerPage: 4,
-        sortBy: 'name',
-        keys: [
-            'Name',
-            'Description',
-            'Closing',
-            'Organization',
-            'TotalVolunteer',
-        ],
-        items: [{}],
-        newVolunteer: [],
-    }),
-    created() {
-        this.getEvents();
-    },
-    filteredKeys() {
-        return this.keys.filter(key => key !== 'Name')
-    },
-    methods: {
-        //Get all events
-        getEvents() {
-            fetch("/api/events")
-                .then(response => response.json())
-                .then(data => {
-                    this.items = data;
+    export default {
+        components: { VolunteerApplicationForm },
+        name: "Events",
+        mixins: [HelperMixin],
+        data() {
+            return {
+                volunteerDialog: false,
+                selectedEvent: 0,
+                itemsPerPageArray: [4, 8, 12],
+                search: '',
+                filter: {},
+                sortDesc: false,
+                page: 1,
+                itemsPerPage: 4,
+                sortBy: 'name',
+                keys: [
+                    'Name',
+                    'Description',
+                    'Closing',
+                    'Organization',
+                    'TotalVolunteer',
+                ],
+                items: [{}],
+                newVolunteer: [],
+            }
+        },
+        created() {
+            this.getEvents();
+        },
+        filteredKeys() {
+            return this.keys.filter(key => key !== 'Name')
+        },
+        methods: {
+            //Get all events
+            getEvents() {
+                fetch("/api/events")
+                    .then(response => response.json())
+                    .then(data => {
+                        this.items = data;
+                    })
+                    .catch(error => {
+                        console.error("Error in get events: ", error);
+                    });
+            },
+            nextPage() {
+                if (this.page + 1 <= this.numberOfPages) this.page += 1
+            },
+            formerPage() {
+                if (this.page - 1 >= 1) this.page -= 1
+            },
+            updateItemsPerPage(number) {
+                this.itemsPerPage = number
+            },
+            openVolunteerForm(eid) {
+                this.volunteerDialog = true;
+                this.selectedEvent = eid;
+            },
+            submitApplication(data) {
+                // console.log("in events - data is:", JSON.stringify(data))
+                this.volunteerDialog = false;
+                fetch("/api/volunteers", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
                 })
-                .catch(error => {
-                    console.error("Error in get events: ", error);
-                });
-        },
-        nextPage() {
-            if (this.page + 1 <= this.numberOfPages) this.page += 1
-        },
-        formerPage() {
-            if (this.page - 1 >= 1) this.page -= 1
-        },
-        updateItemsPerPage(number) {
-            this.itemsPerPage = number
-        },
-        openVolunteerForm(eid) {
-            this.volunteerDialog = true;
-            this.selectedEvent = eid;
-        },
-        submitApplication(data) {
-            // console.log("in events - data is:", JSON.stringify(data))
-            this.volunteerDialog = false;
-            fetch("/api/volunteers", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => {
-                    response.json();
-                })
-                .catch(error => {
-                    console.error("Error in volunteer application submission: ", error);
-                });
+                    .then(response => {
+                        response.json();
+                    })
+                    .catch(error => {
+                        console.error("Error in volunteer application submission: ", error);
+                    });
+            }
         }
     }
-}
 </script>
 
 <style scoped>
