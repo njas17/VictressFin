@@ -5,13 +5,14 @@
             <member-event-list />
             <create-event-form :organizerId="userId" />
         </div>
-        <volunteer-list :eventId="selectedEvent" />
+        <volunteer-list :eventId="selectedEvent" :eventName="title" />
     </v-container>
 </template>
 
 <script>
 import MemberEventList from "./MemberEventList";
 import VolunteerList from './VolunteerList';
+import CreateEventForm from './CreateEventForm';
 
 export default {
     components: { CreateEventForm, VolunteerList, MemberEventList },
