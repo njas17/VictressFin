@@ -1,6 +1,6 @@
 <template>
     <ValidationObserver ref="observer">
-        
+ 
         <h2>Create Event</h2>
         <ValidationProvider v-slot="{ errors }" name="Organization Id" rules="required">
             <v-select
@@ -212,25 +212,21 @@
 </template>
 
 <script>
-import { required, email, max, regex } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 
-setInteractionMode('eager')
+import { required, email, max, regex } from 'vee-validate/dist/rules';
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate';
 
-extend('required', {
-...required,
-message: '{_field_} can not be empty',
-})
+setInteractionMode('eager');
 
-extend('max', {
-...max,
-message: '{_field_} may not be greater than {length} characters',
-})
+    extend('required', {
+        ...required,
+        message: '{_field_} can not be empty',
+    })
 
-extend('email', {
-...email,
-message: 'Email must be valid',
-})
+    extend('max', {
+        ...max,
+        message: '{_field_} may not be greater than {length} characters',
+    })
 
 extend('regex', {
 ...regex,
@@ -293,3 +289,4 @@ export default {
     },
 };
 </script>
+
