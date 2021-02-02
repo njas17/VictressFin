@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 
 // get all events
 router.get("/events/", (req, res) => {
-  db("SELECT eid, e.name, closingdate as closing, e.status, e.description, e.contactname, e.contactnum, totalvolunteer, o.name as organization FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id;", req.params.id)
+  db("SELECT eid, e.name, closingdate as closing, e.status, e.images, e.description, e.contactname, e.contactnum, totalvolunteer, o.name as organization FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id;", req.params.id)
     .then(results => {
       res.send(results.data);
     })

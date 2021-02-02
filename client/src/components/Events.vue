@@ -43,7 +43,7 @@
                         <v-row>
                             <v-col v-for="item in props.items" :key="item.eid" cols="12" sm="6" md="4" lg="3">
                                 <v-card class="mx-auto my-12" max-width="380">
-                                    <v-img height="200" src="{item.images}">
+                                    <v-img height="200" :src="item.images">
                                     </v-img>
                                     <v-card-title class="pb-2">{{ item.name | truncate(27, '...') }}</v-card-title>
                                     <v-card-text>
