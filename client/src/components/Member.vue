@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import CreateEventForm from './CreateEventForm';
 import MemberEventList from "./MemberEventList";
 import VolunteerList from './VolunteerList';
 
