@@ -12,6 +12,7 @@
 <script>
 import MemberEventList from "./MemberEventList";
 import VolunteerList from './VolunteerList';
+import CreateEventForm from './CreateEventForm';
 
 export default {
     components: { CreateEventForm, VolunteerList, MemberEventList },
