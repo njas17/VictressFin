@@ -16,7 +16,8 @@
 
     <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/events">Events</v-btn>
+      <v-btn text to="/">Events</v-btn>
+      <v-btn text to="/">Donate</v-btn>      
       <v-btn text to="/member">Member</v-btn>
     </v-app-bar>
 
