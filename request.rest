@@ -23,7 +23,7 @@ GET http://localhost:5000/api/events/organizer/1
 
 ###
 
-DELETE http://localhost:5000/api/events/4
+DELETE http://localhost:5000/api/events/2
 
 ###
 
