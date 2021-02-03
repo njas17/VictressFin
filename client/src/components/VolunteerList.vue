@@ -33,7 +33,7 @@
                 <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details>
                 </v-text-field>
             </v-card-title>
-            <v-data-table :headers="headers" :items="volunteers" :search="search" show-group-by group-by="eventname" class="elevation-1">
+            <v-data-table :headers="headers" :items="volunteers" :search="search" show-group-by group-by="Event" class="elevation-1">
                 <template v-slot:item.eventname="{ item }">
                     {{ item.eventname | truncate(10, '...') }}
                 </template>               
@@ -90,7 +90,7 @@
                         value: 'firstname',
                         groupable: false
                     },                  
-                    { text: 'Event', value: 'eventname' },
+                    { text: 'Event', value: 'Event' },
                     { text: 'Contact Number', value: 'contactnum', sortable: false,  groupable: false },
                     { text: 'Location', value: 'country', groupable: false },
                     { text: 'Date Apply', value: 'dateapp', groupable: false },

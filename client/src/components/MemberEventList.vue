@@ -9,7 +9,7 @@
                         </v-btn>
                         <v-toolbar-title>Edit Event</v-toolbar-title>
                     </v-toolbar>
-                    <edit-event-form :currentevent="currentevent" />
+                    <edit-event-form :currentevent="currentevent" @updateevent="updateEvent" />
                 </v-dialog>
                 <v-card>
                     <v-card-title>
@@ -18,7 +18,7 @@
                         <v-text-field class="mb-5 mr-3" v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
                         </v-text-field>
                     </v-card-title>
-                    <v-data-table :headers="headers" :items="orgevents" :search="search">
+                    <v-data-table :headers="headers" :items="events" :search="search">
                         <template v-slot:[`item.action`]="{ item }">
                             <v-icon small class="mr-2" @click="editEvent(item.eid)"> mdi-pencil </v-icon>
                             <v-icon small @click="deleteEvent(item.eid)"> mdi-delete </v-icon>
@@ -35,11 +35,13 @@ import EditEventForm from './EditEventForm.vue';
 export default {
     components: { EditEventForm },
     name: "MemberEventList",
+    props: {
+        events: Array
+    },
     data () {
         return {
             eventDialog: false,
             currentevent: {},
-            orgevents: [],
             headers: [
             {
                 text: "Title",
@@ -55,19 +57,9 @@ export default {
         }
     },
     created() {
-        this.getOrgEvents(1);
+        // this.getOrgEvents(this.uid);
     },
     methods: {
-        //Get events by organization
-        getOrgEvents(organizer_id) {
-            // organizer_id = "2"
-            fetch("/api/events/organizer/" + organizer_id)
-                .then(response => response.json())
-                .then(data => this.orgevents = data)
-                .catch(error => {
-                    console.error("Error in get organization events: ", error);
-                });
-        },
         //Delete event by event_id
         deleteEvent(item) {
             console.log(item);
@@ -102,6 +94,24 @@ export default {
                     console.error("Error in get events: ", error);
                 });
         },
+        updateEvent(data) {
+            //console.log(data.eid, JSON.stringify(data));
+            this.eventDialog = false;
+            
+            fetch("/api/events/" + data.eid, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                }).then(res => {
+                    res.json();
+                    this.$emit("updateEvent"); // this should emit the get all events in parent which is Member.vue
+                })
+                    .catch(error => {
+                        console.error("Error in updating event: ", error);
+                    });                 
+        }
     },
 };
 </script>

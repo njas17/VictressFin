@@ -89,7 +89,7 @@ router.get("/volunteers/:id", (req, res) => {
 
 // get all volunteers under an organizer
 router.get("/volunteers/organizers/:id", (req, res) => {
-  db("SELECT v.*, e.name as eventname, e.totalvolunteer FROM volunteers v inner join events e on v.event_id = e.eid inner join users u on e.organizer_id = u.uid where e.status = 'active' and organizer_id = ?;", req.params.id)
+  db("SELECT v.*, e.name as Event, e.totalvolunteer FROM volunteers v inner join events e on v.event_id = e.eid inner join users u on e.organizer_id = u.uid where e.status = 'active' and organizer_id = ?;", req.params.id)
     .then(results => {
       res.send(results.data);
     })
