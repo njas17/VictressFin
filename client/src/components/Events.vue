@@ -139,8 +139,13 @@
         created() {
             this.getEvents();
         },
-        filteredKeys() {
-            return this.keys.filter(key => key !== 'Name')
+        computed: {
+            numberOfPages() {
+                return Math.ceil(this.items.length / this.itemsPerPage);
+            },
+            filteredKeys() {
+                return this.keys.filter(key => key !== 'Name');
+            },
         },
         methods: {
             //Get all events
