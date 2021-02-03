@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 
 // get all events
 router.get("/events/", (req, res) => {
-  db("SELECT eid, e.name, closingdate as closing, e.status, e.description, e.contactname, e.contactnum, totalvolunteer, o.name as organization FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id;", req.params.id)
+  db("SELECT eid, e.name, closingdate as closing, e.status, e.images, e.description, e.contactname, e.contactnum, totalvolunteer, o.name as organization FROM events e INNER JOIN users u on uid = e.organizer_id inner join organizations o on oid = u.organization_id;", req.params.id)
     .then(results => {
       res.send(results.data);
     })
@@ -87,6 +87,15 @@ router.get("/volunteers/:id", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+// get all volunteers under an organizer
+router.get("/volunteers/organizers/:id", (req, res) => {
+  db("SELECT v.*, e.name as eventname, e.totalvolunteer FROM volunteers v inner join events e on v.event_id = e.eid inner join users u on e.organizer_id = u.uid where e.status = 'active' and organizer_id = ?;", req.params.id)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
 // get all volunteers/applicants by event id and application status
 // status = 'approved' - this is a volunteer
 // status = 'new' - this is a new volunteer applicant
@@ -111,6 +120,14 @@ router.post("/volunteers", function(req, res, next) {
 // update application status, date processed
 router.put("/volunteers/:id", function(req, res, next) {
   db("UPDATE volunteers SET ? WHERE vid = ?;", [req.body, req.params.id])
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+router.delete("/volunteers/:id", function(req, res, next) {
+  db("DELETE FROM volunteers WHERE vid = ?;", req.params.id)
     .then(results => {
       res.send(results.data);
     })
