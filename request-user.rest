@@ -1,0 +1,18 @@
+GET http://localhost:5000/api/users/mimin@gmail.com
+
+###
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{ 
+    "firstname": "Linda",
+    "lastname": "Michael",
+    "email": "linda@gmail.com",
+    "password": "password",
+    "organization_id": 1,
+    "state": "Sabah",
+    "country": "Malaysia"
+}
+
+###
