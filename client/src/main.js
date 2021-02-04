@@ -8,6 +8,7 @@ import VueRouter from 'vue-router'
 import Home from './components/Home.vue'
 import Events from './components/Events.vue'
 import Member from './components/Member.vue'
+import SignUp from './components/SignUp.vue'
 
 Vue.use(VueTelInputVuetify, {
   vuetify,
@@ -20,7 +21,7 @@ const routes = [
   {
     name: 'Home',
     path: '/',
-    component: Home
+    component: Home,
   },
   {
     name: 'Events',
@@ -30,7 +31,12 @@ const routes = [
   {
     name: 'Member',
     path: '/member',
-    component: Member
+    component: Member 
+  },
+  {
+    name: 'Login',
+    path: '/signin',
+    component: SignUp 
   },
 ];
 

@@ -27,16 +27,18 @@
         </v-dialog>
 
         <v-card>
-            <v-card-title>
-                Volunteer List 
+            <v-card color="blue accent-3" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
+                Volunteer List
                 <v-spacer></v-spacer>
-                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details>
+                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" white-text single-line hide-details>
                 </v-text-field>
-            </v-card-title>
-            <v-data-table :headers="headers" :items="volunteers" :search="search" show-group-by group-by="Event" class="elevation-1">
+            </v-card>
+
+            <v-data-table :headers="headers" :items="volunteers" :search="search" show-group-by group-by="Event"
+                class="elevation-1">
                 <template v-slot:item.eventname="{ item }">
                     {{ item.eventname | truncate(10, '...') }}
-                </template>               
+                </template>
                 <template v-slot:item.firstname="{ item }">
                     {{ item.firstname }} {{ item.lastname }}
                 </template>
@@ -89,9 +91,9 @@
                         align: 'start',
                         value: 'firstname',
                         groupable: false
-                    },                  
+                    },
                     { text: 'Event', value: 'Event' },
-                    { text: 'Contact Number', value: 'contactnum', sortable: false,  groupable: false },
+                    { text: 'Contact Number', value: 'contactnum', sortable: false, groupable: false },
                     { text: 'Location', value: 'country', groupable: false },
                     { text: 'Date Apply', value: 'dateapp', groupable: false },
                     { text: 'Status', value: 'status' },
@@ -161,5 +163,12 @@
 </script>
 
 <style>
-
+.v-card-header {
+    color: white !important;
+    position: relative;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    top: -20px;
+}
 </style>
