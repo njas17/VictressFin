@@ -1,16 +1,14 @@
 <template>
-    <v-app class="signup">
+    <v-app class="authpage">
         <v-row>
             <v-col cols="12" sm="2">
             </v-col>
             <v-col cols="8" elevation="5" sm="8">
-                <v-sheet class="signupbox" min-height="70vh" fill-height fluid>
-                    <v-row no-gutter>
+                <v-sheet class="authbox" min-height="70vh" fill-height fluid>
+                    <v-row>
                         <v-col cols="6" class="welcome" justify-center>Welcome to Sejiwa.</v-col>
                         <v-col cols="6">
-
-
-                            <v-card>
+                            <v-card class="signup">
                                 <v-card-title>
                                     <span class="headline">Member Sign-Up / Profile</span>
                                 </v-card-title>
@@ -78,21 +76,23 @@
     .col, .col-sm-6, .col-md-6, .col-12 {
         padding: 0;
     }
-    .row {
-        margin: 1;
-        padding: 10px;
+    .authbox .row {
+        margin: 0;
+        padding: 0;
     }
-    .signup {
+    .authpage {
         background-color: #d1d1d1;
         padding-top: 30px;
         margin-top: 30px;
     }
 
-    .signupbox {
+    .authbox {
         background: linear-gradient(to bottom, #311b92 8%, #12182e 67%);
         box-shadow: 5px 10px 18px #888888;
     }
-
+    .signup {
+        margin: 15px 15px 0;
+    }
     .welcome {
         color: white;
     }
