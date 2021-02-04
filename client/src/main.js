@@ -8,7 +8,7 @@ import VueRouter from 'vue-router'
 import Home from './components/Home.vue'
 import Events from './components/Events.vue'
 import Member from './components/Member.vue'
-import SignUp from './components/SignUp.vue'
+import AuthPage from './components/AuthPage.vue'
 
 Vue.use(VueTelInputVuetify, {
   vuetify,
@@ -35,8 +35,8 @@ const routes = [
   },
   {
     name: 'Login',
-    path: '/signin',
-    component: SignUp 
+    path: '/login',
+    component: AuthPage 
   },
 ];
 

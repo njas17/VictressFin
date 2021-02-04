@@ -8,7 +8,7 @@
       <v-btn text to="/" exact>Home</v-btn>
       <v-btn text to="/home/events">Events</v-btn>
       <v-btn text to="/home">Donate</v-btn>
-      <v-btn v-if="!isAuthenticated" text to="/signin">Login</v-btn>
+      <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-btn v-if="isAuthenticated" text to="/member">Member</v-btn>
       <v-btn v-if="isAuthenticated" text to="/logout">Logout</v-btn>
     </v-app-bar>

@@ -1,94 +1,70 @@
 <template>
-    <v-app class="authpage">
-        <v-row>
-            <v-col cols="12" sm="2">
-            </v-col>
-            <v-col cols="8" sm="8">
-                <v-sheet elevation="5" class="authbox" min-height="40vh">
+    <v-card class="signup">
+        <v-card-text>
+            <v-container>
+                <v-form ref="form" v-model="valid" lazy-validation>
                     <v-row>
-                        <v-col cols="5" class="welcome">
-                            <p>Member Sign-Up/Profile Registration.</p>
-                            <p>Welcome to Sejiwa.</p>
+                        <v-col cols="12" sm="6" md="6">
+                            <v-text-field v-model="user.firstname" label="First Name*" required>
+                            </v-text-field>
                         </v-col>
-                        <v-col cols="7">
-                            <v-card class="signup">
-                                <v-card-text>
-                                    <v-container>
-                                        <v-form ref="form" v-model="valid" lazy-validation>
-                                            <v-row>
-                                                <v-col cols="12" sm="6" md="6">
-                                                    <v-text-field v-model="user.firstname" label="First Name*" required>
-                                                    </v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="6" md="6">
-                                                    <v-text-field v-model="user.lastname" label="Last Name*" required>
-                                                    </v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="6" md="6">
-                                                    <v-text-field v-model="user.email" label="Email*" required>
-                                                    </v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="6" md="6">
-                                                    <v-text-field v-model="user.contactnum" label="Contact #" required>
-                                                    </v-text-field>
-                                                </v-col>
-                                                <v-col cols="12">
-                                                    <v-text-field v-model="user.password" label="Password*"
-                                                        type="password" required></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12">
-                                                    <v-text-field v-model="user.organization_id"
-                                                        label="Organization/Company*"
-                                                        hint="Choose Others/Personal if you do not belong to any of the listed organization"
-                                                        persistent-hint required></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12">
-                                                    <v-text-field v-model="user.address1" label="Address*" required>
-                                                    </v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="6" md="6">
-                                                    <v-text-field v-model="user.state" label="State*" required>
-                                                    </v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="6" md="6">
-                                                    <v-text-field v-model="user.country" label="Country*" required>
-                                                    </v-text-field>
-                                                </v-col>
-                                            </v-row>
-                                        </v-form>
-                                    </v-container>
-                                    <v-alert v-if="isRegistered" color="success" dark icon="mdi-check-bold"
-                                        border="left" prominent>
-                                        Success. Your profile has been registered. Please login to proceed to the member
-                                        page.
-                                    </v-alert>
-                                </v-card-text>
-                                <v-card-actions>
-
-                                    <v-spacer><small>*indicates required field</small></v-spacer>
-                                    <v-btn color="blue darken-1" text @click="resetFields">
-                                        Reset
-                                    </v-btn>
-                                    <v-btn color="blue darken-1" text @click="userSignUp">
-                                        Save
-                                    </v-btn>
-                                </v-card-actions>
-                            </v-card>
+                        <v-col cols="12" sm="6" md="6">
+                            <v-text-field v-model="user.lastname" label="Last Name*" required>
+                            </v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="6">
+                            <v-text-field v-model="user.email" label="Email*" required>
+                            </v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="6">
+                            <v-text-field v-model="user.contactnum" label="Contact #" required>
+                            </v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field v-model="user.password" label="Password*" type="password" required>
+                            </v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field v-model="user.organization_id" label="Organization/Company*"
+                                hint="Choose Others/Personal if you do not belong to any of the listed organization"
+                                persistent-hint required></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field v-model="user.address1" label="Address*" required>
+                            </v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="6">
+                            <v-text-field v-model="user.state" label="State*" required>
+                            </v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="6">
+                            <v-text-field v-model="user.country" label="Country*" required>
+                            </v-text-field>
                         </v-col>
                     </v-row>
-                </v-sheet>
-            </v-col>
-            <v-col cols="12" sm="2">
-            </v-col>
-        </v-row>
-    </v-app>
+                </v-form>
+            </v-container>
+            <v-alert v-if="isRegistered" color="success" dark icon="mdi-check-bold" border="left" prominent>
+                Success. Your profile has been registered. Please login to proceed to the member
+                page.
+            </v-alert>
+        </v-card-text>
+        <v-card-actions>
+
+            <v-spacer><small>*indicates required field</small></v-spacer>
+            <v-btn color="blue darken-1" text @click="resetFields">
+                Reset
+            </v-btn>
+            <v-btn color="blue darken-1" text @click="userSignUp">
+                Save
+            </v-btn>
+        </v-card-actions>
+    </v-card>
 </template>
 
 <script>
-    import { HelperMixin } from '../mixins/HelperMixin';
     export default {
         name: 'SignUp',
-        mixins: [HelperMixin],
         data() {
             return {
                 user: {
