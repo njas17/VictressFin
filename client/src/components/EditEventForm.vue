@@ -29,7 +29,6 @@
         },
         data() {
             return {
-                message: "",
                 eventform: {
                     name: "",
                     description: "",
@@ -45,8 +44,9 @@
                 this.eventform.name = this.currentevent.name;
                 this.eventform.description = this.currentevent.description;
                 this.eventform.eid = this.currentevent.eid;
+                this.message = "Event updated successfully!";
 
-                this.$emit("updateevent", this.eventform);
+                this.$emit("updateevent", this.eventform, this.message);
             },
         }
     }

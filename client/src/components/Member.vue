@@ -2,7 +2,21 @@
     <v-container>
         <div class="member">
             <h1>Member</h1>
-            <create-event-form :userId="uid" @addEvent="addNewEvent" />
+            <template>
+                <v-expansion-panels focusable>
+                    <v-expansion-panel>
+                        <v-expansion-panel-header>
+                            <v-card-title>
+                                <v-icon>mdi-plus</v-icon>
+                                Create Event
+                            </v-card-title>
+                        </v-expansion-panel-header>
+                        <v-expansion-panel-content>
+                            <create-event-form :userId="uid" @addEvent="addNewEvent" />
+                        </v-expansion-panel-content>
+                    </v-expansion-panel>
+                </v-expansion-panels>
+            </template>
             <member-event-list :events="orgevents" @updateEvent="handleUpdate" />
             <volunteer-list :eventId="selectedEvent" :eventName="title" />
         </div>
@@ -24,7 +38,7 @@
             return {
                 title: "Member",
                 selectedEvent: 1,
-                uid: 3,
+                uid: 2,
                 orgevents: []
             }
         },

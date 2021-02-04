@@ -1,8 +1,5 @@
 <template>
     <ValidationObserver ref="observer">
-
-        <h2>Create Event</h2>
-
         <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:55" autocomplete="off">
             <v-text-field v-model="eform.name" :counter="55" :error-messages="errors" label="Title" placeholder=" " required>
             </v-text-field>
@@ -10,6 +7,10 @@
         <v-form ref="form" lazy-validation>
             <template>
                 <v-row align="center">
+                    <v-col cols="12" sm="2" md="2">
+                        <v-checkbox v-model="enabled" label="Ongoing event"></v-checkbox>
+                    </v-col> 
+                    <v-spacer></v-spacer>                     
                     <v-col cols="12" sm="3" md="3">
                         <v-dialog ref="dialog" v-model="smodal" :return-value.sync="eform.datefrom" persistent width="290px">
                             <template v-slot:activator="{ on, attrs }">
@@ -52,10 +53,6 @@
                             </v-date-picker>
                         </v-dialog>
                     </v-col>
-                    <v-spacer></v-spacer>                     
-                    <v-col cols="12" sm="2" md="2">
-                        <v-checkbox v-model="enabled" label="Ongoing event"></v-checkbox>
-                    </v-col>                        
                 </v-row>
             </template>
         </v-form>
@@ -71,7 +68,7 @@
             <v-text-field v-model="eform.contactname" :error-messages="errors" label="Contact Person" placeholder=" "
                 required></v-text-field>
         </ValidationProvider>
-        <ValidationProvider v-slot="{ errors }" name="Phone" :rules="{ required: true, regex: /^[\d-\s]+$/ }"
+        <ValidationProvider v-slot="{ errors }" name="Phone" :rules="{ required: true, regex: /^[\d-\s]{9,}$/ }"
             autocomplete="off">
             <vue-tel-input-vuetify v-model="eform.contactnum" :error-messages="errors"
                 :preferred-countries="['my', 'in', 'es', 'gb', 'us']" :maxLen="11" required />
@@ -91,6 +88,7 @@
                 <!-- <v-file-input v-model="eform.images" accept="image/png, image/jpeg" placeholder=" "
                     prepend-icon="mdi-camera" show-size label="Image Upload"></v-file-input> -->
             </template>
+            <v-spacer></v-spacer>
         </ValidationProvider>
         <!-- <ValidationProvider v-slot="{ errors }" rules="required" name="Checkbox">
             <v-checkbox
@@ -113,9 +111,11 @@
                 </template>
             </v-checkbox>
         </ValidationProvider> -->
-
-        <v-btn class="mr-4" @click="submit">Submit</v-btn>
-        <v-btn @click="clear">Reset</v-btn>
+        <v-spacer></v-spacer>
+        <v-col class="text-right">
+            <v-btn class="mr-4" @click="submit">Submit</v-btn>
+            <v-btn @click="clear">Reset</v-btn>
+        </v-col>
     </ValidationObserver>
 </template>
 
@@ -195,7 +195,7 @@
                 this.eform.contactname = "";
                 this.eform.contactnum = "";
                 this.eform.contactemail = "";
-                this.eform.totalvolunteer = 0;
+                this.eform.totalvolunteer = null;
                 this.eform.location = "";              
                 this.checkbox = null;
                 this.$refs.observer.reset();
