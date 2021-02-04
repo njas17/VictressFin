@@ -1,7 +1,6 @@
 <template>
     <v-container>
         <div class="events">
-            <h1>Upcoming Events</h1>
         </div>
         <div class="col-md-12">
             <v-container fluid>
@@ -19,7 +18,7 @@
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
                     :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" hide-default-footer>
                     <template v-slot:header>
-                        <v-toolbar dark color="blue darken-4" class="mb-1">
+                        <v-toolbar dark color="indigo accent-4" class="mb-1">
                             <v-text-field v-model="search" clearable flat solo-inverted hide-details
                                 prepend-inner-icon="mdi-magnify" label="Search for an Upcoming Event"></v-text-field>
                             <template v-if="$vuetify.breakpoint.mdAndUp">
@@ -28,10 +27,10 @@
                                     prepend-inner-icon="mdi-magnify" label="Sort by"></v-select>
                                 <v-spacer></v-spacer>
                                 <v-btn-toggle v-model="sortDesc" mandatory>
-                                    <v-btn depressed large color="blue darken-3" :value="false">
+                                    <v-btn depressed large color="indigo accent-3" :value="false">
                                         <v-icon>mdi-arrow-up</v-icon>
                                     </v-btn>
-                                    <v-btn depressed large color="blue darken-3" :value="true">
+                                    <v-btn depressed large color="indigo accent-3" :value="true">
                                         <v-icon>mdi-arrow-down</v-icon>
                                     </v-btn>
                                 </v-btn-toggle>
