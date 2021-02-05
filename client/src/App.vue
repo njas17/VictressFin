@@ -6,7 +6,7 @@
 
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/home/events">Events</v-btn>
+      <v-btn text to="/#eventsSection">Events</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
       <v-btn text to="/home">Donate</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-btn v-if="isAuthenticated" text to="/member">Member</v-btn>
@@ -34,18 +34,34 @@
 </template>
 
 <script>
-
+  import * as easings from 'vuetify/es5/services/goto/easing-patterns';
   export default {
     name: 'App',
     data() {
       return {
         isAuthenticated: false,
-        showLogin: false
+        showLogin: false,
+        type: 'number',
+        number: 1000,
+        duration: 1000,
+        offset: 500,
+        easing: 'easeInOutCubic',
+        easings: Object.keys(easings),
       }
     },
-    methods: {
-    
-
+    computed: {
+      target() {
+        const value = this[this.type]
+        if (!isNaN(value)) return Number(value)
+        else return value
+      },
+      options() {
+        return {
+          duration: this.duration,
+          offset: this.offset,
+          easing: this.easing,
+        }
+      },
     }
   };
 </script>

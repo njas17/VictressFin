@@ -131,9 +131,6 @@
 </script>
 
 <style scoped>
-    body {
-        background-color: #d1d1d1;
-    }
 
     .signup {
         margin: -40px 50px 15px -20px;

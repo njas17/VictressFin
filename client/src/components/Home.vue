@@ -23,7 +23,7 @@
     name: 'home',
     components: { Events },
     data: () => ({
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Sejiwa.',
     }),
   }
 </script>
