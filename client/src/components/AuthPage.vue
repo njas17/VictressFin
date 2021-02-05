@@ -1,43 +1,47 @@
 <template>
     <v-app class="authpage">
-        <v-row>
-            <v-col cols="12" sm="2">
-            </v-col>
-            <v-col cols="8" sm="8">
-                <v-sheet elevation="5" class="authbox" min-height="40vh">
-                    <v-row>
-                        <v-col cols="5" class="welcome">
-                            <p>Member Sign-Up/Profile Registration.</p>
-                            <p>Welcome to Sejiwa.</p>
-                        </v-col>
-                        <v-col cols="7">
-                            <sign-up />
-                        </v-col>
-                    </v-row>
-                </v-sheet>
-            </v-col>
-            <v-col cols="12" sm="2">
-            </v-col>
-        </v-row>
+        <v-container class="authbox">
+            <v-card class="welcome">
+                some welcome
+                <p>Member Sign-Up/Profile Registration.</p>
+                <p>Welcome to Sejiwa.</p>
+            </v-card>
+            <v-card>
+                <v-tabs background-color="deep-purple accent-4" center-active dark>
+                    <v-tabs-slider color="yellow"></v-tabs-slider>
+                    <v-tab>Login</v-tab>
+                    <v-tab>Sign-Up</v-tab>
+                    <v-tab-item>
+                        <sign-in />
+                    </v-tab-item>
+                    <v-tab-item>
+                        <sign-up />
+                    </v-tab-item>
+
+                </v-tabs>
+            </v-card>
+        </v-container>
     </v-app>
 </template>
 
 <script>
     import SignUp from './SignUp.vue';
+    import SignIn from './SignIn.vue';
+
     export default {
-        components: { SignUp },
+        components: { SignUp, SignIn },
         name: 'AuthPage',
         data() {
             return {
-                isRegistered: false,
+                showLogin: true,
                 //isLogged: false,
-                errorMesg: ''
+                errorMesg: '',
             }
         },
     }
 </script>
 
-<style scoped>
+<style>
     body {
         background-color: #d1d1d1;
     }
@@ -52,7 +56,6 @@
     .authbox .row {
 
         padding: 0;
-        height: 450px;
     }
 
     .authpage {
@@ -61,7 +64,7 @@
     }
 
     .authbox {
-        margin-top: 50px;
+        margin-top: 3 0px;
         background: linear-gradient(to bottom, #311b92 8%, #12182e 67%);
         box-shadow: 5px 10px 18px #888888;
         border-radius: 10px;

@@ -16,7 +16,7 @@
 <script>
     import { HelperMixin } from '../mixins/HelperMixin';
     export default {
-        name: 'LogOut',
+        name: 'SignOut',
         mixins: [HelperMixin],
         user: {
             firstname: '',
