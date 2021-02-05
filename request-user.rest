@@ -16,3 +16,17 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:5000/auth/signin
+Content-Type: application/json
+
+{"email":"mimin@gmail.com",
+"password":"password",
+"user":{
+    "uid":3,
+    "name":"Uchi Mong",
+    "email":"lilah2@some.com",
+    "isAdmin":"organizers",
+    "password":"$2b$07$ky68GsxIIxtIAHMVZdI4rudZkyApFf8xDpMuUL7aaJX8dvixGTkKq"
+    }
+}s
