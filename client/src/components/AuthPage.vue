@@ -41,7 +41,7 @@
     }
 </script>
 
-<style scoped>
+<style>
     body {
         background-color: #d1d1d1;
     }
