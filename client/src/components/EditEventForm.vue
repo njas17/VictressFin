@@ -12,8 +12,8 @@
                     <v-text-field v-model="currentevent.description" :rules="[(v) => !!v || 'Description is required']"
                         label="Description" required></v-text-field> -->
 
-                <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:55" autocomplete="off">
-                    <v-text-field v-model="currentevent.name" :counter="55" :error-messages="errors" label="Title" required>
+                <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:100" autocomplete="off">
+                    <v-text-field v-model="currentevent.name" :counter="100" :error-messages="errors" label="Title" required>
                     </v-text-field>
                 </ValidationProvider>
                 <v-form ref="form" lazy-validation>
@@ -68,8 +68,8 @@
                         </v-row>
                     </template>
                 </v-form>
-                <ValidationProvider v-slot="{ errors }" name="Description" rules="required|max:255" autocomplete="off">
-                    <v-textarea v-model="currentevent.description" :counter="255" :error-messages="errors" label="Description"
+                <ValidationProvider v-slot="{ errors }" name="Description" rules="required|max:500" autocomplete="off">
+                    <v-textarea v-model="currentevent.description" :counter="500" :error-messages="errors" label="Description"
                         auto-grow rows="1" required></v-textarea>
                 </ValidationProvider>
                 <ValidationProvider v-slot="{ errors }" name="Location" rules="required" autocomplete="off">

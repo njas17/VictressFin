@@ -3,8 +3,8 @@
         <v-card-title></v-card-title>
         <v-card-text>
             <ValidationObserver ref="observer">
-                <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:55" autocomplete="off">
-                    <v-text-field v-model="eform.name" :counter="55" :error-messages="errors" label="Title" placeholder=" " required>
+                <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:100" autocomplete="off">
+                    <v-text-field v-model="eform.name" :counter="100" :error-messages="errors" label="Title" placeholder=" " required>
                     </v-text-field>
                 </ValidationProvider>
                 <v-form ref="form" lazy-validation>
@@ -59,8 +59,8 @@
                         </v-row>
                     </template>
                 </v-form>
-                <ValidationProvider v-slot="{ errors }" name="Description" rules="required|max:255" autocomplete="off">
-                    <v-textarea v-model="eform.description" :counter="255" :error-messages="errors" label="Description"
+                <ValidationProvider v-slot="{ errors }" name="Description" rules="required|max:500" autocomplete="off">
+                    <v-textarea v-model="eform.description" :counter="500" :error-messages="errors" label="Description"
                         placeholder=" " auto-grow rows="1" required></v-textarea>
                 </ValidationProvider>
                 <ValidationProvider v-slot="{ errors }" name="Location" rules="required" autocomplete="off">
