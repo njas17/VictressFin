@@ -1,7 +1,5 @@
 <template>
     <v-container>
-        <div class="events">
-        </div>
         <div class="col-md-12">
             <v-container fluid>
                 <v-dialog v-model="volunteerDialog" max-width="500px">
@@ -14,11 +12,11 @@
                     <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication"
                         @closeForm="volunteerDialog=false" />
                 </v-dialog>
-
+                <p id="eventsSection"></p>
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
                     :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" hide-default-footer>
                     <template v-slot:header>
-                        <v-toolbar dark color="indigo accent-4" class="mb-1">
+                        <v-toolbar dark color="indigo accent-4" class="mt-1">
                             <v-text-field v-model="search" clearable flat solo-inverted hide-details
                                 prepend-inner-icon="mdi-magnify" label="Search for an Upcoming Event"></v-text-field>
                             <template v-if="$vuetify.breakpoint.mdAndUp">
@@ -41,7 +39,7 @@
                     <template v-slot:default="props">
                         <v-row>
                             <v-col v-for="item in props.items" :key="item.eid" cols="12" sm="6" md="4" lg="3">
-                                <v-card class="mx-auto my-12" max-width="380">
+                                <v-card class="my-5" max-width="380">
                                     <v-img height="200" :src="item.images">
                                     </v-img>
                                     <v-card-title class="pb-2">{{ item.name | truncate(27, '...') }}</v-card-title>
@@ -132,7 +130,7 @@
                     'TotalVolunteer',
                 ],
                 items: [{}],
-                newVolunteer: [],
+                newVolunteer: []
             }
         },
         created() {
@@ -200,7 +198,9 @@
     .top {
         display: inline-flex;
     }
-
+    #eventsSection {
+        padding-top: 50px;
+    }
     .descr {
         margin: 0 auto 4vh auto;
         /* autoprefixer: off */
