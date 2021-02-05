@@ -1,3 +1,5 @@
+
+
 export const HelperMixin = {
     methods: {
         getLocaleDate(date = null) {

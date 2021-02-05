@@ -42,6 +42,10 @@
         isAuthenticated: false,
         showLogin: false
       }
+    },
+    methods: {
+    
+
     }
   };
 </script>
