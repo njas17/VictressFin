@@ -36,8 +36,24 @@
                 showLogin: true,
                 //isLogged: false,
                 errorMesg: '',
+                items: []
             }
         },
+        methods: {
+            getOrganizations() {
+                fetch("/api/organizations")
+                    .then(response => response.json())
+                    .then(data => {
+                        this.items = data;
+                    })
+                    .catch(error => {
+                        console.error("Error in get organzizations: ", error);
+                    });
+            }
+        },
+        created() {
+            this.getOrganizations();
+        }
     }
 </script>
 

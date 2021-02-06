@@ -1,4 +1,4 @@
-GET http://localhost:5000/api/users/mimin@gmail.com
+GET http://localhost:5000/api/auth/users/mimin@gmail.com
 
 ###
 

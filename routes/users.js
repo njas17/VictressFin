@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 
 const utils = require('../auth/utils');
 const jwt = require('jsonwebtoken');
-const { request } = require('../app');
 
 router.use(express.json());
 

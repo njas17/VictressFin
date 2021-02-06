@@ -23,9 +23,10 @@
                     </v-text-field>
                 </v-col>
                 <v-col cols="12">
-                    <v-text-field v-model="user.organization_id" label="Organization/Company*"
+                    <v-select v-model="user.organization_id" label="Select an Organization/Company*" :items="items"
+                        item-text="name" single-line item-value="oid"
                         hint="Choose Others/Personal if you do not belong to any of the listed organization"
-                        persistent-hint required></v-text-field>
+                        persistent-hint required></v-select>
                 </v-col>
                 <v-col cols="12">
                     <v-text-field v-model="user.address1" label="Address*" required>
@@ -75,12 +76,13 @@
                     password: null,
                     state: '',
                     country: '',
-                    organization_id: 2,
+                    organization_id: 0,
                     address1: ''
                 },
                 isRegistered: false,
                 //isLogged: false,
-                errorMesg: ''
+                errorMesg: '',
+                items: []
             }
         },
         methods: {
@@ -94,7 +96,7 @@
 
             },
             checkAddUser() {
-                fetch("/api/users/" + this.user.email)
+                fetch("/api/auth/users/" + this.user.email)
                     .then(response => response.json())
                     .then(data => {
                         if (data.length > 0) this.errorMesg = "Sorry. The email you have provided is already registered in this site.";
@@ -106,7 +108,7 @@
                     });
             },
             addUser() {
-                fetch("/api/users", {
+                fetch("/api/auth/users", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -124,14 +126,25 @@
             },
             resetFields() {
                 this.$refs.form.reset();
+            },
+            getOrganizations() {
+                fetch("/api/organizations")
+                    .then(response => response.json())
+                    .then(data => {
+                        this.items = data;
+                    })
+                    .catch(error => {
+                        console.error("Error in get organzizations: ", error);
+                    });
             }
-
+        },
+        created() {
+            this.getOrganizations();
         }
     }
 </script>
 
 <style scoped>
-
     .signup {
         margin: -40px 50px 15px -20px;
         position: relative;
