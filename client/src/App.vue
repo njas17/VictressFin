@@ -35,11 +35,12 @@
 
 <script>
   import * as easings from 'vuetify/es5/services/goto/easing-patterns';
+
+
   export default {
     name: 'App',
     data() {
       return {
-        isAuthenticated: false,
         showLogin: false,
         type: 'number',
         number: 1000,
@@ -49,7 +50,13 @@
         easings: Object.keys(easings),
       }
     },
+    created() {
+
+    },
     computed: {
+      isAuthenticated() {
+        return this.$store.state.isAuthenticated;
+      },
       target() {
         const value = this[this.type]
         if (!isNaN(value)) return Number(value)
