@@ -28,6 +28,10 @@
         isLogged: false,
         errorMesg: ''
     }
+    // logout() {
+    //     removeUserSession();
+    //     this.setState({ isAuthenticated: false});
+    // },
 </script>
 
 <style>

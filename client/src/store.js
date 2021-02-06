@@ -5,16 +5,28 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-      isAuthenticated: false,
-      token: ''
+    token: null,
+    user: {},
+    isAuthenticated: false
   },
   getters: {
-    getToken() {
-      this.token = 0;
+    getToken: state => {
+      return state.token;
+    },
+    getAuthState: state => {
+      return state.isAuthenticated;
+    },
+    getUser: state => {
+      return state.user;
     }
-
   },
   mutations: {
+    authenticateTo: (state, b) => {
+      state.isAuthenticated = b;
+    },
+    updateUserObj: (state, obj) => {
+      state.user = obj;
+    }
 
   },
   actions: {

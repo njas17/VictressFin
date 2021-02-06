@@ -20,9 +20,6 @@ router.post("/users", async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPassword;
 
-    let strSql = "INSERT INTO USER SET ?;" + req.body;
-    console.log(strSql);
-
     db("INSERT INTO users SET ?;", req.body).then(results => {
       res.send(results.data);
     }).catch(err => res.status(500).send(err));
@@ -60,7 +57,7 @@ router.post('/users/signin', async function (req, res) {
 
   try{
       const comparison = await bcrypt.compare(pwd, userObj.password);
-
+      console.log("checking password - ", comparison);
       if (comparison) {
           // user matched
           const token = utils.generateToken(userObj);
