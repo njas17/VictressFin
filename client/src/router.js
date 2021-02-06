@@ -5,8 +5,27 @@ import goTo from 'vuetify/es5/services/goto';
 import Home from './components/Home.vue';
 import Member from './components/Member.vue';
 import AuthPage from './components/AuthPage.vue';
+import store from './store'
 
-Vue.use(Router)
+Vue.use(Router);
+
+const ifNotAuthenticated = (to, from, next) => {
+    console.log(store.state.isAuthenticated);
+    if (!store.state.isAuthenticated) {
+        next();
+        return;
+    }
+    next("/");
+};
+
+const ifAuthenticated = (to, from, next) => {
+    if (store.state.isAuthenticated) {
+        next();
+        return;
+    }
+    next("/login");
+};
+
 
 export default new Router({
     mode: 'history',
@@ -36,12 +55,14 @@ export default new Router({
         {
             name: 'Member',
             path: '/member',
-            component: Member
+            component: Member,
+            beforeEnter: ifAuthenticated
         },
         {
             name: 'Login',
             path: '/login',
-            component: AuthPage
+            component: AuthPage,
+            beforeEnter: ifNotAuthenticated
         },
     ]
 })

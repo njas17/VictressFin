@@ -10,7 +10,7 @@
       <v-btn text to="/home">Donate</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-btn v-if="isAuthenticated" text to="/member">Member</v-btn>
-      <v-btn v-if="isAuthenticated" text to="/logout">Logout</v-btn>
+      <v-btn v-if="isAuthenticated" text>Logout</v-btn>
     </v-app-bar>
 
     <v-main padless>
@@ -35,7 +35,7 @@
 
 <script>
   import * as easings from 'vuetify/es5/services/goto/easing-patterns';
-
+  import { getToken, getUser } from './session';
 
   export default {
     name: 'App',
@@ -50,8 +50,36 @@
         easings: Object.keys(easings),
       }
     },
-    created() {
+    methods: {
+      verifyToken() {
+        const token = getToken();
+        if (!token) {
+          return;
+        }
 
+        const user = getUser();
+        if (!user) {
+          return;
+        }
+
+        fetch("/api/auth/users/verify-token", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token, user })
+        })
+          .then(response => response.json())
+          .then(data => {
+            this.$store.commit('authenticateTrue', data.user);
+          })
+          .catch(error => {
+            console.error("Error in verify token: ", error);
+            this.$store.dispatch('logout');
+          });
+      },
+    },
+    created() {
+      //console.log(this.$store.state.isAuthenticated);
+      if (!this.$store.state.isAuthenticated) this.verifyToken();
     },
     computed: {
       isAuthenticated() {
