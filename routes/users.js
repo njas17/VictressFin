@@ -75,4 +75,36 @@ router.post('/users/signin', async function (req, res) {
   console.log("user is validated with token....")
 });
 
+router.post('/users/verify-token', function (req, res) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token;
+  var userId = req.body.user.id;
+  if (!token) {
+      return res.status(400).json({
+          error: true,
+          message: "Token is required."
+      });
+  }
+
+  // check token that was passed by decoding token using secret
+  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+      if (err) return res.status(401).json({
+          error: true,
+          message: "Invalid token."
+      });
+      console.log(user);
+      // return 401 status if the userId does not match.
+      if (user.id !== userId) {
+          return res.status(401).json({
+              error: true,
+              message: "Invalid user."
+          });
+      }
+      console.log("token is validated");
+      // get basic user details
+      var userObj = utils.getCleanUser(req.body.user);
+      return res.json({ user: userObj, token });
+  });
+});
+
 module.exports = router;

@@ -82,9 +82,8 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log("result from validation - ", data);
-                        this.$store.commit('authenticateTo', true);
-                        this.$store.commit('updateUserObj', data.user)
+                        //console.log("result from validation - ", data);
+                        this.$store.commit('authenticateTrue', data.user);
                         setUserSession(data.token, data.user);
                     })
                     .catch(error => this.errorMesg = "Validation Error: Please ensure you entered a valid email and password. " + error);
