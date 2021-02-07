@@ -1,39 +1,21 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col cols="4" >
-              <v-card height="200"></v-card>
+    <v-container fill-height fluid>
+        <v-row></v-row>
+        <v-row >
+            <v-col>
+                <v-alert class="logout" color="primary" dark icon="mdi-check-bold" border="left" prominent>
+                    <p>You are not logged in or you have logged out. </p>
+                    <p>Thank You.</p>
+                </v-alert>
             </v-col>
-            <v-col cols="4" >
-                <v-card height="200"></v-card>
-              </v-col>          
         </v-row>
 
     </v-container>
-    
 </template>
 
-<script>
-    import { HelperMixin } from '../mixins/HelperMixin';
-    export default {
-        name: 'SignOut',
-        mixins: [HelperMixin],
-        user: {
-            firstname: '',
-            lastname: '',
-            email: '',
-            password: '',
-        },
-        isRegistered: false,
-        isLogged: false,
-        errorMesg: ''
+<style scoped>
+    .logout {
+        margin: 50px auto;
+        max-width: 550px;
     }
-    // logout() {
-    //     removeUserSession();
-    //     this.setState({ isAuthenticated: false});
-    // },
-</script>
-
-<style>
-
 </style>

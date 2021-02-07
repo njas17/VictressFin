@@ -10,11 +10,12 @@
       <v-btn text to="/home">Donate</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-btn v-if="isAuthenticated" text to="/member">Member</v-btn>
-      <v-btn v-if="isAuthenticated" text>Logout</v-btn>
+      <v-btn v-if="isAuthenticated" text @click="signOut">Logout</v-btn>
     </v-app-bar>
 
     <v-main padless>
       <v-container fluid>
+        
         <router-view />
       </v-container>
     </v-main>
@@ -51,31 +52,10 @@
       }
     },
     methods: {
-      // verifyToken() {
-      //   const token = getToken();
-      //   if (!token) {
-      //     return;
-      //   }
-
-      //   const user = getUser();
-      //   if (!user) {
-      //     return;
-      //   }
-
-      //   fetch("/api/auth/users/verify-token", {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify({ token, user })
-      //   })
-      //     .then(response => response.json())
-      //     .then(data => {
-      //       this.$store.commit('authenticateTrue', data.user);
-      //     })
-      //     .catch(error => {
-      //       console.error("Error in verify token: ", error);
-      //       this.$store.dispatch('logout');
-      //     });
-      // },
+      signOut() {
+        this.$store.dispatch("logout");
+        this.$router.push({ name: 'logout' });
+      }
     },
     created() {
       this.$store.dispatch('verifyToken');

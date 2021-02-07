@@ -4,6 +4,8 @@ import goTo from 'vuetify/es5/services/goto';
 import Home from './components/Home.vue';
 import Member from './components/Member.vue';
 import AuthPage from './components/AuthPage.vue';
+import SignOut from './components/SignOut.vue';
+import NotFound from './components/NotFound.vue';
 import store from '@/store'
 
 Vue.use(VueRouter);
@@ -67,8 +69,20 @@ const router = new VueRouter({
             path: '/login',
             component: AuthPage,
             //beforeEnter: ifNotAuthenticated,
-
         },
+        {
+            name: 'logout',
+            path: '/logout',
+            component: SignOut,
+            //beforeEnter: ifNotAuthenticated,
+        },        
+        {
+            name: "notFound",
+            path: "/404",
+            alias: "*",
+            component: NotFound
+
+        }
     ]
 });
 
