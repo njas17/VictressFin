@@ -31,31 +31,36 @@ export default new Vuex.Store({
   },
   actions: {
     // can contain async method
-    verifyToken({ dispatch, commit }) {
-      const tokenSession = getToken(), userSession = getUser();
-
-      if (!tokenSession || !userSession) {
-        commit('resetUserAuth');
-        throw "Missing session.";
+    logout({ commit }) {
+      removeUserSession();
+      commit('resetUserAuth');
+    },
+    verifyToken({ commit, dispatch}) {
+      const token = getToken();
+      if (!token) {
+        return;
       }
 
-      fetch("/api/auth/verify-token", {
+      const user = getUser();
+      if (!user) {
+        return;
+      }
+      
+      fetch("/api/auth/users/verify-token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tokenSession, userSession })
+        body: JSON.stringify({ token, user })
       })
         .then(response => response.json())
         .then(data => {
           commit('authenticateTrue', data.user);
+          //console.log("valiated", this.state.isAuthenticated);
+
         })
         .catch(error => {
           console.error("Error in verify token: ", error);
           dispatch('logout');
         });
-    },
-    logout({ commit }) {
-      removeUserSession();
-      commit('resetUserAuth');
     },
   }
 })

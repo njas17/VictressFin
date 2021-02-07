@@ -65,7 +65,8 @@
                         console.log(data[0]);
                         this.user = data[0];
                     })
-                    .then(() => this.validateUser())
+                    .then(() => this.validateUser()) //  
+                    .then(() =>  this.$router.push({ name: 'member' }))
                     .catch(error => this.errorMesg = "Sign-In Error: Please ensure you entered a valid email and password. " + error);
             },
             // user validation api will check on the user password whether it matches with the one stored in the database 
@@ -73,7 +74,7 @@
             // once password validity is confirmed, the API will generate a token.
             // this token need to be stored in a state or localstorage            
             validateUser() {
-                console.log(JSON.stringify(this.$data));
+                //console.log(JSON.stringify(this.$data));
 
                 fetch("/api/auth/users/signin", {
                     method: "POST",
@@ -88,9 +89,10 @@
                     })
                     .catch(error => this.errorMesg = "Validation Error: Please ensure you entered a valid email and password. " + error);
             },
-
-          
-        }
+        },
+        // created() {
+        //     if (this.$store.getters.getAuthState === true)  this.$router.push({ name: 'Member' });
+        // }
 
     }
 </script>
