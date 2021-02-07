@@ -1,57 +1,129 @@
 <template>
-    <v-container>
-        <div class="col-md-12">
-            <v-container fluid>
-                <v-dialog v-model="eventDialog" max-width="500px">
-                    <v-toolbar dark color="primary">
-                        <v-btn icon dark @click="eventDialog = false">
-                            <v-icon>mdi-close</v-icon>
-                        </v-btn>
-                        <v-toolbar-title>Edit Event</v-toolbar-title>
-                    </v-toolbar>
-                    <edit-event-form :currentevent="currentevent" @updateevent="updateEvent" />
-                </v-dialog>
+    <div class="col-md-12">
+        <v-container fluid>
+            <v-dialog v-model="updateMessageDialog" max-width="500px">
+                <v-toolbar dark color="primary">
+                    <v-btn icon dark @click="updateMessageDialog=false">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                    <v-toolbar-title small>Update</v-toolbar-title>
+                </v-toolbar>
                 <v-card>
-                    <v-card-title>
-                        My Event(s)
+                    <v-card-text>
+                        <v-row class="mx-0" style="padding-top: 20px;">
+                            <h3>Event successfully updated!</h3>
+                        </v-row>
+                    </v-card-text>
+                    <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-text-field class="mb-5 mr-3" v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
-                        </v-text-field>
-                    </v-card-title>
-                    <v-data-table :headers="headers" :items="events" :search="search">
-                        <template v-slot:[`item.action`]="{ item }">
-                            <v-icon small class="mr-2" @click="editEvent(item.eid)"> mdi-pencil </v-icon>
-                            <v-icon small @click="deleteEvent(item.eid)"> mdi-delete </v-icon>
-                        </template>
-                    </v-data-table>
+                        <v-btn color="blue darken-1" text @click="updateMessageDialog=false">
+                            OK
+                        </v-btn>
+                    </v-card-actions>
                 </v-card>
-            </v-container>
-        </div>
-    </v-container>
+            </v-dialog>
+            <v-dialog v-model="eventDialog" max-width="888px">
+                <v-toolbar dark color="primary">
+                    <v-btn icon dark @click="eventDialog = false">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                    <v-toolbar-title>Edit Event</v-toolbar-title>
+                </v-toolbar>
+                <edit-event-form :currentevent="currentevent" @updateevent="updateEvent" @closeEditForm="eventDialog=false" />
+            </v-dialog>
+            <v-dialog v-model="deleteEventDialog" max-width="500px" title="Delete">
+                <v-toolbar dark color="primary">
+                    <v-btn icon dark @click="deleteEventDialog=false">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                    <v-toolbar-title small>Delete</v-toolbar-title>
+                </v-toolbar>
+                <v-card>
+                    <v-card-text>
+                        <v-row class="mx-0" style="padding-top: 20px;">
+                            <h3>This event record will be deleted. Are you sure?</h3>
+                        </v-row>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue darken-1" text @click="deleteEventDialog=false">
+                            Close
+                        </v-btn>
+                        <v-btn color="blue darken-1" text @click="deleteEvent(selectedEvent)">
+                            Yes
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+            <v-card>
+                <v-card color="orange accent-7" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
+                    My Event(s)
+                    <v-spacer></v-spacer>
+                    <v-text-field class="mb-5 mr-3" v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
+                    </v-text-field>
+                </v-card>
+                <v-data-table :headers="headers" :items="events" :search="search" height="250px" :single-expand="singleExpand" :expanded.sync="expanded" item-key="name" show-expand>
+                    <template v-slot:[`item.status`]="{ item }">
+                        <v-chip :color="getColor(item.status)" dark class="text-capitalize" x-small>
+                            {{ item.status }}
+                        </v-chip>
+                    </template>
+                    <template v-slot:[`item.action`]="{ item }">
+                        <v-icon small class="mr-2" @click="editEvent(item.eid)"> mdi-pencil </v-icon>
+                        <v-icon small @click="openDeleteEventDialog(item.eid)"> mdi-delete </v-icon>
+                    </template>
+                    <template v-slot:expanded-item="{ headers, item }">
+                        <td :colspan="headers.length">
+                            <h3>Description</h3>
+                            <p>{{ item.description }}</p><br/>
+                            <h3>Start Date | End Date | Closing Date</h3>
+                            <p>{{ getLocaleDate(item.datefrom) }}<strong> | </strong>{{ getLocaleDate(item.dateto) }}<strong> | </strong>{{ getLocaleDate(item.closingdate) }}</p><br/>
+                            <h3>Location</h3>
+                            <p>{{ item.location }}</p><br/>
+                            <h3>Contact Email</h3>
+                            <p>{{ item.contactemail }}</p><br/>
+                        </td>
+                    </template>
+                </v-data-table>
+            </v-card>
+        </v-container>
+    </div>
 </template>
 
 <script>
 import EditEventForm from './EditEventForm.vue';
+import { HelperMixin } from '../mixins/HelperMixin';
+
 export default {
     components: { EditEventForm },
+    mixins: [HelperMixin],
     name: "MemberEventList",
     props: {
         events: Array
     },
     data () {
         return {
+            updateMessageDialog: false,
+            deleteEventDialog: false,
+            selectedEvent: 0,
             eventDialog: false,
             currentevent: {},
+            expanded: [],
+            singleExpand: true,
             headers: [
             {
                 text: "Title",
                 align: "start",
-                sortable: false,
+                sortable: true,
                 value: "name",
+                // width: "200px"
             },
-            { text: "Status", value: "status" },
-            { text: "Total Volunteer", value: "totalvolunteer" },
-            { text: "", value: "action" }
+            { text: "Contact Name", value: "contactname" },
+            { text: "Contact Number", value: "contactnum" },
+            { text: "Total Volunteer", value: "totalvolunteer", align: "center" },
+            { text: "Status", value: "status", align: "center" },
+            { text: "Action", value: "action", align: "center", sortable: "false" },
+            { text: '', value: 'data-table-expand' }
             ],
             search: ""
         }
@@ -71,7 +143,8 @@ export default {
             })
             .then((response) => {
                 response.json();
-                this.getOrgEvents();
+                this.$emit("deleteEvent"); // this should emit the get all events in parent which is Member.vue
+                this.deleteEventDialog = false;
             })
             .catch((error) => {
             console.error("Error in get organization events: ", error);
@@ -97,6 +170,7 @@ export default {
         updateEvent(data) {
             //console.log(data.eid, JSON.stringify(data));
             this.eventDialog = false;
+            this.updateMessageDialog = true;
             
             fetch("/api/events/" + data.eid, {
                     method: "PUT",
@@ -111,7 +185,16 @@ export default {
                     .catch(error => {
                         console.error("Error in updating event: ", error);
                     });                 
+        },
+        openDeleteEventDialog(item) {
+            this.deleteEventDialog = true;
+            this.selectedEvent = item;
+        },
+        getColor(status) {
+            //class="text-capitalize
+            if (status === 'active') return 'green'
+            else return 'red'
         }
-    },
+    }
 };
 </script>

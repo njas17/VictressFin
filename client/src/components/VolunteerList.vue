@@ -30,30 +30,29 @@
             <v-card color="blue accent-3" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
                 Volunteer List
                 <v-spacer></v-spacer>
-                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" white-text single-line hide-details>
+                <v-text-field class="mb-5 mr-3" v-model="search" append-icon="mdi-magnify" label="Search" white-text clearable hide-details>
                 </v-text-field>
             </v-card>
 
-            <v-data-table :headers="headers" :items="volunteers" :search="search" show-group-by group-by="Event"
-                class="elevation-1">
-                <template v-slot:item.eventname="{ item }">
+            <v-data-table :headers="headers" :items="volunteers" :search="search" show-group-by group-by="Event" height="250px">
+                <template v-slot:[`item.eventname`]="{ item }">
                     {{ item.eventname | truncate(10, '...') }}
                 </template>
-                <template v-slot:item.firstname="{ item }">
+                <template v-slot:[`item.firstname`]="{ item }">
                     {{ item.firstname }} {{ item.lastname }}
                 </template>
-                <template v-slot:item.status="{ item }">
+                <template v-slot:[`item.status`]="{ item }">
                     <v-chip :color="getColor(item.status)" dark class="text-capitalize" x-small>
                         {{ item.status }}
                     </v-chip>
                 </template>
-                <template v-slot:item.country="{ item }">
+                <!-- <template v-slot:item.country="{ item }">
                     {{ item.state != null ? item.state + ', ' : '' }}{{ item.country }}
-                </template>
-                <template v-slot:item.dateapp="{ item }">
+                </template> -->
+                <template v-slot:[`item.dateapp`]="{ item }">
                     {{ getLocaleDate(item.dateapp) }}
                 </template>
-                <template v-slot:item.action="{ item }">
+                <template v-slot:[`item.action`]="{ item }">
                     <v-icon v-if="item.status === 'new'" color="blue darken-3" small class="mr-2"
                         @click="updateStatus(item.vid, 'accepted')">
                         mdi-checkbox-marked-circle </v-icon>
@@ -94,7 +93,7 @@
                     },
                     { text: 'Event', value: 'Event' },
                     { text: 'Contact Number', value: 'contactnum', sortable: false, groupable: false },
-                    { text: 'Location', value: 'country', groupable: false },
+                    // { text: 'Location', value: 'country', groupable: false },
                     { text: 'Date Apply', value: 'dateapp', groupable: false },
                     { text: 'Status', value: 'status' },
                     { text: 'Action', value: 'action', sortable: false, groupable: false }
@@ -169,6 +168,6 @@
     max-width: 95%;
     margin-left: auto;
     margin-right: auto;
-    top: -20px;
+    top: -15px;
 }
 </style>
