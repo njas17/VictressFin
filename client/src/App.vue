@@ -35,7 +35,7 @@
 
 <script>
   import * as easings from 'vuetify/es5/services/goto/easing-patterns';
-  import { getToken, getUser } from './session';
+  //import { getToken, getUser } from './session';
 
   export default {
     name: 'App',
@@ -51,39 +51,44 @@
       }
     },
     methods: {
-      verifyToken() {
-        const token = getToken();
-        if (!token) {
-          return;
-        }
+      // verifyToken() {
+      //   const token = getToken();
+      //   if (!token) {
+      //     return;
+      //   }
 
-        const user = getUser();
-        if (!user) {
-          return;
-        }
+      //   const user = getUser();
+      //   if (!user) {
+      //     return;
+      //   }
 
-        fetch("/api/auth/users/verify-token", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token, user })
-        })
-          .then(response => response.json())
-          .then(data => {
-            this.$store.commit('authenticateTrue', data.user);
-          })
-          .catch(error => {
-            console.error("Error in verify token: ", error);
-            this.$store.dispatch('logout');
-          });
-      },
+      //   fetch("/api/auth/users/verify-token", {
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify({ token, user })
+      //   })
+      //     .then(response => response.json())
+      //     .then(data => {
+      //       this.$store.commit('authenticateTrue', data.user);
+      //     })
+      //     .catch(error => {
+      //       console.error("Error in verify token: ", error);
+      //       this.$store.dispatch('logout');
+      //     });
+      // },
     },
     created() {
-      //console.log(this.$store.state.isAuthenticated);
-      if (!this.$store.state.isAuthenticated) this.verifyToken();
+      this.$store.dispatch('verifyToken');
+      
+    },
+    beforeCreate() {
+      this.$store.dispatch('verifyToken');
     },
     computed: {
       isAuthenticated() {
-        return this.$store.state.isAuthenticated;
+        this.$store.dispatch('verifyToken');
+        console.log(this.$store.getters.getAuthState);
+        return this.$store.getters.getAuthState;
       },
       target() {
         const value = this[this.type]

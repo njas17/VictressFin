@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { removeUserSession } from './session';
+import { getToken, getUser, removeUserSession } from './session';
 
 
 Vue.use(Vuex)
@@ -34,6 +34,33 @@ export default new Vuex.Store({
     logout({ commit }) {
       removeUserSession();
       commit('resetUserAuth');
+    },
+    verifyToken({ commit, dispatch}) {
+      const token = getToken();
+      if (!token) {
+        return;
+      }
+
+      const user = getUser();
+      if (!user) {
+        return;
+      }
+      
+      fetch("/api/auth/users/verify-token", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, user })
+      })
+        .then(response => response.json())
+        .then(data => {
+          commit('authenticateTrue', data.user);
+          //console.log("valiated", this.state.isAuthenticated);
+
+        })
+        .catch(error => {
+          console.error("Error in verify token: ", error);
+          dispatch('logout');
+        });
     },
   }
 })
