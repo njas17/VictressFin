@@ -133,11 +133,11 @@
         </v-row>
     </v-container>
 </template>
-
 <script>
-
     import { required, email, max, regex } from 'vee-validate/dist/rules';
     import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate';
+    // import * as filestack from 'filestack-js';
+    // const client = filestack.init('AR5GxmAoWQEKSNfRrAlfTz');
 
     setInteractionMode('eager');
 

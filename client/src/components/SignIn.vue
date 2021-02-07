@@ -29,6 +29,8 @@
 </template>
 
 <script>
+    import { setUserSession } from '../session'; 
+
     export default {
         name: 'SignIn',
         data() {
@@ -37,7 +39,6 @@
                 email: '',
                 password: null,
                 googlesso: null,
-                isAuthenticated: false,
                 errorMesg: ''
             }
         },
@@ -53,38 +54,45 @@
             resetFields() {
                 this.$refs.form.reset();
             },
+            // the login method will take the user email and pass to the auth api
+            // with that information, user data of that particular email is extracted
+            // if there is no user with such email, error is thrown
+            // if user exists with that email, user validation will occur
             login() {
-                fetch("/auth/users/" + this.email)
+                fetch("/api/auth/users/" + this.email)
                     .then(response => response.json())
-                    .then(data => this.user = data[0])
-                    .then(() => this.validateUser())
+                    .then(data => {
+                        console.log(data[0]);
+                        this.user = data[0];
+                    })
+                    .then(() => this.validateUser()) //  
+                    .then(() =>  this.$router.push({ name: 'member' }))
                     .catch(error => this.errorMesg = "Sign-In Error: Please ensure you entered a valid email and password. " + error);
             },
+            // user validation api will check on the user password whether it matches with the one stored in the database 
+            // validation api expects user email, password, and the whole user obj.
+            // once password validity is confirmed, the API will generate a token.
+            // this token need to be stored in a state or localstorage            
             validateUser() {
-                let { errorMesg, ...rest } = this.$data;
-                errorMesg = "";
-                console.log(errorMesg, rest);
-                fetch("/auth/signin", {
+                //console.log(JSON.stringify(this.$data));
+
+                fetch("/api/auth/users/signin", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(rest)
+                    body: JSON.stringify(this.$data)
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
-                        //signin={authObj => this.setToken(authObj)} isAuthenticated={isAuthenticated}
-
-                        //this.props.signin(data.user);
-                        //setUserSession(data.token, data.user);
+                        //console.log("result from validation - ", data);
+                        this.$store.commit('authenticateTrue', data.user);
+                        setUserSession(data.token, data.user);
                     })
                     .catch(error => this.errorMesg = "Validation Error: Please ensure you entered a valid email and password. " + error);
             },
-            // logout() {
-            //     removeUserSession();
-            //     this.setState({ isAuthenticated: false});
-            // },
-          
-        }
+        },
+        // created() {
+        //     if (this.$store.getters.getAuthState === true)  this.$router.push({ name: 'Member' });
+        // }
 
     }
 </script>
