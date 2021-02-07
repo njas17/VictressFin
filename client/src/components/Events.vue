@@ -42,7 +42,7 @@
                                 <v-card class="my-5" max-width="380">
                                     <v-img height="200" :src="item.images">
                                     </v-img>
-                                    <v-card-title class="pb-2">{{ item.name | truncate(27, '...') }}</v-card-title>
+                                    <v-card-title class="pb-2 text-justify">{{ item.name | truncate(27, '...') }}</v-card-title>
                                     <v-card-text>
                                         <div class="my-3 subtitle-2">By: {{ item.organization }}</div>
                                         <div class="my-1 descr">{{ item.description }}</div>
@@ -57,7 +57,28 @@
                                         <v-btn text color="deep-purple accent-4" @click="openVolunteerForm(item.eid)">
                                             Apply
                                         </v-btn>
+
+                                        <v-spacer></v-spacer>
+
+                                        <v-btn
+                                            icon
+                                            @click="show = !show"
+                                        >
+                                            <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                        </v-btn>
                                     </v-card-actions>
+
+                                    <v-expand-transition>
+                                        <div v-show="show">
+                                            <v-divider></v-divider>
+
+                                            <v-card-text class="text-justify">
+                                                <h3>{{item.name}}</h3>
+                                                <v-spacer></v-spacer>
+                                                {{item.description}}
+                                            </v-card-text>
+                                        </div>
+                                    </v-expand-transition>
                                 </v-card>
                             </v-col>
                         </v-row>
@@ -130,7 +151,8 @@
                     'TotalVolunteer',
                 ],
                 items: [{}],
-                newVolunteer: []
+                newVolunteer: [],
+                show: false,
             }
         },
         created() {
