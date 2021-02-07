@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 
 const utils = require('../auth/utils');
 const jwt = require('jsonwebtoken');
-const { request } = require('../app');
 
 router.use(express.json());
 
@@ -20,9 +19,6 @@ router.post("/users", async (req, res, next) => {
     const salt = await bcrypt.genSalt(7);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPassword;
-
-    let strSql = "INSERT INTO USER SET ?;" + req.body;
-    console.log(strSql);
 
     db("INSERT INTO users SET ?;", req.body).then(results => {
       res.send(results.data);
@@ -61,7 +57,7 @@ router.post('/users/signin', async function (req, res) {
 
   try{
       const comparison = await bcrypt.compare(pwd, userObj.password);
-
+      console.log("checking password - ", comparison);
       if (comparison) {
           // user matched
           const token = utils.generateToken(userObj);
@@ -77,6 +73,38 @@ router.post('/users/signin', async function (req, res) {
   }
 
   console.log("user is validated with token....")
+});
+
+router.post('/users/verify-token', function (req, res) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token;
+  var userId = req.body.user.id;
+  if (!token) {
+      return res.status(400).json({
+          error: true,
+          message: "Token is required."
+      });
+  }
+
+  // check token that was passed by decoding token using secret
+  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+      if (err) return res.status(401).json({
+          error: true,
+          message: "Invalid token."
+      });
+      console.log(user);
+      // return 401 status if the userId does not match.
+      if (user.id !== userId) {
+          return res.status(401).json({
+              error: true,
+              message: "Invalid user."
+          });
+      }
+      console.log("token is validated");
+      // get basic user details
+      var userObj = utils.getCleanUser(req.body.user);
+      return res.json({ user: userObj, token });
+  });
 });
 
 module.exports = router;
