@@ -1,54 +1,82 @@
 <template>
-    <v-app app>
-        <v-app-bar
-        absolute
-        color="#6A76AB"
-        dark
-        shrink-on-scroll
-        prominent
-        src="https://picsum.photos/1920/1080?random"
-        fade-img-on-scroll
-        >
-            <template v-slot:img="{ props }">
-                <v-img
-                v-bind="props"
-                gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
-                ></v-img>
-            </template>
+    <div id="app">
+        <v-app>
+            <v-card>
+                <v-spacer></v-spacer>
+                <v-app-bar
+                absolute
+                color="#6A76AB"
+                dark
+                shrink-on-scroll
+                prominent
+                src="https://images.unsplash.com/photo-1499244571948-7ccddb3583f1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Y2hhbmdlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                fade-img-on-scroll
+                scroll-target="#scrolling-techniques-5"
+                >
+                    <template v-slot:img="{ props }">
+                        <v-img
+                        v-bind="props"
+                        gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+                        ></v-img>
+                    </template>
 
-            <v-toolbar-title>Member Dashboard</v-toolbar-title>
+                    <v-toolbar-title>Member Dashboard</v-toolbar-title>
 
-            <v-spacer></v-spacer>
+                    <v-spacer></v-spacer>
 
-            <template v-slot:extension>
-                <v-tabs
-                    v-model="tab"
-                    centered
-                    dark
-                    icons-and-text
-                    >
-                    <v-tabs-slider></v-tabs-slider>
+                    <template v-slot:extension>
+                        <v-tabs
+                            v-model="tab"
+                            centered
+                            dark
+                            icons-and-text
+                            >
+                            <v-tabs-slider></v-tabs-slider>
 
-                    <v-tab>
-                        My Event(s)
-                        <v-icon>mdi-calendar-heart</v-icon>
-                    </v-tab>
-                    <v-tab-item>
-                        <member-event-list :events="orgevents" @updateEvent="handleUpdate" @deleteEvent="handleDelete" />
-                        <volunteer-list :eventId="selectedEvent" :eventName="title" />
-                    </v-tab-item>
+                            <v-tab>
+                                My Event(s)
+                                <v-icon>mdi-calendar-heart</v-icon>
+                            </v-tab>
+                            <v-tab-item>
+                                <v-container style="align-items: center; padding-top: 30px">
+                                    <v-row>
+                                        <v-col>
+                                            <v-flex style="padding-bottom: 30px;">
+                                            <member-event-list :events="orgevents" @updateEvent="handleUpdate" @deleteEvent="handleDelete" />
+                                            </v-flex>
+                                            <v-flex style="padding-bottom: 30px;">
+                                            <volunteer-list :eventId="selectedEvent" :eventName="title" />
+                                            </v-flex>
+                                        </v-col>
+                                        <v-col>
+                                            <v-flex style="padding-left: 80px">
+                                            <a class="twitter-timeline" data-width="450" data-height="898" data-theme="light" href="https://twitter.com/sejiwaMalaysia/lists/malaysian-community-49131?ref_src=twsrc%5Etfw">A Twitter List by sejiwaMalaysia</a>
+                                            </v-flex>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
+                            </v-tab-item>
 
-                    <v-tab>
-                        Create Event
-                        <v-icon>mdi-calendar-plus</v-icon>
-                    </v-tab>
-                    <v-tab-item>
-                        <create-event-form :userId="uid" @addEvent="addNewEvent" />
-                    </v-tab-item>
-                </v-tabs>
-            </template>
-        </v-app-bar>
-    </v-app>
+                            <v-tab>
+                                Create Event
+                                <v-icon>mdi-calendar-plus</v-icon>
+                            </v-tab>
+                            <v-tab-item>
+                                <create-event-form :userId="uid" @addEvent="addNewEvent" />
+                            </v-tab-item>
+                        </v-tabs>
+                    </template>
+                </v-app-bar>
+                <v-sheet
+                    id="scrolling-techniques-5"
+                    class="overflow-y-auto"
+                    max-height="1200"
+                >
+                    <v-container style="height: 1200px;"></v-container>
+                </v-sheet>
+            </v-card>
+        </v-app>
+    </div>    
 </template>
 
 
@@ -66,7 +94,6 @@
         },
         data() {
             return {
-                // createEventDialog: false,
                 tab: null,
                 title: "Member",
                 selectedEvent: 1,
@@ -113,57 +140,7 @@
             },
             handleDelete() {
                 this.getOrgEvents();
-            },
-            // openCreateEventDialog() {
-            // this.createEventDialog = true;
-            // },
+            }
         }
     };
 </script>
-
-
-    // <v-app>
-    //     <v-container>
-    //         <div class="member">
-    //             <h1>Member</h1>
-                <!-- <template>
-                    <v-expansion-panels focusable>
-                        <v-expansion-panel>
-                            <v-expansion-panel-header disable-icon-rotate>
-                                <v-card-title>
-                                    Create Event
-                                </v-card-title>
-                                <template v-slot:actions>
-                                    <v-icon color="primary">mdi-plus</v-icon>
-                                </template>
-                            </v-expansion-panel-header>
-                            <v-expansion-panel-content>
-                                <create-event-form :userId="uid" @addEvent="addNewEvent" />
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </template> -->
-    //             <v-spacer></v-spacer>
-    //             <v-btn
-    //                 color="error"
-    //                 dark
-    //                 large
-    //                 @click="openCreateEventDialog"
-    //                 >
-    //                 Create Event
-    //                 <v-icon color="primary">mdi-plus</v-icon>
-    //             </v-btn>
-    //             <v-dialog v-model="createEventDialog" max-width="888px">
-    //                 <v-toolbar dark color="primary">
-    //                     <v-btn icon dark @click="createEventDialog = false">
-    //                         <v-icon>mdi-close</v-icon>
-    //                     </v-btn>
-    //                     <v-toolbar-title>Create Event</v-toolbar-title>
-    //                 </v-toolbar>
-    //                 <create-event-form :userId="uid" @addEvent="addNewEvent" />
-    //             </v-dialog>
-    //             <member-event-list :events="orgevents" @updateEvent="handleUpdate" @deleteEvent="handleDelete"/>
-    //             <volunteer-list :eventId="selectedEvent" :eventName="title" />
-    //         </div>
-    //     </v-container>
-    // </v-app>

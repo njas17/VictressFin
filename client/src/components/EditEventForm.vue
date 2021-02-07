@@ -3,20 +3,12 @@
         <v-card-title></v-card-title>
         <v-card-text>
             <ValidationObserver ref="observer">
-            <!-- <div class="edit-form py-3"> -->
-                <!-- <v-form ref="form" lazy-validation> -->
-
-                    <!-- <v-text-field v-model="currentevent.name" :rules="[(v) => !!v || 'Title is required']" label="Title"
-                        required></v-text-field>
-
-                    <v-text-field v-model="currentevent.description" :rules="[(v) => !!v || 'Description is required']"
-                        label="Description" required></v-text-field> -->
-
+            <v-form ref="form" lazy-validation>
                 <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:100" autocomplete="off">
                     <v-text-field v-model="currentevent.name" :counter="100" :error-messages="errors" label="Title" required>
                     </v-text-field>
                 </ValidationProvider>
-                <v-form ref="form" lazy-validation>
+                <!-- <v-form ref="form" lazy-validation> -->
                     <template>
                         <v-row align="center">
                             <v-col cols="12" sm="2" md="2">
@@ -67,7 +59,7 @@
                             </v-col>
                         </v-row>
                     </template>
-                </v-form>
+                <!-- </v-form> -->
                 <ValidationProvider v-slot="{ errors }" name="Description" rules="required|max:500" autocomplete="off">
                     <v-textarea v-model="currentevent.description" :counter="500" :error-messages="errors" label="Description"
                         auto-grow rows="1" required></v-textarea>
@@ -105,11 +97,14 @@
 
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="handleUpdate"> Update </v-btn>
+                        <v-btn text color="primary" @click="handleClose"> Close </v-btn>
+                        <!-- <v-btn text color="primary" @click="handleReset"> Reset </v-btn> -->
+                        <v-btn text color="primary" @click="handleUpdate"> Update </v-btn>
                     </v-card-actions>
                 <!-- </v-form> -->
 
             <!-- </div> -->
+            </v-form>
             </ValidationObserver>
         </v-card-text>
     </v-card>
@@ -165,7 +160,7 @@
                     contactnum: "",
                     contactemail: "",
                     totalvolunteer: null,
-                    images: "https://images.unsplash.com/photo-1596817120625-7695129a2c92?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"                    
+                    images: ""                    
                 },
                 smodal: false,
                 emodal: false,
@@ -199,8 +194,9 @@
 
                 this.$emit("updateevent", this.eventform);
             },
-
-
+            handleClose() {
+                this.$emit('closeEditForm');
+            },
         }
     }
 </script>
