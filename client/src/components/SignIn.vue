@@ -21,6 +21,11 @@
                     OK
                 </v-btn>
             </v-row>
+            <div>
+                <div>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
+            </div>
             <v-alert v-if="errorMesg!=''" color="red lighten-2" dark icon="mdi-check-bold" border="left" prominent>
                 Fail. {{ errorMesg }}.
             </v-alert>
