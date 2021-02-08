@@ -56,7 +56,7 @@
                 </v-card>
             </v-dialog>
             <v-card>
-                <v-card color="orange accent-7" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
+                <v-card color="cyan accent-7" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
                     My Event(s)
                     <v-spacer></v-spacer>
                     <v-text-field class="mb-5 mr-3" v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
@@ -69,8 +69,8 @@
                         </v-chip>
                     </template>
                     <template v-slot:[`item.action`]="{ item }">
-                        <v-icon small class="mr-2" @click="editEvent(item.eid)"> mdi-pencil </v-icon>
-                        <v-icon small @click="openDeleteEventDialog(item.eid)"> mdi-delete </v-icon>
+                        <v-icon color="cyan darken-3" small class="mr-2" @click="editEvent(item.eid)"> mdi-pencil </v-icon>
+                        <v-icon color="cyan darken-3" small @click="openDeleteEventDialog(item.eid)"> mdi-delete </v-icon>
                     </template>
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length">

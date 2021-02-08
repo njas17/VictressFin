@@ -2,6 +2,7 @@
     <v-container>
         <div class="col-md-12">
             <v-container fluid>
+                <h2>Upcoming Events...</h2>
                 <v-dialog v-model="volunteerDialog" max-width="500px">
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="volunteerDialog = false">
@@ -16,7 +17,7 @@
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
                     :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" hide-default-footer>
                     <template v-slot:header>
-                        <v-toolbar dark color="indigo accent-4" class="mt-1">
+                        <v-toolbar dark color="cyan accent-4" class="mt-1">
                             <v-text-field v-model="search" clearable flat solo-inverted hide-details
                                 prepend-inner-icon="mdi-magnify" label="Search for an Upcoming Event"></v-text-field>
                             <template v-if="$vuetify.breakpoint.mdAndUp">
@@ -25,10 +26,10 @@
                                     prepend-inner-icon="mdi-magnify" label="Sort by"></v-select>
                                 <v-spacer></v-spacer>
                                 <v-btn-toggle v-model="sortDesc" mandatory>
-                                    <v-btn depressed large color="indigo accent-3" :value="false">
+                                    <v-btn depressed large color="cyan accent-3" :value="false">
                                         <v-icon>mdi-arrow-up</v-icon>
                                     </v-btn>
-                                    <v-btn depressed large color="indigo accent-3" :value="true">
+                                    <v-btn depressed large color="cyan accent-3" :value="true">
                                         <v-icon>mdi-arrow-down</v-icon>
                                     </v-btn>
                                 </v-btn-toggle>
@@ -42,7 +43,7 @@
                                 <v-card class="my-5" max-width="380">
                                     <v-img height="200" :src="item.images">
                                     </v-img>
-                                    <v-card-title class="pb-2">{{ item.name | truncate(27, '...') }}</v-card-title>
+                                    <v-card-title class="pb-2 text-justify">{{ item.name | truncate(27, '...') }}</v-card-title>
                                     <v-card-text>
                                         <div class="my-3 subtitle-2">By: {{ item.organization }}</div>
                                         <div class="my-1 descr">{{ item.description }}</div>
@@ -57,7 +58,28 @@
                                         <v-btn text color="deep-purple accent-4" @click="openVolunteerForm(item.eid)">
                                             Apply
                                         </v-btn>
+
+                                        <v-spacer></v-spacer>
+
+                                        <v-btn
+                                            icon
+                                            @click="show = !show"
+                                        >
+                                            <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                        </v-btn>
                                     </v-card-actions>
+
+                                    <v-expand-transition>
+                                        <div v-show="show">
+                                            <v-divider></v-divider>
+
+                                            <v-card-text class="text-justify">
+                                                <h3>{{item.name}}</h3>
+                                                <v-spacer></v-spacer>
+                                                {{item.description}}
+                                            </v-card-text>
+                                        </div>
+                                    </v-expand-transition>
                                 </v-card>
                             </v-col>
                         </v-row>
@@ -87,10 +109,10 @@
                             grey--text">
                                 Page {{ page }} of {{ numberOfPages }}
                             </span>
-                            <v-btn fab dark color="blue darken-3" class="mr-1" @click="formerPage">
+                            <v-btn fab dark color="cyan" class="mr-1" @click="formerPage">
                                 <v-icon>mdi-chevron-left</v-icon>
                             </v-btn>
-                            <v-btn fab dark color="blue darken-3" class="ml-1" @click="nextPage">
+                            <v-btn fab dark color="cyan" class="ml-1" @click="nextPage">
                                 <v-icon>mdi-chevron-right</v-icon>
                             </v-btn>
                         </v-row>
@@ -130,7 +152,8 @@
                     'TotalVolunteer',
                 ],
                 items: [{}],
-                newVolunteer: []
+                newVolunteer: [],
+                show: false,
             }
         },
         created() {
