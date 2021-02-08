@@ -36,6 +36,7 @@
 
 <script>
   import * as easings from 'vuetify/es5/services/goto/easing-patterns';
+  import store from './store';
   //import { getToken, getUser } from './session';
 
   export default {
@@ -53,22 +54,22 @@
     },
     methods: {
       signOut() {
-        this.$store.dispatch("logout");
+        store.dispatch("logout");
         this.$router.push({ name: 'logout' });
       }
     },
     created() {
-      this.$store.dispatch('verifyToken');
+      store.dispatch('verifyToken');
       
     },
     beforeCreate() {
-      this.$store.dispatch('verifyToken');
+      store.dispatch('verifyToken');
     },
     computed: {
       isAuthenticated() {
-        this.$store.dispatch('verifyToken');
-        console.log(this.$store.getters.getAuthState);
-        return this.$store.getters.getAuthState;
+        store.dispatch('verifyToken');
+        // console.log(store.getters.getAuthState);
+        return store.getters.getAuthState;
       },
       target() {
         const value = this[this.type]

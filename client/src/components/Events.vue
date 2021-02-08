@@ -2,6 +2,7 @@
     <v-container>
         <div class="col-md-12">
             <v-container fluid>
+                <h2>Upcoming Events...</h2>
                 <v-dialog v-model="volunteerDialog" max-width="500px">
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="volunteerDialog = false">
@@ -16,7 +17,7 @@
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
                     :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" hide-default-footer>
                     <template v-slot:header>
-                        <v-toolbar dark color="indigo accent-4" class="mt-1">
+                        <v-toolbar dark color="cyan accent-4" class="mt-1">
                             <v-text-field v-model="search" clearable flat solo-inverted hide-details
                                 prepend-inner-icon="mdi-magnify" label="Search for an Upcoming Event"></v-text-field>
                             <template v-if="$vuetify.breakpoint.mdAndUp">
@@ -25,10 +26,10 @@
                                     prepend-inner-icon="mdi-magnify" label="Sort by"></v-select>
                                 <v-spacer></v-spacer>
                                 <v-btn-toggle v-model="sortDesc" mandatory>
-                                    <v-btn depressed large color="indigo accent-3" :value="false">
+                                    <v-btn depressed large color="cyan accent-3" :value="false">
                                         <v-icon>mdi-arrow-up</v-icon>
                                     </v-btn>
-                                    <v-btn depressed large color="indigo accent-3" :value="true">
+                                    <v-btn depressed large color="cyan accent-3" :value="true">
                                         <v-icon>mdi-arrow-down</v-icon>
                                     </v-btn>
                                 </v-btn-toggle>
@@ -108,10 +109,10 @@
                             grey--text">
                                 Page {{ page }} of {{ numberOfPages }}
                             </span>
-                            <v-btn fab dark color="blue darken-3" class="mr-1" @click="formerPage">
+                            <v-btn fab dark color="cyan" class="mr-1" @click="formerPage">
                                 <v-icon>mdi-chevron-left</v-icon>
                             </v-btn>
-                            <v-btn fab dark color="blue darken-3" class="ml-1" @click="nextPage">
+                            <v-btn fab dark color="cyan" class="ml-1" @click="nextPage">
                                 <v-icon>mdi-chevron-right</v-icon>
                             </v-btn>
                         </v-row>
