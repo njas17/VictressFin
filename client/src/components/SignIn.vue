@@ -29,26 +29,36 @@
                 <v-btn color="primary" text @click="userSignIn">
                     OK
                 </v-btn>
-                <!-- <div>
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                </div> -->
             </v-card-actions>
         </v-form>
+        <v-divider></v-divider>
+        <div class="googleBtnDiv">
+            <div v-google-signin-button="clientId" class="google-signin-button">
+                <img alt="Google sign-in"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                <span>Continue Login with Google</span>
+            </div>
+        </div>
     </v-card>
 </template>
 
 <script>
+    import GoogleSignInButton from '../plugins/googleSignInDirective';//'vue-google-signin-button-directive';
     import { setUserSession } from '../session';
 
     export default {
         name: 'SignIn',
+        directives: {
+            GoogleSignInButton
+        },
         data() {
             return {
                 user: {},
                 email: '',
                 password: null,
                 googlesso: null,
-                errorMesg: ''
+                errorMesg: '',
+                clientId: '730383127459-e7pavm9hljr6kcutedkkago0f0glk485'
             }
         },
         methods: {
@@ -58,10 +68,16 @@
                     return;
                 }
                 this.login();
-
             },
             resetFields() {
                 this.$refs.form.reset();
+            },
+            OnGoogleAuthSuccess(idToken) {
+                // Receive the idToken and make your magic with the backend
+                console.log(idToken)
+            },
+            OnGoogleAuthFail(error) {
+                console.log(error)
             },
             // the login method will take the user email and pass to the auth api
             // with that information, user data of that particular email is extracted
@@ -118,5 +134,31 @@
 </script>
 
 <style scoped>
+    /* @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'; */
 
+    .google-signin-button {
+        border-radius: 1px;
+        border: thin solid #888;
+        box-shadow: 1px 1px 1px grey;
+        width: 300px;
+        border-radius: 5px;
+        padding: 3px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .google-signin-button img {
+        margin: 2px 15px 2px 20px;   
+        width: 20px;
+        vertical-align:middle;
+    }
+    .googleBtnDiv {
+        padding: 0;
+        height: 50px;
+    }
+
+    hr {
+        width: 95%;
+        margin-bottom: 10px;
+    }
 </style>
