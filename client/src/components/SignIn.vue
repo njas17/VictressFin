@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card fill-height>
         <v-form ref="form" @submit.prevent="login" lazy-validation>
             <v-card-text>
                 <v-row>

@@ -69,8 +69,8 @@
                         </v-chip>
                     </template>
                     <template v-slot:[`item.action`]="{ item }">
-                        <v-icon small class="mr-2" @click="editEvent(item.eid)"> mdi-pencil </v-icon>
-                        <v-icon small @click="openDeleteEventDialog(item.eid)"> mdi-delete </v-icon>
+                        <v-icon color="cyan darken-3" small class="mr-2" @click="editEvent(item.eid)"> mdi-pencil </v-icon>
+                        <v-icon color="cyan darken-3" small @click="openDeleteEventDialog(item.eid)"> mdi-delete </v-icon>
                     </template>
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length">

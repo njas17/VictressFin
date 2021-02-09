@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <v-parallax max-height="700px" dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-      <v-row >
+    <v-parallax dark src="https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg">
+      <v-row align="center" justify="center">
         <v-col class="text-center" cols="12">
           <h1 class="display-1 font-weight-thin mb-4">
-            Vuetify
+            {{msg}} <v-icon class="red--text">favorite</v-icon>
           </h1>
           <h4 class="subheading">
-            Build your application today!
+            "Even if you just change one life, you’ve changed the world forever.” – Mike Satterfield
           </h4>
         </v-col>
       </v-row>
@@ -23,14 +23,10 @@
     name: 'home',
     components: { Events },
     data: () => ({
-      msg: 'Welcome to Sejiwa.',
+      msg: 'Welcome to Sejiwa ',
     }),
   }
 </script>
 
 <style>
-  .container {
-    padding: 0;
-    margin: 0;;
-  }
 </style>
