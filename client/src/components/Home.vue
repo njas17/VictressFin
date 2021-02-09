@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-parallax max-height="700px" dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-      <v-row align="center" justify="center">
+      <v-row >
         <v-col class="text-center" cols="12">
           <h1 class="display-1 font-weight-thin mb-4">
             Vuetify
@@ -27,3 +27,10 @@
     }),
   }
 </script>
+
+<style>
+  .container {
+    padding: 0;
+    margin: 0;;
+  }
+</style>

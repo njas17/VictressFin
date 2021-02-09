@@ -1,40 +1,42 @@
 <template>
     <v-app class="authpage">
-        <v-container class="authbox">
-            <v-card class="welcome">
+        <!-- <v-card class="welcome">
                 some welcome
                 <p>Member Sign-Up/Profile Registration.</p>
                 <p>Welcome to Sejiwa.</p>
-            </v-card>
-            <v-card>
-                <v-tabs background-color="deep-purple accent-4" center-active dark>
-                    <v-tabs-slider color="yellow"></v-tabs-slider>
-                    <v-tab>Login</v-tab>
-                    <v-tab>Sign-Up</v-tab>
-                    <v-tab-item>
-                        <sign-in />
-                    </v-tab-item>
-                    <v-tab-item>
-                        <sign-up />
-                    </v-tab-item>
-
-                </v-tabs>
-            </v-card>
-        </v-container>
+            </v-card> -->
+        <v-card v-if="isAuthenticated" class="mx-auto overflow-hidden" height="400" width="344">
+            <v-system-bar color="grey darken-1"></v-system-bar>
+            <private-access />
+        </v-card>
+        <v-card v-if="!isAuthenticated" class="authbox" clear>
+            <v-system-bar color="grey darken-1"></v-system-bar>
+            <v-tabs background-color="grey lighten-1" center-active>
+                <v-tabs-slider color="deep-purple accent-4"></v-tabs-slider>
+                <v-tab>Login</v-tab>
+                <v-tab>Sign-Up</v-tab>
+                <v-tab-item>
+                    <sign-in />
+                </v-tab-item>
+                <v-tab-item>
+                    <sign-up />
+                </v-tab-item>
+            </v-tabs>
+        </v-card>
     </v-app>
 </template>
 
 <script>
     import SignUp from './SignUp.vue';
     import SignIn from './SignIn.vue';
+    import PrivateAccess from './PrivateAccess.vue'
+    import store from '../store'
 
     export default {
-        components: { SignUp, SignIn },
+        components: { SignUp, SignIn, PrivateAccess },
         name: 'AuthPage',
         data() {
             return {
-                showLogin: true,
-                //isLogged: false,
                 errorMesg: '',
                 items: []
             }
@@ -53,13 +55,22 @@
         },
         created() {
             this.getOrganizations();
+        },
+        computed: {
+            isAuthenticated() {
+                return store.getters.getAuthState;
+            },
         }
     }
 </script>
 
 <style>
-    body {
-        background-color: #d1d1d1;
+    .v-main,
+    .v-app,
+    .v-container,
+    .v-application,
+    .v-application--is-ltr {
+        background-color: #d1d1d1 !important;
     }
 
     .col,
@@ -81,9 +92,10 @@
 
     .authbox {
         margin-top: 3 0px;
-        background: linear-gradient(to bottom, #311b92 8%, #12182e 67%);
+        /* background: linear-gradient(to bottom, #311b92 8%, #12182e 67%); */
         box-shadow: 5px 10px 18px #888888;
         border-radius: 10px;
+        width: 600px;
     }
 
     .signup {

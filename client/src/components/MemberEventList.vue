@@ -56,10 +56,10 @@
                 </v-card>
             </v-dialog>
             <v-card>
-                <v-card color="orange accent-7" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
+                <v-card color="grey lighten-1" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
                     My Event(s)
                     <v-spacer></v-spacer>
-                    <v-text-field class="mb-5 mr-3" v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
+                    <v-text-field v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
                     </v-text-field>
                 </v-card>
                 <v-data-table :headers="headers" :items="events" :search="search" height="250px" :single-expand="singleExpand" :expanded.sync="expanded" item-key="name" show-expand>
