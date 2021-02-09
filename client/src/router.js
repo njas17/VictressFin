@@ -6,31 +6,9 @@ import Member from './components/Member.vue';
 import AuthPage from './components/AuthPage.vue';
 import SignOut from './components/SignOut.vue';
 import NotFound from './components/NotFound.vue';
-import store from '@/store'
+import store from './store.js';
 
 Vue.use(VueRouter);
-
-// const ifNotAuthenticated = (to, from, next) => {
-//     //console.log(store.state.isAuthenticated);
-//     // store.dispatch('verifyToken');
-//     // console.log(store.getters.isAuthenticated);
-//     console.log("i'm not ok", store.getters.getAuthState);
-//     if (!store.getters.getAuthState) { 
-//         console.log("enter the doom")    
-//         next();
-//         return;
-//     }
-//     next("/");
-// };
-
-// const ifAuthenticated = (to, from, next) => {
-//     console.log("i'm ok", store.getters.getAuthState);
-//     if (store.getters.getAuthState) {  
-//         next();
-//         return;
-//     }
-//     next("/login");
-// };
 
 const router = new VueRouter({
     mode: 'history',
@@ -62,19 +40,19 @@ const router = new VueRouter({
             path: '/member',
             component: Member,
             meta: { requiresAuth: true }
-            //beforeEnter: ifAuthenticated
+
         },
         {
             name: 'login',
             path: '/login',
             component: AuthPage,
-            //beforeEnter: ifNotAuthenticated,
+
         },
         {
             name: 'logout',
             path: '/logout',
             component: SignOut,
-            //beforeEnter: ifNotAuthenticated,
+
         },        
         {
             name: "notFound",
@@ -86,14 +64,12 @@ const router = new VueRouter({
     ]
 });
 
-//if(to.meta.requiresAuth) {
-
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (!store.state.user) {
+    if (to.matched.some(record => record.meta.requiresAuth )) { //console.log(to.meta.requiresAuth);
+        if (!store.state.isAuthenticated) {
             next({
                 name: "login",
-                query: { redirect: to.fullPath }
+                query: { redirect: to.fullpath }
             });
         } else {
             next();

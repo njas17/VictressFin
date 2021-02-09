@@ -1,47 +1,59 @@
 <template>
-    <v-container>
+    <v-card>
         <v-form ref="form" lazy-validation>
-            <v-row>
-                <v-col color="orange" cols="12" sm="6" md="6">
-                    <v-text-field v-model="user.firstname" label="First Name*" required>
-                    </v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="user.lastname" label="Last Name*" required>
-                    </v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="user.email" label="Email*" required>
-                    </v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="user.contactnum" label="Contact #" required>
-                    </v-text-field>
-                </v-col>
-                <v-col cols="12">
-                    <v-text-field v-model="user.password" label="Password*" type="password" required>
-                    </v-text-field>
-                </v-col>
-                <v-col cols="12">
-                    <v-select v-model="user.organization_id" label="Select an Organization/Company*" :items="items"
-                        item-text="name" single-line item-value="oid"
-                        hint="Choose Others/Personal if you do not belong to any of the listed organization"
-                        persistent-hint required></v-select>
-                </v-col>
-                <v-col cols="12">
-                    <v-text-field v-model="user.address1" label="Address*" required>
-                    </v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="user.state" label="State*" required>
-                    </v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="user.country" label="Country*" required>
-                    </v-text-field>
-                </v-col>
-            </v-row>
-            <v-row>
+            <v-card-text>
+                <v-row>
+                    <v-col color="orange" cols="12" sm="6" md="6">
+                        <v-text-field v-model="user.firstname" label="First Name*" required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                        <v-text-field v-model="user.lastname" label="Last Name*" required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                        <v-text-field v-model="user.email" label="Email*" required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                        <v-text-field v-model="user.contactnum" label="Contact #" required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                        <v-text-field v-model="user.password" label="Password*" type="password" required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                        <v-select v-model="user.organization_id" label="Select an Organization/Company*" :items="items"
+                            item-text="name" single-line item-value="oid"
+                            hint="Choose Others/Personal if you do not belong to any of the listed organization"
+                            persistent-hint required></v-select>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-text-field v-model="user.address1" label="Address*" required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                        <v-text-field v-model="user.state" label="State*" required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                        <v-text-field v-model="user.country" label="Country*" required>
+                        </v-text-field>
+                    </v-col>
+                </v-row>
+                <div>
+                    <v-alert v-if="isRegistered" color="success" dark icon="mdi-check-bold" border="left" prominent>
+                        Success. Your profile has been registered. Please login to proceed to the member
+                        page.
+                    </v-alert>
+                    <v-alert v-if="errorMesg!=''" color="red lighten-2" dark icon="mdi-check-bold" border="left"
+                        prominent>
+                        Fail. {{ errorMesg }}.
+                    </v-alert>
+                </div>
+            </v-card-text>
+            <v-card-actions>
                 <small>*indicates required field</small>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" text @click="resetFields">
@@ -50,17 +62,9 @@
                 <v-btn color="blue darken-1" text @click="userSignUp">
                     Submit
                 </v-btn>
-            </v-row>
-            <v-alert v-if="isRegistered" color="success" dark icon="mdi-check-bold" border="left" prominent>
-                Success. Your profile has been registered. Please login to proceed to the member
-                page.
-            </v-alert>
-            <v-alert v-if="errorMesg!=''" color="red lighten-2" dark icon="mdi-check-bold" border="left" prominent>
-                Fail. {{ errorMesg }}.
-            </v-alert>
+            </v-card-actions>
         </v-form>
-    </v-container>
-
+    </v-card>
 </template>
 
 <script>

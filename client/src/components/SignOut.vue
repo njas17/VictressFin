@@ -4,7 +4,7 @@
         <v-row >
             <v-col>
                 <v-alert class="logout" color="primary" dark icon="mdi-check-bold" border="left" prominent>
-                    <p>You are not logged in or you have logged out. </p>
+                    <p>You have logged out. </p>
                     <p>Thank You.</p>
                 </v-alert>
             </v-col>

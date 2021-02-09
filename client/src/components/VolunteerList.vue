@@ -27,10 +27,10 @@
         </v-dialog>
 
         <v-card>
-            <v-card color="blue accent-3" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
+            <v-card color="grey darken-1" elevation="6" class="v-card-header-white d-flex grow flex-wrap pa-6">
                 Volunteer List
                 <v-spacer></v-spacer>
-                <v-text-field class="mb-5 mr-3" v-model="search" append-icon="mdi-magnify" label="Search" white-text clearable hide-details>
+                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" white-text single-line hide-details>
                 </v-text-field>
             </v-card>
 
@@ -157,15 +157,23 @@
 
 
 
-    }
+    }   
 
 </script>
 
 <style>
-.v-card-header {
+.v-card-header-white {
     color: white !important;
     position: relative;
-    max-width: 95%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    top: -15px;    
+}
+.v-card-header {
+    color: rgb(14, 13, 13) !important;
+    position: relative;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
     top: -15px;

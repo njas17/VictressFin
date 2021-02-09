@@ -1,35 +1,44 @@
 <template>
-    <v-container>
+    <v-card fill-height>
         <v-form ref="form" @submit.prevent="login" lazy-validation>
-            <v-row>
-                <v-col cols="12">
-                    <v-text-field v-model="email" label="Email*" required>
-                    </v-text-field>
-                </v-col>
-                <v-col cols="12">
-                    <v-text-field v-model="password" label="Password*" type="password" required>
-                    </v-text-field>
-                </v-col>
-            </v-row>
-            <v-row>
+            <v-card-text>
+                <v-row>
+                    <v-col cols="12">
+                        <v-text-field v-model="email" label="Email*" required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-text-field v-model="password" label="Password*" type="password" required>
+                        </v-text-field>
+                    </v-col>
+                </v-row>
+                <div>
+                    <v-alert v-if="errorMesg!=''" color="red lighten-2" dark icon="mdi-check-bold" border="left"
+                        prominent>
+                        Fail. {{ errorMesg }}.
+                    </v-alert>
+                </div>
+            </v-card-text>
+
+            <v-card-actions>
                 <small>*indicates required field</small>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="resetFields">
+                <v-btn color="primary" text @click="resetFields">
                     Reset
                 </v-btn>
-                <v-btn color="blue darken-1" text @click="userSignIn">
+                <v-btn color="primary" text @click="userSignIn">
                     OK
                 </v-btn>
-            </v-row>
-            <v-alert v-if="errorMesg!=''" color="red lighten-2" dark icon="mdi-check-bold" border="left" prominent>
-                Fail. {{ errorMesg }}.
-            </v-alert>
+                <!-- <div>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div> -->
+            </v-card-actions>
         </v-form>
-    </v-container>
+    </v-card>
 </template>
 
 <script>
-    import { setUserSession } from '../session'; 
+    import { setUserSession } from '../session';
 
     export default {
         name: 'SignIn',
@@ -59,15 +68,16 @@
             // if there is no user with such email, error is thrown
             // if user exists with that email, user validation will occur
             login() {
+                //const redirectPath = this.$route.query.redirect || "/";
+                //console.log(redirectPath);
                 fetch("/api/auth/users/" + this.email)
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data[0]);
+                        //console.log(data[0]);
                         this.user = data[0];
                     })
-                    .then(() => this.validateUser()) //  
-                    .then(() =>  this.$router.push({ name: 'member' }))
-                    .catch(error => this.errorMesg = "Sign-In Error: Please ensure you entered a valid email and password. " + error);
+                    .then(() => this.validateUser()) //                      .then(() => this.$router.push(redirectPath))
+                    .catch(error => this.errorMesg = "Sign-In Error: " + error);
             },
             // user validation api will check on the user password whether it matches with the one stored in the database 
             // validation api expects user email, password, and the whole user obj.
@@ -89,9 +99,19 @@
                     })
                     .catch(error => this.errorMesg = "Validation Error: Please ensure you entered a valid email and password. " + error);
             },
+            // onSignIn(googleUser) {
+            //     var profile = googleUser.getBasicProfile();
+            //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            //     console.log('Name: ' + profile.getName());
+            //     console.log('Image URL: ' + profile.getImageUrl());
+            //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            // },
+            // onSignIn (user) {
+            // const profile = user.getBasicProfile()
+            // }            
         },
-        // created() {
-        //     if (this.$store.getters.getAuthState === true)  this.$router.push({ name: 'Member' });
+        // mounted() {
+        //     this.onSignIn;
         // }
 
     }
