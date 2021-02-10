@@ -4,7 +4,7 @@ import Vue from 'vue';
 import Home from './../../src/components/Home.vue';
 import Events from './../../src/components/Events.vue';
 import VolunteerApplicationForm from './../../src/components/VolunteerApplicationForm.vue';
-import Member from './../../src/components/Member.vue';
+// import Member from './../../src/components/Member.vue';
 // import MemberEventList from './../../src/components/MemberEventList.vue';
 // import VolunteerList from './../../src/components/VolunteerList.vue';
 // import CreteEventForm from './../../src/components/CreateEventForm.vue';
@@ -33,8 +33,8 @@ let wrapper;
 
 Vue.use(Vuetify)
 
-// const localVue = createLocalVue();
-// localVue.use(Vuetify, {});
+const localVue = createLocalVue();
+localVue.use(Vuetify, {});
 
 describe('Home.vue', () => {
 
@@ -108,24 +108,24 @@ describe('Events.vue', () => {
 
 });
 
-describe('Member.vue', () => {
+// describe('Member.vue', () => {
 
-  beforeEach(() => {
-    wrapper = shallowMount(Member, {
-    });
-  });
+//   beforeEach(() => {
+//     wrapper = shallowMount(Member, {
+//     });
+//   });
 
-  afterEach(() => {
-    wrapper.destroy();
-  });
+//   afterEach(() => {
+//     wrapper.destroy();
+//   });
 
-  test('is a Vue instance', () => {
-      expect(wrapper.isVueInstance).toBeTruthy();
-  });
+//   test('is a Vue instance', () => {
+//       expect(wrapper.isVueInstance).toBeTruthy();
+//   });
 
-  test('has data', () => {
-    expect(typeof Events.data).toBe('function')
-  })
+//   test('has data', () => {
+//     expect(typeof Events.data).toBe('function')
+//   })
 
 //   // test('renders child component MemberEventList', () => {
 //   //   expect(wrapper.findComponent(MemberEventList).exists()).toBe(true);
@@ -139,4 +139,4 @@ describe('Member.vue', () => {
 //   //   expect(wrapper.findComponent(CreateEventForm).exists()).toBe(true);
 //   // });
 
-});  
+// });  
