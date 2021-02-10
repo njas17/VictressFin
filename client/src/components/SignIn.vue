@@ -92,6 +92,7 @@
                 this.login();
             },
             resetFields() {
+                this.errorMesg = "";
                 this.$refs.form.reset();
             },
             OnGoogleAuthSuccess(idToken, userProfile) {

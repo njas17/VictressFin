@@ -29,7 +29,6 @@
 </script>
 
 <style>
-
   .v-main__wrap, .container, .container--fluid {
     padding: 0 !important;
   }
