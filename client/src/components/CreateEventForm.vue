@@ -6,7 +6,7 @@
                 sm="10"
                 md="8"
             >
-                <v-card max-width="750">
+                <v-card class="create-event" max-width="750">
                     <v-card-title>Create Event</v-card-title>
                     <v-card-text>
                         <ValidationObserver ref="observer">
@@ -182,7 +182,7 @@
                     contactemail: "",
                     totalvolunteer: null,
                     location: "",
-                    images: "https://images.unsplash.com/photo-1596817120625-7695129a2c92?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                    images: "https://firebasestorage.googleapis.com/v0/b/sehati-sejiwa.appspot.com/o/fadi-xd-I4dR572y7l0-unsplash.jpg?alt=media&token=60b13f56-26df-4831-8e14-ea819da84252"
                 },
                 smodal: false,
                 emodal: false,
@@ -219,3 +219,9 @@
         },
     };
 </script>
+
+<style scoped>
+.create-event{
+    line-height: 2;
+}
+</style>

@@ -22,14 +22,23 @@
                     </v-card-actions>
                 </v-card>
             </v-dialog>
-            <v-dialog v-model="eventDialog" max-width="888px">
-                <v-toolbar dark color="primary">
-                    <v-btn icon dark @click="eventDialog = false">
-                        <v-icon>mdi-close</v-icon>
-                    </v-btn>
-                    <v-toolbar-title>Edit Event</v-toolbar-title>
-                </v-toolbar>
-                <edit-event-form :currentevent="currentevent" @updateevent="updateEvent" @closeEditForm="eventDialog=false" />
+            <v-dialog v-model="eventDialog" max-width="700px">
+                <v-card>
+                    <v-system-bar dark color="#80DEEA">
+                        <!-- <v-btn icon dark @click="eventDialog = false"> -->
+                            <v-icon @click="eventDialog = false">mdi-close</v-icon>
+                        <!-- </v-btn> -->
+                        <!-- <v-toolbar-title>Edit Event</v-toolbar-title> -->
+                    </v-system-bar>
+                    <!-- <v-card-title> -->
+                        <!-- <v-toolbar-title>
+                            Update Event
+                        </v-toolbar-title> -->
+                    <!-- </v-card-title> -->
+                    <v-container>
+                        <edit-event-form :currentevent="currentevent" @updateevent="updateEvent" @closeEditForm="eventDialog=false" />
+                    </v-container>    
+                </v-card>
             </v-dialog>
             <v-dialog v-model="deleteEventDialog" max-width="500px" title="Delete">
                 <v-toolbar dark color="primary">
