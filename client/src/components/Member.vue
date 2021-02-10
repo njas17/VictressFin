@@ -38,11 +38,12 @@
                                             <v-flex style="padding-left: 80px">
                                                 <campaign-chart />
                                             </v-flex>
-                                            <v-flex style="padding-left: 80px">
-                                                <a class="twitter-timeline" data-width="450" data-height="898"
-                                                    data-theme="light"
-                                                    href="https://twitter.com/sejiwaMalaysia/lists/malaysian-community-49131?ref_src=twsrc%5Etfw">A
-                                                    Twitter List by sejiwaMalaysia</a>
+                                            <v-flex style="padding-left: 80px; padding-top: 55px;">
+                                                <a class="twitter-timeline" data-width="450" data-height="555" 
+                                                    data-theme="light" 
+                                                    href="https://twitter.com/sejiwaMalaysia/lists/inspiration-corner-10612?ref_src=twsrc%5Etfw">
+                                                    A Twitter List by sejiwaMalaysia
+                                                </a> 
                                             </v-flex>
                                         </v-col>
                                     </v-row>
@@ -98,6 +99,7 @@
         methods: {
             //Get events by organization
             getOrgEvents() {
+                window.twttr.widgets.load();
                 // organizer_id = "2"
                 fetch("/api/events/organizer/" + this.uid)
                     .then(response => response.json())
