@@ -1,6 +1,12 @@
 <template>
     <v-container fluid>
-        TQ. Please <router-link class="ml-1 text-decoration-none" to="/member"> click</router-link> to continue to the member page.
+        <v-card>
+            <v-card-title>
+                Welcome to Sejiwa!
+            </v-card-title>
+        </v-card>
+        Please <router-link class="ml-1 text-decoration-none" to="/member">click</router-link> to continue to the member page.
+        Thank You.
     </v-container>
 </template>
 
