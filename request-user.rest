@@ -1,0 +1,32 @@
+GET http://localhost:5000/api/auth/users/jannahworks@gmail.com
+
+###
+
+POST http://localhost:5000/api/auth/users
+Content-Type: application/json
+
+{ 
+    "firstname": "Linda",
+    "lastname": "Michael",
+    "email": "linda@gmail.com",
+    "password": "password",
+    "organization_id": 1,
+    "state": "Sabah",
+    "country": "Malaysia"
+}
+
+###
+
+POST http://localhost:5000/api/auth/signin
+Content-Type: application/json
+
+{"email":"jannahworks@gmail.com",
+"password":"password",
+"user":{
+        "email": "jannahworks@gmail.com",
+        "fullname": "Jannah Ahmad",
+        "group": "organizers",
+        "password": "$2b$07$g5y1iWLNsx8I3bt25sIML.xOVtYLrIu7n3npGeCtom3KuU5kDrHpW",
+        "uid": 4
+    }
+}s
