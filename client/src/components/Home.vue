@@ -29,15 +29,12 @@
 </script>
 
 <style>
-  .v-main {
-    padding: 53px 0px 0px !important;
-  }
 
   .v-main__wrap, .container, .container--fluid {
-    padding: 0 ;
+    padding: 0 !important;
   }
 
   .v-parallax {
-    height: 550px i !important;
+    height: 550px !important;
   }
 </style>
