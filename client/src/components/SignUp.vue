@@ -51,7 +51,7 @@
                 <v-btn color="blue darken-1" text @click="resetFields">
                     Reset
                 </v-btn>
-                <v-btn color="blue darken-1" text @click="userSignUp">
+                <v-btn color="blue darken-1" type="submit" text @click="userSignUp">
                     Submit
                 </v-btn>
             </v-card-actions>
