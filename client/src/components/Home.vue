@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-parallax dark src="https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg">
+    <v-parallax dark src="https://images.unsplash.com/photo-1503847752244-32e931070a43?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1886&q=80">
       <v-row align="center" justify="center">
         <v-col class="text-center" cols="12">
           <h1 class="display-1 font-weight-thin mb-4">
