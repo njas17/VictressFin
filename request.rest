@@ -7,7 +7,6 @@ Content-Type: application/json
 
 { 
     "name": "CNY Cleanup",
-    "closingdate": "2021-10-15",
     "status": "active",
     "description": "Gotong-royong at the old folk home.",
     "organizer_id": 1,

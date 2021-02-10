@@ -34,8 +34,8 @@ export default Vue.directive('google-signin-button', {
     //       });
     // }
     function OnSuccess(googleUser) {
-      vnode.context.OnGoogleAuthSuccess(googleUser.getAuthResponse().id_token);
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      vnode.context.OnGoogleAuthSuccess(googleUser.getAuthResponse().id_token, googleUser.getBasicProfile());
+      //console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
       googleUser.disconnect()
     }
     function Onfail(error) {
