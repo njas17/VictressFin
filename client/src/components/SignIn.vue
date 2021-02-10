@@ -108,7 +108,7 @@
                 // just log the user in (as of now) - ideally should notify that
                 // the user email is not link to the user account in Sejiwa 
                 // thus ask whether user want to link their acc (future feature). 
-                this.email = userProfile.getEmail()
+                this.email = userProfile.getEmail();
                 
                 fetch("/api/auth/users/" + this.email)
                     .then(response => response.json())
@@ -118,6 +118,7 @@
 
                     })
                     .then(() => {
+                        console.log(this.user);
                         if (Object.keys(this.user).length > 0) this.validateGoogleSSO();
                     })
             },
