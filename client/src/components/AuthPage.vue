@@ -1,10 +1,5 @@
 <template>
     <v-container class="authpage">
-        <!-- <v-card class="welcome">
-                some welcome
-                <p>Member Sign-Up/Profile Registration.</p>
-                <p>Welcome to Sejiwa.</p>
-            </v-card> -->
         <v-card v-if="isAuthenticated" class="mx-auto overflow-hidden" height="400" width="344">
             <v-system-bar color="grey darken-1"></v-system-bar>
             <private-access />
