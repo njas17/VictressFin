@@ -131,11 +131,14 @@
             // if there is no user with such email, error is thrown
             // if user exists with that email, user validation will occur
             login() {
-                //const redirectPath = this.$route.query.redirect || "/";
-                //console.log(redirectPath);
                 fetch("/api/auth/users/" + this.email)
                     .then(response => response.json())
-                    .then(data => this.user = data[0] )
+                    .then(data => {
+                        //console.log(this.email, data);
+                        if (data.length < 1) throw "User profile not found with the entered credentials."
+
+                        this.user = data[0];
+                    })
                     .then(() => this.validateUser()) //   .then(() => this.$router.push(redirectPath))
                     .catch(error => this.errorMesg = "Sign-In Error: " + error);
             },
@@ -159,8 +162,6 @@
             // once password validity is confirmed, the API will generate a token.
             // this token need to be stored in a state or localstorage            
             validateUser() {
-                //console.log(JSON.stringify(this.$data));
-
                 fetch("/api/auth/users/signin", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -173,17 +174,7 @@
                         setUserSession(data.token, data.user);
                     })
                     .catch(error => this.errorMesg = "Validation Error: " + error);
-            },
-            // onSignIn(googleUser) {
-            //     var profile = googleUser.getBasicProfile();
-            //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            //     console.log('Name: ' + profile.getName());
-            //     console.log('Image URL: ' + profile.getImageUrl());
-            //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            // },
-            // onSignIn (user) {
-            // const profile = user.getBasicProfile()
-            // }            
+            },          
         },
     }
 </script>

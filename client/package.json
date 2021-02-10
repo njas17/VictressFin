@@ -32,7 +32,9 @@
     }
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "dependencies": {
     "core-js": "^3.6.5",
