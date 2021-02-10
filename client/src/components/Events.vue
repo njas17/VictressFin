@@ -55,13 +55,13 @@
                                         <div>Closing date: {{ getLocaleDate(item.closing) }}</div>
                                     </v-card-text>
                                     <v-card-actions>
-                                        <v-btn text color="deep-purple accent-4" @click="openVolunteerForm(item.eid)">
+                                        <v-btn class="apply" text color="deep-purple accent-4" @click="openVolunteerForm(item.eid)">
                                             Apply
                                         </v-btn>
-
                                         <v-spacer></v-spacer>
 
                                         <v-btn
+                                            class="expand"
                                             icon
                                             @click="show = !show"
                                         >
@@ -128,6 +128,9 @@
 <script>
     import { HelperMixin } from '../mixins/HelperMixin';
     import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
+    import {fetch} from 'whatwg-fetch'
+
+    // const fetch = require("node-fetch");
 
     export default {
         components: { VolunteerApplicationForm },
