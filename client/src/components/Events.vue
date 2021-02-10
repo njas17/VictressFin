@@ -130,8 +130,6 @@
     import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
     import {fetch} from 'whatwg-fetch'
 
-    // const fetch = require("node-fetch");
-
     export default {
         components: { VolunteerApplicationForm },
         name: "Events",

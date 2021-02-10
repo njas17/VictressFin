@@ -74,19 +74,20 @@
     import VolunteerList from './VolunteerList';
     import CreateEventForm from './CreateEventForm';
     import CampaignChart from './CampaignChart';
+    import store from './../store';
 
     export default {
         components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart },
         name: "member",
-        props: {
-            userId: Number
-        },
+        // props: {
+        //     userId: Number
+        // },
         data() {
             return {
                 tab: null,
                 title: "Member",
                 selectedEvent: 1,
-                uid: 2,
+                uid: store.state.user.uid,
                 orgevents: []
             }
         },
