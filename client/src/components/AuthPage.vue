@@ -70,7 +70,7 @@
     .v-container,
     .v-application,
     .v-application--is-ltr {
-        background-color: #d1d1d1 !important;
+        background-color: #eaeaea !important;
     }
 
     .col,
@@ -85,7 +85,7 @@
     }
 
     .authpage {
-        background-color: #d1d1d1;
+        background-color: #eaeaea;
         padding-top: 30px;
         align-items: center;
         justify-items: center;
