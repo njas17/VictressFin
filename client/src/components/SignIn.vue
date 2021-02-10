@@ -108,6 +108,7 @@
                 // just log the user in (as of now) - ideally should notify that
                 // the user email is not link to the user account in Sejiwa 
                 // thus ask whether user want to link their acc (future feature). 
+                console.log(userProfile.getEmail());
                 this.email = userProfile.getEmail()
                 
                 fetch("/api/auth/users/" + this.email)
