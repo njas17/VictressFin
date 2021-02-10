@@ -112,7 +112,7 @@
 
 <script>
 
-    import { required, email, max, regex } from 'vee-validate/dist/rules';
+    import { required, email, max, regex } from 'vee-validate/dist/rules.umd.js';
     import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate';
     import { HelperMixin } from '../mixins/HelperMixin';
 

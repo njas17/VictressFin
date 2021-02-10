@@ -69,6 +69,8 @@
 
 <script>
     import { HelperMixin } from '../mixins/HelperMixin';
+    import {fetch} from 'whatwg-fetch'
+
     export default {
         name: 'VolunteerList',
         mixins: [HelperMixin],

@@ -16,9 +16,9 @@
       "js",
       "json",
       "vue"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(@babel)/)"
+    ],"transformIgnorePatterns": [
+      "node_modules/(?!(@babel)/)",
+      "/node_modules/(?!vee-validate/dist/rules)"
     ],
     "transform": {
       ".*\\.(vue)$": "vue-jest",
