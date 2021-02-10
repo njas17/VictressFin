@@ -31,7 +31,7 @@ router.post("/users", async (req, res, next) => {
 
 // get user by email to check any duplicate email in the system
 router.get("/users/:email", function (req, res, next) {
-  db("SELECT uid, concat_ws(' ', firstname,lastname) as fullname, email, password, `group` FROM users where email = ?;", req.params.email)
+  db("SELECT uid, concat_ws(' ', firstname,lastname) as fullname, email, password, `group`, googlesso FROM users where email = ?;", req.params.email)
     .then(results => {
       res.send(results.data);
     })
@@ -73,6 +73,42 @@ router.post('/users/signin', async function (req, res) {
   }
 
   console.log("user is validated with token....")
+});
+
+// validate the user credentials from google sign-in
+router.post('/users/signin/gss', async function (req, res) {
+  console.log("Validating google user credentials...");
+  const user = req.body.email;
+  const pwd = req.body.password;
+  const userObj = req.body.user;
+  const googleSso = userObj.googlesso;
+
+  // return 400 status if username/password is not exist
+  if (!user || googleSso === 0) {
+      return res.status(400).json({
+          error: true,
+          message: "Username is missing or user account has not linked with Google."
+      });
+  }
+
+  if (!userObj) return res.status(400).send('Cannot find user');     
+
+  try{
+      if (googleSso) {
+          // user matched
+          const token = utils.generateToken(userObj);
+          // get basic user details
+          const usr = utils.getCleanUser(userObj);
+          // return the token along with user details
+          return res.json({ user: usr, token });            
+      } else
+          res.status(401).send("Google SSO error.")
+      
+  } catch(error) {
+      res.status(500).send(error);
+  }
+
+  console.log("google user is validated with token....")
 });
 
 router.post('/users/verify-token', function (req, res) {

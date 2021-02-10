@@ -1,5 +1,5 @@
 <template>
-    <v-app class="authpage">
+    <v-container class="authpage">
         <!-- <v-card class="welcome">
                 some welcome
                 <p>Member Sign-Up/Profile Registration.</p>
@@ -23,7 +23,7 @@
                 </v-tab-item>
             </v-tabs>
         </v-card>
-    </v-app>
+    </v-container>
 </template>
 
 <script>
@@ -81,17 +81,18 @@
     }
 
     .authbox .row {
-
         padding: 0;
     }
 
     .authpage {
         background-color: #d1d1d1;
         padding-top: 30px;
+        align-items: center;
+        justify-items: center;
     }
 
     .authbox {
-        margin-top: 3 0px;
+        margin: 10px auto;
         /* background: linear-gradient(to bottom, #311b92 8%, #12182e 67%); */
         box-shadow: 5px 10px 18px #888888;
         border-radius: 10px;
@@ -99,15 +100,12 @@
     }
 
     .signup {
-        margin: -40px 50px 15px -20px;
-        position: relative;
         background-color: #FAFAFA;
     }
 
     .welcome {
         color: white;
-        margin: auto;
-        padding-left: 30px;
+
     }
 
 

@@ -150,8 +150,7 @@
 
 <style scoped>
     .signup {
-        margin: -40px 50px 15px -20px;
-        position: relative;
+
         background-color: #863f3f;
     }
 </style>
