@@ -134,7 +134,7 @@
     </v-container>
 </template>
 <script>
-    import { required, email, max, regex } from 'vee-validate/dist/rules';
+    import { required, email, max, regex } from 'vee-validate/dist/rules.umd.js';
     import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate';
     // import * as filestack from 'filestack-js';
     // const client = filestack.init('AR5GxmAoWQEKSNfRrAlfTz');
