@@ -7,22 +7,10 @@
                 md="8"
             >
                 <v-card class="create-event" max-width="750" flat>
-                    <v-snackbar
-                        v-model="snackbar"
-                        absolute
-                        top
-                        right
-                        color="success"
-                    >
-                        <span>Registration successful!</span>
-                        <v-icon dark>
-                            mdi-checkbox-marked-circle
-                        </v-icon>
-                    </v-snackbar>
-                    <v-form ref="form" @submit.prevent="submit">
-                        <v-card-title>Create Event</v-card-title>
-                        <v-card-text>
-                            <ValidationObserver ref="observer">
+                    <v-card-title><h2>Create Event</h2></v-card-title>
+                    <v-card-text>
+                        <ValidationObserver ref="observer" v-slot="{ invalid }">
+                            <v-form ref="form" @submit.prevent="submit">
                                 <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:55" autocomplete="off">
                                     <v-text-field v-model="eform.name" :counter="55" :error-messages="errors" label="Title" placeholder=" " required>
                                     </v-text-field><br/>
@@ -71,7 +59,7 @@
                                             </v-col>
                                             <v-spacer></v-spacer>
                                             <v-col cols="12" sm="6" md="6">
-                                                <v-checkbox v-model="enabled" label="Ongoing event"></v-checkbox><br/>
+                                                <v-checkbox v-model="enabled" label="Ongoing event" color="deep-purple accent-4"></v-checkbox><br/>
                                             </v-col>
                                         </v-row>
                                     </template>
@@ -90,14 +78,14 @@
                                 <ValidationProvider v-slot="{ errors }" name="Phone" :rules="{ required: true, regex: /^[\d-\s]{9,}$/ }"
                                     autocomplete="off">
                                     <vue-tel-input-vuetify v-model="eform.contactnum" :error-messages="errors"
-                                        :preferred-countries="['my', 'in', 'es', 'gb', 'us']" :maxLen="11" required />
+                                        :disabledFetchingCountry="false" :defaultCountry="'my'" :preferred-countries="['my', 'in', 'es', 'gb', 'us']" :maxLen="11" required />
                                 </ValidationProvider>
                                 <ValidationProvider v-slot="{ errors }" name="Email" rules="email" autocomplete="off">
                                     <v-text-field v-model="eform.contactemail" :error-messages="errors" label="Email (optional)" placeholder=" ">
                                     </v-text-field>
                                 </ValidationProvider>
                                 <ValidationProvider v-slot="{ errors }" name="Total Volunteers Needed" rules="required" autocomplete="off">
-                                    <v-text-field type="number" v-model="eform.totalvolunteer" :error-messages="errors"
+                                    <v-text-field type="number" min="1" v-model="eform.totalvolunteer" :error-messages="errors"
                                         label="Total Volunteers Needed" placeholder=" " required></v-text-field><br/>
                                 </ValidationProvider>
                                 <ValidationProvider>
@@ -111,15 +99,13 @@
                                 </ValidationProvider>
                                 <v-spacer></v-spacer>
                                 <ValidationProvider v-slot="{ errors }" name="Checkbox" rules="required" >
-                                    <v-checkbox v-model="checkbox" :error-messages="errors" required>
-                                        <!-- :rules="[rules.required]"
-                                        color="blue" -->
+                                    <v-checkbox v-model="checkbox" :error-messages="errors" value="1" type="checkbox" color="deep-purple accent-4" required>
                                         <template v-slot:label>
                                             <div>
                                             Do you accept the
-                                            <a href="#" @click.prevent="terms = true">terms</a>
+                                            <a class="deep-purple--text" href="#" @click.prevent="terms = true">terms</a>
                                             and
-                                            <a href="#" @click.prevent="conditions = true">conditions</a>
+                                            <a class="deep-purple--text" href="#" @click.prevent="conditions = true">conditions</a>
                                             ?
                                             </div>
                                         </template>
@@ -127,12 +113,12 @@
                                 </ValidationProvider>
                                 <v-spacer></v-spacer>
                                 <v-col class="text-right">
-                                    <v-btn class="mr-4" @click="submit">Submit</v-btn>
-                                    <v-btn @click="clear">Reset</v-btn>
+                                    <v-btn text color="deep-purple accent-4" @click="clear">Reset</v-btn>
+                                    <v-btn text color="deep-purple accent-4" class="mr-4" :disabled="invalid" @click="submit">Submit</v-btn>
                                 </v-col>
-                            </ValidationObserver>
-                        </v-card-text>
-                    </v-form>    
+                            </v-form>
+                        </ValidationObserver>
+                    </v-card-text>
                 </v-card>
             </v-col>    
         </v-row>
@@ -192,7 +178,7 @@
                 smodal: false,
                 emodal: false,
                 cmodal: false,
-                checkbox: false,
+                checkbox: null,
                 rules: '',
                 requiredRules: '',
                 enabled: false,
@@ -204,6 +190,7 @@
                 this.$refs.observer.validate();
                 this.$refs.form.validate();
                 this.$emit("addEvent", this.eform);
+                this.clear();
             },
             clear() {
                 this.eform.name = '';
@@ -216,10 +203,13 @@
                 this.eform.contactnum = "";
                 this.eform.contactemail = "";
                 this.eform.totalvolunteer = null;
-                this.eform.location = "";              
+                this.eform.location = "";
+                this.eform.images = "https://firebasestorage.googleapis.com/v0/b/sehati-sejiwa.appspot.com/o/fadi-xd-I4dR572y7l0-unsplash.jpg?alt=media&token=60b13f56-26df-4831-8e14-ea819da84252";             
                 this.checkbox = false;
+                this.disabledFetchingCountry=false;
+                this.enabled = false;
                 this.$refs.observer.reset();
-                this.$refs.form.reset();
+                // this.$refs.form.reset();
             },
         },
     };

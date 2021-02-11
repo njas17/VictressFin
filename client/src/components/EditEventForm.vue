@@ -87,8 +87,8 @@
 
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="handleClose"> Close </v-btn>
-                <v-btn text color="primary" @click="handleUpdate"> Update </v-btn>
+                <v-btn text color="deep-purple accent-4" @click="handleClose"> Close </v-btn>
+                <v-btn text color="deep-purple accent-4" @click="handleUpdate"> Update </v-btn>
             </v-card-actions>
         </v-form>
     </ValidationObserver>
@@ -165,16 +165,11 @@
 
                 this.eventform.eid = this.currentevent.eid;
                 this.eventform.name = this.currentevent.name;
-                console.log('date-from: ', this.currentevent.datefrom);
-                if(this.currentevent.datefrom != null) {
-                    console.log('are you in?')
+                if(this.currentevent.datefrom != null)
                     this.eventform.datefrom = this.getLocaleDate(this.currentevent.datefrom);
-                }
-                    
-
-                // if(this.currentevent.dateto != null || this.currentevent.dateto != "")
-                //     this.eventform.dateto = this.getLocaleDate(this.currentevent.dateto);
-                if(this.currentevent.closingdate != null || this.currentevent.closingdate != "")
+                if(this.currentevent.dateto != null)
+                    this.eventform.dateto = this.getLocaleDate(this.currentevent.dateto);
+                if(this.currentevent.closingdate != null)
                     this.eventform.closingdate = this.getLocaleDate(this.currentevent.closingdate);
                 this.eventform.description = this.currentevent.description;
                 this.eventform.location = this.currentevent.location;

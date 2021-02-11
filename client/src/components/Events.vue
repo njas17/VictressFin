@@ -91,7 +91,7 @@
                             <span class="grey--text">Items per page</span>
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on, attrs }">
-                                    <v-btn dark text color="primary" class="ml-2" v-bind="attrs" v-on="on">
+                                    <v-btn dark text color="#757575" class="ml-2" v-bind="attrs" v-on="on">
                                         {{ itemsPerPage }}
                                         <v-icon>mdi-chevron-down</v-icon>
                                     </v-btn>
@@ -109,10 +109,10 @@
                             <span class="mr-4 grey--text">
                                 Page {{ page }} of {{ numberOfPages }}
                             </span>
-                            <v-btn fab small dark color="cyan" class="mr-1" @click="formerPage">
+                            <v-btn fab small dark color="#757575" class="mr-1" @click="formerPage">
                                 <v-icon>mdi-chevron-left</v-icon>
                             </v-btn>
-                            <v-btn fab small dark color="cyan" class="ml-1" @click="nextPage">
+                            <v-btn fab small dark color="#757575" class="ml-1" @click="nextPage">
                                 <v-icon>mdi-chevron-right</v-icon>
                             </v-btn>
                         </v-row>

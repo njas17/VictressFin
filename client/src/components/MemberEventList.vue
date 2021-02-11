@@ -1,67 +1,46 @@
 <template>
     <div class="col-md-12">
         <v-container fluid>
-            <v-dialog v-model="updateMessageDialog" max-width="500px">
-                <v-toolbar dark color="primary">
-                    <v-btn icon dark @click="updateMessageDialog=false">
-                        <v-icon>mdi-close</v-icon>
-                    </v-btn>
-                    <v-toolbar-title small>Update</v-toolbar-title>
-                </v-toolbar>
-                <v-card>
-                    <v-card-text>
-                        <v-row class="mx-0" style="padding-top: 20px;">
-                            <h3>Event successfully updated!</h3>
+            <v-dialog v-model="updateMessageDialog" max-width="575px">
+                <v-card style="padding: 20px;">
+                    <v-text>
+                        <v-row class="mx-0">
+                            <v-col>
+                                <h3>Event successfully updated!</h3>
+                            </v-col>
+                            <v-col class="text-right">
+                                <v-btn color="deep-purple accent-4" text @click="updateMessageDialog=false">
+                                    OK
+                                </v-btn>    
+                            </v-col>
                         </v-row>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" text @click="updateMessageDialog=false">
-                            OK
-                        </v-btn>
-                    </v-card-actions>
+                    </v-text>
                 </v-card>
             </v-dialog>
             <v-dialog v-model="eventDialog" max-width="700px">
                 <v-card>
-                    <v-system-bar dark color="#80DEEA">
-                        <!-- <v-btn icon dark @click="eventDialog = false"> -->
-                            <v-icon @click="eventDialog = false">mdi-close</v-icon>
-                        <!-- </v-btn> -->
-                        <!-- <v-toolbar-title>Edit Event</v-toolbar-title> -->
+                    <v-system-bar dark color="cyan">
+                        <v-icon @click="eventDialog = false">mdi-close</v-icon>
                     </v-system-bar>
-                    <!-- <v-card-title> -->
-                        <!-- <v-toolbar-title>
-                            Update Event
-                        </v-toolbar-title> -->
-                    <!-- </v-card-title> -->
                     <v-container>
                         <edit-event-form :currentevent="currentevent" @updateevent="updateEvent" @closeEditForm="eventDialog=false" />
                     </v-container>    
                 </v-card>
             </v-dialog>
-            <v-dialog v-model="deleteEventDialog" max-width="500px" title="Delete">
-                <v-toolbar dark color="primary">
-                    <v-btn icon dark @click="deleteEventDialog=false">
-                        <v-icon>mdi-close</v-icon>
-                    </v-btn>
-                    <v-toolbar-title small>Delete</v-toolbar-title>
-                </v-toolbar>
+            <v-dialog v-model="deleteEventDialog" max-width="500px">
                 <v-card>
-                    <v-card-text>
-                        <v-row class="mx-0" style="padding-top: 20px;">
-                            <h3>This event record will be deleted. Are you sure?</h3>
-                        </v-row>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" text @click="deleteEventDialog=false">
+                    <v-system-bar dark color="cyan">
+                        <v-icon @click="deleteEventDialog=false">mdi-close</v-icon>
+                    </v-system-bar>
+                        <h3 style="padding: 20px;">This event record will be deleted. Are you sure?</h3>
+                    <v-col class="text-right">
+                        <v-btn color="deep-purple accent-4" text @click="deleteEventDialog=false">
                             Close
                         </v-btn>
-                        <v-btn color="blue darken-1" text @click="deleteEvent(selectedEvent)">
+                        <v-btn color="deep-purple accent-4" text @click="deleteEvent(selectedEvent)">
                             Yes
                         </v-btn>
-                    </v-card-actions>
+                    </v-col>
                 </v-card>
             </v-dialog>
             <v-card>
@@ -71,7 +50,7 @@
                     <v-text-field v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
                     </v-text-field>
                 </v-card>
-                <v-data-table :headers="headers" :items="events" :search="search" height="250px" :single-expand="singleExpand" :expanded.sync="expanded" item-key="name" show-expand>
+                <v-data-table :headers="headers" :items="events" :search="search" height="250px" :single-expand="singleExpand" :expanded.sync="expanded" item-key="eid" show-expand>
                     <template v-slot:[`item.status`]="{ item }">
                         <v-chip :color="getColor(item.status)" dark class="text-capitalize" x-small>
                             {{ item.status }}
@@ -86,7 +65,7 @@
                             <h3>Description</h3>
                             <p>{{ item.description }}</p><br/>
                             <h3>Start Date | End Date | Closing Date</h3>
-                            <p>{{ getLocaleDate(item.datefrom) }}<strong> | </strong>{{ getLocaleDate(item.dateto) }}<strong> | </strong>{{ getLocaleDate(item.closingdate) }}</p><br/>
+                            <p>{{ getLocaleDate(item.datefrom,true) }}<strong> | </strong>{{ getLocaleDate(item.dateto,true) }}<strong> | </strong>{{ getLocaleDate(item.closingdate,true) }}</p><br/>
                             <h3>Location</h3>
                             <p>{{ item.location }}</p><br/>
                             <h3>Contact Email</h3>

@@ -53,6 +53,22 @@
                                 </v-container>
                             </v-tab-item>
                             <v-tab-item>
+                                <v-dialog v-model="createEventDialog" max-width="575px">
+                                    <v-card style="padding: 20px;">
+                                        <v-text>
+                                            <v-row class="mx-0">
+                                                <v-col>
+                                                    <h3>Event successfully created!</h3>
+                                                </v-col>
+                                                <v-col class="text-right">
+                                                    <v-btn color="deep-purple accent-4" text @click="createEventDialog=false">
+                                                        OK
+                                                    </v-btn>    
+                                                </v-col>
+                                            </v-row>
+                                        </v-text>
+                                    </v-card>
+                                </v-dialog>
                                 <create-event-form :userId="uid" @addEvent="addNewEvent" />
                             </v-tab-item>
                         </v-tabs>
@@ -88,7 +104,8 @@
                 title: "Member",
                 selectedEvent: 1,
                 uid: store.state.user.uid,
-                orgevents: []
+                orgevents: [],
+                createEventDialog: false
             }
         },
         created() {
@@ -108,7 +125,7 @@
             },
             addNewEvent(data) {
                 //console.log(JSON.stringify(data));
-                this.createEventDialog = false;
+                this.createEventDialog = true;
 
                 fetch("/api/events", {
                     method: "POST",
