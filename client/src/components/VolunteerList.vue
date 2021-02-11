@@ -50,7 +50,7 @@
                     {{ item.state != null ? item.state + ', ' : '' }}{{ item.country }}
                 </template> -->
                 <template v-slot:[`item.dateapp`]="{ item }">
-                    {{ getLocaleDate(item.dateapp) }}
+                    {{ getLocaleDate(item.dateapp, true) }}
                 </template>
                 <template v-slot:[`item.action`]="{ item }">
                     <v-icon v-if="item.status === 'new'" color="blue darken-3" small class="mr-2"

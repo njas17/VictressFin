@@ -1,35 +1,38 @@
 <template>
-    <v-container>
+    <v-container fluid>
+        <v-dialog v-model="volunteerDialog" max-width="500px">
+            <v-toolbar dark color="primary">
+                <v-btn icon dark @click="volunteerDialog = false">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+                <v-toolbar-title>Volunteer Application</v-toolbar-title>
+            </v-toolbar>
+            <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication"
+                @closeForm="volunteerDialog=false" />
+        </v-dialog>
         <div class="col-md-12">
-            <v-container fluid>
-                <h2>Upcoming Events...</h2>
-                <v-dialog v-model="volunteerDialog" max-width="500px">
-                    <v-toolbar dark color="primary">
-                        <v-btn icon dark @click="volunteerDialog = false">
-                            <v-icon>mdi-close</v-icon>
-                        </v-btn>
-                        <v-toolbar-title>Volunteer Application</v-toolbar-title>
-                    </v-toolbar>
-                    <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication"
-                        @closeForm="volunteerDialog=false" />
-                </v-dialog>
+            <v-card>
+                <v-card-title><h2>We can make a difference</h2></v-card-title>
+                <v-card-text>Volunteering is a life-changing oppurtunity to help others in your community. Whether for a one-day event or a year-long commitment</v-card-text>           
                 <p id="eventsSection"></p>
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
-                    :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" hide-default-footer>
+                    :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" item-key="eid" :single-expand="singleExpand"
+                    hide-default-footer class="eventTbl">
                     <template v-slot:header>
-                        <v-toolbar dark color="cyan accent-4" class="mt-1">
+                        <v-toolbar dark color="grey darken-4" class="mt-1">
                             <v-text-field v-model="search" clearable flat solo-inverted hide-details
-                                prepend-inner-icon="mdi-magnify" label="Search for an Upcoming Event"></v-text-field>
+                                prepend-inner-icon="mdi-magnify" label="Search for an Upcoming Event">
+                            </v-text-field>
                             <template v-if="$vuetify.breakpoint.mdAndUp">
                                 <v-spacer></v-spacer>
                                 <v-select v-model="sortBy" flat solo-inverted hide-details :items="keys"
                                     prepend-inner-icon="mdi-magnify" label="Sort by"></v-select>
                                 <v-spacer></v-spacer>
                                 <v-btn-toggle v-model="sortDesc" mandatory>
-                                    <v-btn depressed large color="cyan accent-3" :value="false">
+                                    <v-btn depressed large color="grey darken-3" :value="false">
                                         <v-icon>mdi-arrow-up</v-icon>
                                     </v-btn>
-                                    <v-btn depressed large color="cyan accent-3" :value="true">
+                                    <v-btn depressed large color="grey darken-3" :value="true">
                                         <v-icon>mdi-arrow-down</v-icon>
                                     </v-btn>
                                 </v-btn-toggle>
@@ -37,44 +40,41 @@
                         </v-toolbar>
                     </template>
 
-                    <template v-slot:default="props">
+                    <template v-slot:default="{ items, isExpanded, expand }">
                         <v-row>
-                            <v-col v-for="item in props.items" :key="item.eid" cols="12" sm="6" md="4" lg="3">
+                            <v-col v-for="item in items" :key="item.eid" cols="12" sm="6" md="4" lg="3">
                                 <v-card class="my-5" max-width="380">
                                     <v-img height="200" :src="item.images">
                                     </v-img>
-                                    <v-card-title class="pb-2 text-justify">{{ item.name | truncate(27, '...') }}</v-card-title>
+                                    <v-card-title class="pb-2 text-justify">{{ item.name | truncate(27, '...')
+                                        }}
+                                    </v-card-title>
                                     <v-card-text>
                                         <div class="my-3 subtitle-2">By: {{ item.organization }}</div>
-                                        <div class="my-1 descr">{{ item.description }}</div>
+                                        <div class="font-weight-medium">Total volunteer required: {{
+                                            item.totalvolunteer
+                                            }}</div>
+                                        <div>Closing date: {{ getLocaleDate(item.closing, true) }}</div>
                                     </v-card-text>
                                     <v-divider class="mx-2"></v-divider>
-                                    <v-card-text>
-                                        <div class="font-weight-medium">Total volunteer required: {{ item.totalvolunteer
-                                            }}</div>
-                                        <div>Closing date: {{ getLocaleDate(item.closing) }}</div>
+                                    <v-card-text class="descrWrap">
+                                        <div class="descr">{{ item.description }}</div>
                                     </v-card-text>
                                     <v-card-actions>
-                                        <v-btn class="apply" text color="deep-purple accent-4" @click="openVolunteerForm(item.eid)">
+                                        <v-btn class="apply" text color="deep-purple accent-4"
+                                            @click="openVolunteerForm(item.eid)">
                                             Apply
                                         </v-btn>
                                         <v-spacer></v-spacer>
-
-                                        <v-btn
-                                            class="expand"
-                                            icon
-                                            @click="show = !show"
-                                        >
-                                            <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                                        </v-btn>
+                                        <v-switch :input-value="isExpanded(item)"
+                                            :label="isExpanded(item) ? 'Hide' : 'More..'" class="expand"
+                                            @change="(v) => expand(item, v)"></v-switch>
                                     </v-card-actions>
 
                                     <v-expand-transition>
-                                        <div v-show="show">
-                                            <v-divider></v-divider>
-
-                                            <v-card-text class="text-justify">
-                                                <h3>{{item.name}}</h3>
+                                        <div v-if="isExpanded(item)">
+                                            <v-card-text>
+                                                <h4>{{item.name}}</h4>
                                                 <v-spacer></v-spacer>
                                                 {{item.description}}
                                             </v-card-text>
@@ -105,21 +105,20 @@
 
                             <v-spacer></v-spacer>
 
-                            <span class="mr-4
-                            grey--text">
+                            <span class="mr-4 grey--text">
                                 Page {{ page }} of {{ numberOfPages }}
                             </span>
-                            <v-btn fab dark color="cyan" class="mr-1" @click="formerPage">
+                            <v-btn fab small dark color="cyan" class="mr-1" @click="formerPage">
                                 <v-icon>mdi-chevron-left</v-icon>
                             </v-btn>
-                            <v-btn fab dark color="cyan" class="ml-1" @click="nextPage">
+                            <v-btn fab small dark color="cyan" class="ml-1" @click="nextPage">
                                 <v-icon>mdi-chevron-right</v-icon>
                             </v-btn>
                         </v-row>
                     </template>
 
                 </v-data-iterator>
-            </v-container>
+            </v-card>
 
         </div>
     </v-container>
@@ -128,7 +127,7 @@
 <script>
     import { HelperMixin } from '../mixins/HelperMixin';
     import VolunteerApplicationForm from './VolunteerApplicationForm.vue';
-    import {fetch} from 'whatwg-fetch'
+    import { fetch } from 'whatwg-fetch'
 
     export default {
         components: { VolunteerApplicationForm },
@@ -136,6 +135,7 @@
         mixins: [HelperMixin],
         data() {
             return {
+                singleExpand: false,
                 volunteerDialog: false,
                 selectedEvent: 0,
                 itemsPerPageArray: [4, 8, 12],
@@ -222,11 +222,24 @@
     .top {
         display: inline-flex;
     }
+
     #eventsSection {
         padding-top: 50px;
     }
+
+    .eventTbl {
+        background-color: white;
+        padding: 30px;
+        /* border-radius: 1em; */
+    }
+
+    .descrWrap {
+        padding-top: 5px;
+        padding-bottom: 0px;
+    }
+
     .descr {
-        margin: 0 auto 4vh auto;
+        margin: 0 auto;
         /* autoprefixer: off */
         display: -webkit-box;
         -webkit-box-orient: vertical;

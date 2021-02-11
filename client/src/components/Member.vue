@@ -17,10 +17,13 @@
                     <template v-slot:extension>
                         <v-tabs v-model="tab" centered dark icons-and-text>
                             <v-tabs-slider></v-tabs-slider>
-
                             <v-tab>
                                 My Event(s)
                                 <v-icon>mdi-calendar-heart</v-icon>
+                            </v-tab>
+                            <v-tab>
+                                Create Event
+                                <v-icon>mdi-calendar-plus</v-icon>
                             </v-tab>
                             <v-tab-item>
                                 <v-container style="align-items: center; padding-top: 30px">
@@ -49,11 +52,6 @@
                                     </v-row>
                                 </v-container>
                             </v-tab-item>
-
-                            <v-tab>
-                                Create Event
-                                <v-icon>mdi-calendar-plus</v-icon>
-                            </v-tab>
                             <v-tab-item>
                                 <create-event-form :userId="uid" @addEvent="addNewEvent" />
                             </v-tab-item>
@@ -137,3 +135,12 @@
         }
     };
 </script>
+
+<style scoped>
+    .v-window__container {
+        box-sizing: content-box imp !important;
+    }
+    div .container {
+        margin-top: 30px;
+    }
+</style>
