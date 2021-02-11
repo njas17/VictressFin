@@ -74,7 +74,7 @@
     import CreateEventForm from './CreateEventForm';
     import CampaignChart from './CampaignChart';
     import store from './../store';
-    import {fetch} from 'whatwg-fetch';
+    // import {fetch} from 'whatwg-fetch';
 
     export default {
         components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart },
