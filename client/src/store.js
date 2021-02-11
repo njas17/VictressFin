@@ -16,6 +16,9 @@ export default new Vuex.Store({
     },
     getUserState: state => {
       return state.user;
+    },
+    getUserInitial: state => {
+      return state.user.fullname.split(" ").map((n)=>n[0]).join("");
     }
   },
   mutations: {

@@ -17,10 +17,13 @@
                     <template v-slot:extension>
                         <v-tabs v-model="tab" centered dark icons-and-text>
                             <v-tabs-slider></v-tabs-slider>
-
                             <v-tab>
                                 My Event(s)
                                 <v-icon>mdi-calendar-heart</v-icon>
+                            </v-tab>
+                            <v-tab>
+                                Create Event
+                                <v-icon>mdi-calendar-plus</v-icon>
                             </v-tab>
                             <v-tab-item>
                                 <v-container style="align-items: center; padding-top: 30px">
@@ -31,28 +34,24 @@
                                                     @deleteEvent="handleDelete" />
                                             </v-flex>
                                             <v-flex style="padding-bottom: 30px;">
-                                                <volunteer-list :eventId="selectedEvent" :eventName="title" />
+                                                <volunteer-list :userId="uid" :volunteers="volunteers" @getVolunteers="getAllVolunteers" />
                                             </v-flex>
                                         </v-col>
                                         <v-col>
                                             <v-flex style="padding-left: 80px">
-                                                <campaign-chart />
+                                                <campaign-chart :volunteers="volunteers"  />
                                             </v-flex>
-                                            <v-flex style="padding-left: 80px">
-                                                <a class="twitter-timeline" data-width="450" data-height="898"
-                                                    data-theme="light"
-                                                    href="https://twitter.com/sejiwaMalaysia/lists/malaysian-community-49131?ref_src=twsrc%5Etfw">A
-                                                    Twitter List by sejiwaMalaysia</a>
+                                            <v-flex style="padding-left: 80px; padding-top: 55px;">
+                                                <a class="twitter-timeline" data-width="450" data-height="555" 
+                                                    data-theme="light" 
+                                                    href="https://twitter.com/sejiwaMalaysia/lists/inspiration-corner-10612?ref_src=twsrc%5Etfw">
+                                                    A Twitter List by sejiwaMalaysia
+                                                </a> 
                                             </v-flex>
                                         </v-col>
                                     </v-row>
                                 </v-container>
                             </v-tab-item>
-
-                            <v-tab>
-                                Create Event
-                                <v-icon>mdi-calendar-plus</v-icon>
-                            </v-tab>
                             <v-tab-item>
                                 <create-event-form :userId="uid" @addEvent="addNewEvent" />
                             </v-tab-item>
@@ -66,8 +65,6 @@
         </v-app>
     </div>
 </template>
-
-
 
 <script>
     import MemberEventList from "./MemberEventList";
@@ -87,17 +84,19 @@
             return {
                 tab: null,
                 title: "Member",
-                selectedEvent: 1,
                 uid: store.state.user.uid,
-                orgevents: []
+                orgevents: [],
+                volunteers: []
             }
         },
         created() {
             this.getOrgEvents();
+            this.getAllVolunteers();
         },
         methods: {
             //Get events by organization
             getOrgEvents() {
+                window.twttr.widgets.load();
                 // organizer_id = "2"
                 fetch("/api/events/organizer/" + this.uid)
                     .then(response => response.json())
@@ -131,7 +130,21 @@
             },
             handleDelete() {
                 this.getOrgEvents();
-            }
+            },
+            getAllVolunteers() {
+                fetch("/api/volunteers/organizers/" + this.uid)
+                    .then(response => response.json())
+                    .then(data => this.volunteers = data);
+            },
         }
     };
 </script>
+
+<style scoped>
+    .v-window__container {
+        box-sizing: content-box imp !important;
+    }
+    div .container {
+        margin-top: 30px;
+    }
+</style>

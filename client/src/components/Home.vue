@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-parallax dark src="https://images.unsplash.com/photo-1503847752244-32e931070a43?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1886&q=80">
+    <v-parallax dark src="https://firebasestorage.googleapis.com/v0/b/sehati-sejiwa.appspot.com/o/rene-bernal-small-unsplash.jpg?alt=media&token=50bb87b9-3227-44ad-b9f6-7c8b14666d80">
       <v-row align="center" justify="center">
         <v-col class="text-center" cols="12">
           <h1 class="display-1 font-weight-thin mb-4">
@@ -29,4 +29,11 @@
 </script>
 
 <style>
+  .v-main__wrap, .container, .container--fluid {
+    padding: 0 !important;
+  }
+
+  .v-parallax {
+    height: 550px !important;
+  }
 </style>

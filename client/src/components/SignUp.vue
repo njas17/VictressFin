@@ -1,45 +1,37 @@
 <template>
     <v-card>
-        <v-form ref="form" lazy-validation>
+        <v-form ref="form" @submit.prevent="userSignUp" lazy-validation>
             <v-card-text>
                 <v-row>
                     <v-col color="orange" cols="12" sm="6" md="6">
-                        <v-text-field v-model="user.firstname" label="First Name*" required>
-                        </v-text-field>
+                        <v-text-field v-model="user.firstname" label="First Name*" required></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                        <v-text-field v-model="user.lastname" label="Last Name*" required>
-                        </v-text-field>
+                        <v-text-field v-model="user.lastname" label="Last Name*" required></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                        <v-text-field v-model="user.email" label="Email*" required>
-                        </v-text-field>
+                        <v-text-field v-model="user.email" :rules="emailRules" label="Email*" required></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                        <v-text-field v-model="user.contactnum" label="Contact #" required>
-                        </v-text-field>
+                        <v-text-field v-model="user.contactnum" label="Contact Number*" required></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                        <v-text-field v-model="user.password" label="Password*" type="password" required>
-                        </v-text-field>
+                        <v-text-field v-model="user.password" label="Password*" type="password" required></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
                         <v-select v-model="user.organization_id" label="Select an Organization/Company*" :items="items"
-                            item-text="name" single-line item-value="oid"
+                            item-text="name" single-line item-value="oid" 
                             hint="Choose Others/Personal if you do not belong to any of the listed organization"
                             persistent-hint required></v-select>
                     </v-col>
                     <v-col cols="12">
-                        <v-text-field v-model="user.address1" label="Address*" required>
-                        </v-text-field>
+                        <v-text-field v-model="user.address1"  label="Address*" required></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                        <v-text-field v-model="user.state" label="State*" required>
-                        </v-text-field>
+                        <v-text-field v-model="user.state" label="State*" required></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                        <v-text-field v-model="user.country" label="Country*" required>
-                        </v-text-field>
+                        <v-text-field v-model="user.country" label="Country*" required></v-text-field>
                     </v-col>
                 </v-row>
                 <div>
@@ -59,7 +51,7 @@
                 <v-btn color="blue darken-1" text @click="resetFields">
                     Reset
                 </v-btn>
-                <v-btn color="blue darken-1" text @click="userSignUp">
+                <v-btn color="blue darken-1" type="submit" text @click="userSignUp">
                     Submit
                 </v-btn>
             </v-card-actions>
@@ -79,14 +71,21 @@
                     contactnum: '',
                     password: null,
                     state: '',
-                    country: '',
+                    country: 'Malaysia',
                     organization_id: 0,
                     address1: ''
                 },
                 isRegistered: false,
-                //isLogged: false,
                 errorMesg: '',
-                items: []
+                items: [],
+                nameRules: [
+                    v => !!v || 'Name is required',
+                    v => (v && v.length <= 20) || 'Name must be less than 20 characters',
+                ],
+                emailRules: [
+                    v => !!v || 'E-mail is required',
+                    v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+                ],
             }
         },
         methods: {
@@ -96,8 +95,12 @@
                     return;
                 }
 
-                this.checkAddUser();
-
+                if (!this.$refs.form.validate()) {
+                    this.$refs.form.preventDefault;
+                } else {
+                    this.checkAddUser();
+                    this.$refs.form.reset();
+                }
             },
             checkAddUser() {
                 fetch("/api/auth/users/" + this.user.email)
@@ -122,13 +125,14 @@
                     .then(response => {
                         response.json();
                         this.isRegistered = true;
-                        this.resetFields();
                     })
                     .catch(error => {
                         console.error("Error in add user: ", error);
                     });
             },
             resetFields() {
+                this.errorMesg = "";
+                this.isRegistered = false;
                 this.$refs.form.reset();
             },
             getOrganizations() {
@@ -149,8 +153,16 @@
 </script>
 
 <style scoped>
-    .signup {
+    input {
+        margin-top: 0px;
+    }
 
+    .row>div {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .signup {
         background-color: #863f3f;
     }
 </style>
