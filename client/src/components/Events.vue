@@ -228,12 +228,12 @@
     }
 
     #eventsSection {
-        padding-top: 50px;
+        padding-top: 20px;
     }
 
     .eventTbl {
         background-color: white;
-        padding: 30px;
+        padding: 20px;
         /* border-radius: 1em; */
     }
 

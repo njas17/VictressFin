@@ -34,7 +34,7 @@
                 </v-text-field>
             </v-card>
 
-            <v-data-table :headers="headers" :items="volunteers" :search="search" show-group-by group-by="Event" height="150px">
+            <v-data-table :headers="headers" :items="volunteers" :search="search" show-group-by group-by="Event" height="250px">
                 <template v-slot:[`item.eventname`]="{ item }">
                     {{ item.eventname | truncate(10, '...') }}
                 </template>
@@ -144,13 +144,7 @@
                 else if (status === 'declined') return 'blue'
                 else return 'green'
             }
-        },
-        // created() {
-        //     this.$emit("getVolunteers");
-        // },
-
-
-
+        }
     }   
 
 </script>
