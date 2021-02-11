@@ -165,9 +165,17 @@
 
                 this.eventform.eid = this.currentevent.eid;
                 this.eventform.name = this.currentevent.name;
-                this.eventform.datefrom = this.getLocaleDate(this.currentevent.datefrom);
-                this.eventform.dateto = this.getLocaleDate(this.currentevent.dateto);
-                this.eventform.closingdate = this.getLocaleDate(this.currentevent.closingdate);
+                console.log('date-from: ', this.currentevent.datefrom);
+                if(this.currentevent.datefrom != null) {
+                    console.log('are you in?')
+                    this.eventform.datefrom = this.getLocaleDate(this.currentevent.datefrom);
+                }
+                    
+
+                // if(this.currentevent.dateto != null || this.currentevent.dateto != "")
+                //     this.eventform.dateto = this.getLocaleDate(this.currentevent.dateto);
+                if(this.currentevent.closingdate != null || this.currentevent.closingdate != "")
+                    this.eventform.closingdate = this.getLocaleDate(this.currentevent.closingdate);
                 this.eventform.description = this.currentevent.description;
                 this.eventform.location = this.currentevent.location;
                 this.eventform.contactname = this.currentevent.contactname;
