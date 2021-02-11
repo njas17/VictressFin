@@ -8,8 +8,29 @@
       <v-btn text to="/#eventsSection">Events</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
       <v-btn text to="/home">Donate</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
-      <v-btn v-if="isAuthenticated" text to="/member">Member</v-btn>
-      <v-btn v-if="isAuthenticated" text @click="signOut">Logout</v-btn>
+      <!-- <v-btn v-if="isAuthenticated" text to="/member">Member</v-btn>
+      <v-btn v-if="isAuthenticated" text @click="signOut">Logout</v-btn> -->
+      <v-menu bottom min-width="200px" rounded offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn icon x-large v-on="on">
+            <v-avatar v-if="isAuthenticated" color="pink lighten-1" size="38px">
+              <span>{{ userInitial}}</span>
+            </v-avatar>
+          </v-btn>
+        </template>
+        <v-card>
+          <v-list-item-content class="justify-center">
+            <div class="mx-auto text-center">
+              <h3>{{ userName }}</h3>
+              <p class="caption mt-1">{{ userEmail }}</p>
+              <v-divider class="my-3"></v-divider>
+              <v-btn depressed rounded text to="/member">Dashboard</v-btn>
+              <v-divider class="my-3"></v-divider>
+              <v-btn depressed rounded text  @click="signOut">Logout</v-btn>
+            </div>
+          </v-list-item-content>
+        </v-card>
+      </v-menu>
     </v-app-bar>
 
     <v-main>
@@ -57,7 +78,6 @@
     },
     created() {
       store.dispatch('verifyToken');
-      
     },
     beforeCreate() {
       store.dispatch('verifyToken');
@@ -79,6 +99,17 @@
           easing: this.easing,
         }
       },
+      userInitial() {
+        return store.getters.getUserInitial;
+      },
+      userName() {
+        const user = store.getters.getUserState;
+        return user.fullname;
+      },
+      userEmail() {
+        const user = store.getters.getUserState;
+        return user.email;       
+      }
     }
   };
 </script>
@@ -89,5 +120,4 @@
     margin: 0;
     box-sizing: border-box;
   }
-
 </style>
