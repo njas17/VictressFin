@@ -1,8 +1,9 @@
 <template>
     <v-container class="authpage">
-        <v-card v-if="isAuthenticated" class="mx-auto overflow-hidden" height="400" width="344">
-            <v-system-bar color="grey darken-1"></v-system-bar>
+        <v-card v-if="isAuthenticated" class="mx-auto overflow-hidden" width="344">
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
             <private-access />
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
         </v-card>
         <v-card v-if="!isAuthenticated" class="authbox" clear>
             <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
