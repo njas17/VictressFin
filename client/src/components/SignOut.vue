@@ -3,7 +3,7 @@
         <v-row></v-row>
         <v-row >
             <v-col>
-                <v-alert class="logout" color="primary" dark icon="mdi-check-bold" border="left" prominent>
+                <v-alert class="logout" color="cyan darken-3" dark icon="mdi-check-bold" border="left" prominent>
                     <p>You have logged out. </p>
                     <p>Thank You.</p>
                 </v-alert>
