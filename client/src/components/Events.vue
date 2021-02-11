@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container>
         <v-dialog v-model="volunteerDialog" max-width="500px">
             <v-toolbar dark color="primary">
                 <v-btn icon dark @click="volunteerDialog = false">
@@ -10,11 +10,12 @@
             <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication"
                 @closeForm="volunteerDialog=false" />
         </v-dialog>
+        <p id="eventsSection"></p>
         <div class="col-md-12">
             <v-card>
                 <v-card-title><h2>We can make a difference</h2></v-card-title>
-                <v-card-text>Volunteering is a life-changing oppurtunity to help others in your community. Whether for a one-day event or a year-long commitment</v-card-text>           
-                <p id="eventsSection"></p>
+                <v-card-text>Volunteering is a life-changing oppurtunity to help others in your community. Whether for a one-day event or a year-long commitment, we have an opening that will enrich your life. 
+                    So let's team up by applying to volunteer to any of the events by our partners.</v-card-text>             
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
                     :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" item-key="eid" :single-expand="singleExpand"
                     hide-default-footer class="eventTbl">
@@ -217,6 +218,9 @@
 <style scoped>
     .v-card__title {
         font-size: 1em;
+    }
+    h2 {
+        color: #00B8D4;
     }
 
     .top {
