@@ -96,7 +96,6 @@
         methods: {
             handleSubmit() {
                 if (!this.$refs.form.validate()) {
-                    console.log("ok");
                     this.$refs.form.preventDefault;
                 } else {
                     this.formValues.dateapp = this.getLocaleDate();

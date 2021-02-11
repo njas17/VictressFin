@@ -114,7 +114,7 @@ router.post('/users/signin/gss', async function (req, res) {
 router.post('/users/verify-token', function (req, res) {
   // check header or url parameters or post parameters for token
   var token = req.body.token;
-  var userId = req.body.user.id;
+  var userId = req.body.user.uid;
   if (!token) {
       return res.status(400).json({
           error: true,
@@ -128,15 +128,15 @@ router.post('/users/verify-token', function (req, res) {
           error: true,
           message: "Invalid token."
       });
-      console.log(user);
+
       // return 401 status if the userId does not match.
-      if (user.id !== userId) {
+      if (user.uid !== userId) {
           return res.status(401).json({
               error: true,
-              message: "Invalid user."
+              message: "Invalid user. Relogin required."
           });
       }
-      console.log("token is validated");
+      console.log("--token is validated--");
       // get basic user details
       var userObj = utils.getCleanUser(req.body.user);
       return res.json({ user: userObj, token });
