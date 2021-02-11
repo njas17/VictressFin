@@ -34,6 +34,6 @@
   }
 
   .v-parallax {
-    height: 550px !important;
+    height: 600px !important;
   }
 </style>

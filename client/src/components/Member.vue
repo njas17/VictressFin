@@ -53,6 +53,22 @@
                                 </v-container>
                             </v-tab-item>
                             <v-tab-item>
+                                <v-dialog v-model="createEventDialog" max-width="575px">
+                                    <v-card style="padding: 20px;">
+                                        <v-text>
+                                            <v-row class="mx-0">
+                                                <v-col>
+                                                    <h3>Event successfully created!</h3>
+                                                </v-col>
+                                                <v-col class="text-right">
+                                                    <v-btn color="deep-purple accent-4" text @click="createEventDialog=false">
+                                                        OK
+                                                    </v-btn>    
+                                                </v-col>
+                                            </v-row>
+                                        </v-text>
+                                    </v-card>
+                                </v-dialog>
                                 <create-event-form :userId="uid" @addEvent="addNewEvent" />
                             </v-tab-item>
                         </v-tabs>
@@ -72,7 +88,7 @@
     import CreateEventForm from './CreateEventForm';
     import CampaignChart from './CampaignChart';
     import store from './../store';
-    import {fetch} from 'whatwg-fetch';
+    // import {fetch} from 'whatwg-fetch';
 
     export default {
         components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart },
@@ -86,7 +102,8 @@
                 title: "Member",
                 uid: store.state.user.uid,
                 orgevents: [],
-                volunteers: []
+                volunteers: [],
+                createEventDialog: false
             }
         },
         created() {
@@ -107,7 +124,7 @@
             },
             addNewEvent(data) {
                 //console.log(JSON.stringify(data));
-                this.createEventDialog = false;
+                this.createEventDialog = true;
 
                 fetch("/api/events", {
                     method: "POST",
@@ -142,7 +159,7 @@
 
 <style scoped>
     .v-window__container {
-        box-sizing: content-box imp !important;
+        box-sizing: content-box !important;
     }
     div .container {
         margin-top: 30px;
