@@ -48,7 +48,7 @@
                 <v-btn color="primary" text @click="resetFields">
                     Reset
                 </v-btn>
-                <v-btn color="primary" text @click="userSignIn">
+                <v-btn color="primary" text type="submit" @click="userSignIn">
                     OK
                 </v-btn>
             </v-card-actions>
@@ -92,6 +92,7 @@
                 this.login();
             },
             resetFields() {
+                this.errorMesg = "";
                 this.$refs.form.reset();
             },
             OnGoogleAuthSuccess(idToken, userProfile) {

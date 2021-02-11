@@ -11,8 +11,7 @@ function generateToken(user) {
     uid: user.uid,
     email: user.email,    
     fullname: user.fullname,
-    group: user.group,
-    isAuthenticated: user.isAuthenticated
+    group: user.group
   };
 
   return jwt.sign(u, process.env.JWT_SECRET, {
@@ -28,8 +27,7 @@ function getCleanUser(user) {
     uid: user.uid,
     email: user.email,    
     fullname: user.fullname,
-    group: user.group,
-    isAuthenticated: user.isAuthenticated
+    group: user.group
   };
 }
 
