@@ -74,8 +74,8 @@
                         </v-tabs>
                     </template>
                 </v-app-bar>
-                <v-sheet id="scrolling-techniques-5" class="overflow-y-auto" max-height="1200">
-                    <v-container style="height: 1200px;"></v-container>
+                <v-sheet id="scrolling-techniques-5" max-height="1300px">
+                    <v-container style="height: 1300px;"></v-container>
                 </v-sheet>
             </v-card>
         </v-app>
@@ -165,3 +165,4 @@
         margin-top: 30px;
     }
 </style>
+//class="overflow-y-auto"
