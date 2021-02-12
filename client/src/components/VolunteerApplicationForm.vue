@@ -113,6 +113,13 @@
     }
 </script>
 
-<style>
+<style scoped>
+    input {
+        margin-top: 0px;
+    }
 
+    .row>div {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
 </style>

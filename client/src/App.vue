@@ -120,4 +120,8 @@
     margin: 0;
     box-sizing: border-box;
   }
+
+  .primary {
+    background-color: #BDBDBD !important;
+  }
 </style>
