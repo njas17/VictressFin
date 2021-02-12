@@ -1,5 +1,16 @@
 <template>
     <v-container>
+        <v-dialog v-model="submitApplicationDialog" max-width="500px">
+            <v-alert
+                dismissible
+                color="cyan"
+                border="left"
+                colored-border
+                icon="mdi-check"
+            >
+            Thank you for your application! The organiser will contact you soon.
+            </v-alert>
+        </v-dialog>
         <v-dialog v-model="volunteerDialog" max-width="500px">
             <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
             <v-toolbar color="grey lighten-2">
@@ -139,6 +150,7 @@
         mixins: [HelperMixin],
         data() {
             return {
+                submitApplicationDialog: false,
                 singleExpand: false,
                 volunteerDialog: false,
                 selectedEvent: 0,
@@ -200,6 +212,7 @@
             },
             submitApplication(data) {
                 // console.log("in events - data is:", JSON.stringify(data))
+                this.submitApplicationDialog = true;
                 this.volunteerDialog = false;
                 fetch("/api/volunteers", {
                     method: "POST",
