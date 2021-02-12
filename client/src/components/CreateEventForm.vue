@@ -1,12 +1,12 @@
 <template>
-    <v-container style="align-items: center; padding: 50px">
+    <v-container style="align-items: center; padding: 50px;">
         <v-row justify="center">
             <v-col cols="12" sm="10" md="8">
-                <v-card class="create-event" max-width="750" flat>
+                <v-card class="create-event" max-width="750" flat >
                     <v-card-title>
                         <h2>Create Event</h2>
                     </v-card-title>
-                    <v-card-text>
+                    <v-card-text class="createForm pt-10">
                         <ValidationObserver ref="observer" v-slot="{ invalid }">
                             <v-form ref="form" @submit.prevent="submit">
                                 <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:55"
@@ -243,10 +243,16 @@
 <style scoped>
     .create-event {
         line-height: 2;
+        
     }
 
     h2 {
         color: #00B8D4;
         font-size: 1.3em;
+    }
+    .createForm {
+        
+        border: 1px solid gray;
+        box-shadow: gray 2px 3px 3px;
     }
 </style>
