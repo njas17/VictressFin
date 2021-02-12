@@ -26,7 +26,7 @@
                                 <v-icon>mdi-calendar-plus</v-icon>
                             </v-tab>
                             <v-tab-item>
-                                <v-container style="align-items: center; padding-top: 30px">
+                                <v-container style="align-items: center; padding-top: 30px;">
                                     <v-row>
                                         <v-col>
                                             <v-flex style="padding-bottom: 30px;">
@@ -65,7 +65,7 @@
                             </v-tab-item>
                             <v-tab-item>
                                 <v-dialog v-model="createEventDialog" max-width="500px">
-                                    <v-card style="padding: 20px; border-left: 10px solid #00BCD4;">
+                                    <v-card class="cardAlert">
                                         <v-card-actions>
                                             Event successfully created!
                                             <v-spacer></v-spacer>

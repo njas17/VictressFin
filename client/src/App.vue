@@ -26,7 +26,7 @@
               <v-divider class="my-3"></v-divider>
               <v-btn depressed rounded text to="/member">Dashboard</v-btn>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed rounded text  @click="signOut">Logout</v-btn>
+              <v-btn depressed rounded text @click="signOut">Logout</v-btn>
             </div>
           </v-list-item-content>
         </v-card>
@@ -108,7 +108,7 @@
       },
       userEmail() {
         const user = store.getters.getUserState;
-        return user.email;       
+        return user.email;
       }
     }
   };
@@ -119,6 +119,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+  }
+
+  .cardAlert {
+    padding: 20px;
+    border-left: 10px solid #00BCD4 !important;
   }
 
   .primary {

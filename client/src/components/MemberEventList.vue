@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <v-container fluid>
             <v-dialog v-model="updateMessageDialog" max-width="500px">
-                <v-card style="padding: 20px; border-left: 10px solid #00BCD4;">
+                <v-card class="cardAlert">
                     <v-card-actions>
                         Event successfully updated!
                         <v-spacer></v-spacer>

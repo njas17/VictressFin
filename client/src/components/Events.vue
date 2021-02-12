@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-dialog v-model="submitApplicationDialog" max-width="500px">
-            <v-card style="padding: 20px; border-left: 10px solid #00BCD4;">
+            <v-card class="cardAlert">
                 <v-card-actions>
                     Thank you for your application! The organiser will contact you soon.
                     <v-spacer></v-spacer>
