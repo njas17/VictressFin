@@ -1,13 +1,14 @@
 <template>
     <v-container class="authpage">
-        <v-card v-if="isAuthenticated" class="mx-auto overflow-hidden" height="400" width="344">
-            <v-system-bar color="grey darken-1"></v-system-bar>
+        <v-card v-if="isAuthenticated" class="mx-auto overflow-hidden" width="344">
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
             <private-access />
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
         </v-card>
         <v-card v-if="!isAuthenticated" class="authbox" clear>
-            <v-system-bar color="grey darken-1"></v-system-bar>
-            <v-tabs background-color="grey lighten-1" center-active>
-                <v-tabs-slider color="deep-purple accent-4"></v-tabs-slider>
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
+            <v-tabs background-color="grey lighten-2" center-active>
+                <v-tabs-slider color="yellow"></v-tabs-slider>
                 <v-tab>Login</v-tab>
                 <v-tab>Sign-Up</v-tab>
                 <v-tab-item>
@@ -17,6 +18,7 @@
                     <sign-up />
                 </v-tab-item>
             </v-tabs>
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
         </v-card>
     </v-container>
 </template>
@@ -65,7 +67,7 @@
     .v-container,
     .v-application,
     .v-application--is-ltr {
-        background-color: #eaeaea !important;
+        background-color: #636060 !important;
     }
 
     .col,
@@ -80,8 +82,9 @@
     }
 
     .authpage {
-        background-color: #eaeaea;
+        background-color: #636060;
         padding-top: 30px;
+        margin-top: 40px;
         align-items: center;
         justify-items: center;
     }

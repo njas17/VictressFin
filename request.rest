@@ -30,7 +30,7 @@ PUT http://localhost:5000/api/events/1
 Content-Type: application/json
 
 {
-    # "closingdate": "2021-11-30",
+    "closingdate": "2021-11-30",
     "totalvolunteer": 15
 }
 ###

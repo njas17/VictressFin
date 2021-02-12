@@ -34,12 +34,12 @@
                                                     @deleteEvent="handleDelete" />
                                             </v-flex>
                                             <v-flex style="padding-bottom: 30px;">
-                                                <volunteer-list :eventId="selectedEvent" :eventName="title" />
+                                                <volunteer-list :userId="uid" :volunteers="volunteers" @getVolunteers="getAllVolunteers" />
                                             </v-flex>
                                         </v-col>
                                         <v-col>
                                             <v-flex style="padding-left: 80px">
-                                                <campaign-chart />
+                                                <campaign-chart :volunteers="volunteers"  />
                                             </v-flex>
                                             <v-flex style="padding-left: 80px; padding-top: 55px;">
                                                 <a class="twitter-timeline" data-width="450" data-height="555" 
@@ -82,8 +82,6 @@
     </div>
 </template>
 
-
-
 <script>
     import MemberEventList from "./MemberEventList";
     import VolunteerList from './VolunteerList';
@@ -102,14 +100,15 @@
             return {
                 tab: null,
                 title: "Member",
-                selectedEvent: 1,
                 uid: store.state.user.uid,
                 orgevents: [],
+                volunteers: [],
                 createEventDialog: false
             }
         },
         created() {
             this.getOrgEvents();
+            this.getAllVolunteers();
         },
         methods: {
             //Get events by organization
@@ -148,14 +147,19 @@
             },
             handleDelete() {
                 this.getOrgEvents();
-            }
+            },
+            getAllVolunteers() {
+                fetch("/api/volunteers/organizers/" + this.uid)
+                    .then(response => response.json())
+                    .then(data => this.volunteers = data);
+            },
         }
     };
 </script>
 
 <style scoped>
     .v-window__container {
-        box-sizing: content-box imp !important;
+        box-sizing: content-box !important;
     }
     div .container {
         margin-top: 30px;
