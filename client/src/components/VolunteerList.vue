@@ -1,8 +1,9 @@
 <template>
     <v-container>
         <v-dialog v-model="deleteDialog" max-width="300px" title="Delete">
-            <v-toolbar dark color="primary">
-                <v-btn icon dark @click="deleteDialog = false">
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
+            <v-toolbar color="grey lighten-2">
+                <v-btn icon @click="deleteDialog = false">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
                 <v-toolbar-title small>Delete</v-toolbar-title>
@@ -24,6 +25,7 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
         </v-dialog>
 
         <v-card>

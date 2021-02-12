@@ -1,14 +1,16 @@
 <template>
     <v-container>
         <v-dialog v-model="volunteerDialog" max-width="500px">
-            <v-toolbar dark color="primary">
-                <v-btn icon dark @click="volunteerDialog = false">
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
+            <v-toolbar color="grey lighten-2">
+                <v-btn icon @click="volunteerDialog = false">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
                 <v-toolbar-title>Volunteer Application</v-toolbar-title>
             </v-toolbar>
             <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication"
                 @closeForm="volunteerDialog=false" />
+            <v-system-bar height="10px" z-index="1" color="cyan darken-1"></v-system-bar>
         </v-dialog>
         <p id="eventsSection"></p>
         <div class="col-md-12">
