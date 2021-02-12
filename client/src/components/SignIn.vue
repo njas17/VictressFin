@@ -22,15 +22,17 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-        <v-form ref="form" @submit.prevent="login" lazy-validation>
+        <v-form ref="form" @submit.prevent="userSignIn" lazy-validation>
             <v-card-text>
                 <v-row>
                     <v-col cols="12">
-                        <v-text-field v-model="email" label="Email*" required>
+                        <v-text-field v-model="email" :rules="[v => !!v || 'Email is required']" label="Email*"
+                            required>
                         </v-text-field>
                     </v-col>
                     <v-col cols="12">
-                        <v-text-field v-model="password" label="Password*" type="password" required>
+                        <v-text-field v-model="password" :rules="[v => !!v || 'Password is required']" label="Password*"
+                            type="password" required>
                         </v-text-field>
                     </v-col>
                 </v-row>
@@ -89,7 +91,10 @@
                     this.errorMesg = "All fields are required. Please provide the information.";
                     return;
                 }
-                this.login();
+
+                if (!this.$refs.form.validate()) this.$refs.form.preventDefault;
+                else this.login();
+
             },
             resetFields() {
                 this.errorMesg = "";
@@ -109,9 +114,9 @@
                 // just log the user in (as of now) - ideally should notify that
                 // the user email is not link to the user account in Sejiwa 
                 // thus ask whether user want to link their acc (future feature). 
-                console.log(userProfile.getEmail());
+                //console.log(userProfile.getEmail());
                 this.email = userProfile.getEmail()
-                
+
                 fetch("/api/auth/users/" + this.email)
                     .then(response => response.json())
                     .then(data => {
@@ -120,7 +125,6 @@
 
                     })
                     .then(() => {
-                        console.log(this.user);
                         if (Object.keys(this.user).length > 0) this.validateGoogleSSO();
                     })
             },
@@ -175,7 +179,7 @@
                         setUserSession(data.token, data.user);
                     })
                     .catch(error => this.errorMesg = "Validation Error: " + error);
-            },          
+            },
         },
     }
 </script>
@@ -187,7 +191,7 @@
         width: 450px;
         padding: 3px;
         margin-left: auto;
-        margin-right: auto; 
+        margin-right: auto;
         position: relative;
         display: inline-block;
         border: 1px solid #888;
