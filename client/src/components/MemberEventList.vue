@@ -1,22 +1,18 @@
 <template>
     <div class="col-md-12">
         <v-container fluid>
-            <v-dialog v-model="updateMessageDialog" max-width="575px">
-                <v-card style="padding: 20px;">
-                    <v-text>
-                        <v-row class="mx-0">
-                            <v-col>
-                                <h3>Event successfully updated!</h3>
-                            </v-col>
-                            <v-col class="text-right">
-                                <v-btn color="deep-purple accent-4" text @click="updateMessageDialog=false">
-                                    OK
-                                </v-btn>
-                            </v-col>
-                        </v-row>
-                    </v-text>
+            <v-dialog v-model="updateMessageDialog" max-width="500px">
+                <v-card style="padding: 20px; border-left: 10px solid #00BCD4;">
+                    <v-card-actions>
+                        Event successfully updated!
+                        <v-spacer></v-spacer>
+                        <v-btn fab x-small dark color="cyan" @click="updateMessageDialog=false">
+                           <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                    </v-card-actions>
                 </v-card>
-            </v-dialog>
+            </v-dialog>            
+            
             <v-dialog v-model="eventDialog" max-width="700px">
                 <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
                 <v-toolbar color="grey lighten-2">
