@@ -34,19 +34,30 @@
                                                     @deleteEvent="handleDelete" />
                                             </v-flex>
                                             <v-flex style="padding-bottom: 30px;">
-                                                <volunteer-list :userId="uid" :volunteers="volunteers" @getVolunteers="getAllVolunteers" />
+                                                <volunteer-list :userId="uid" :volunteers="volunteers"
+                                                    @getVolunteers="getAllVolunteers" />
                                             </v-flex>
                                         </v-col>
                                         <v-col>
-                                            <v-flex style="padding-left: 80px">
-                                                <campaign-chart :volunteers="volunteers"  />
+                                            <v-flex>
+                                                <campaign-chart :volunteers="volunteers" />
                                             </v-flex>
-                                            <v-flex style="padding-left: 80px; padding-top: 55px;">
-                                                <a class="twitter-timeline" data-width="450" data-height="555" 
-                                                    data-theme="light" 
-                                                    href="https://twitter.com/sejiwaMalaysia/lists/inspiration-corner-10612?ref_src=twsrc%5Etfw">
-                                                    A Twitter List by sejiwaMalaysia
-                                                </a> 
+                                            <v-flex>
+                                                <v-card class="mx-auto" color="#26c6da" dark max-width="450">
+                                                    <v-card-title>
+                                                        <v-icon large left>
+                                                            mdi-twitter
+                                                        </v-icon>
+                                                        <span class="title font-weight-light">Twitter</span>
+                                                    </v-card-title>
+                                                    <v-card-text class="headline font-weight-bold">
+                                                        <a class="twitter-timeline" data-width="450" data-height="555"
+                                                        data-theme="light"
+                                                        href="https://twitter.com/sejiwaMalaysia/lists/inspiration-corner-10612?ref_src=twsrc%5Etfw">
+                                                        A Twitter List by sejiwaMalaysia
+                                                    </a>
+                                                    </v-card-text>
+                                                </v-card>
                                             </v-flex>
                                         </v-col>
                                     </v-row>
@@ -59,7 +70,7 @@
                                             Event successfully created!
                                             <v-spacer></v-spacer>
                                             <v-btn fab x-small dark color="cyan" @click="createEventDialog=false">
-                                               <v-icon>mdi-close</v-icon>
+                                                <v-icon>mdi-close</v-icon>
                                             </v-btn>
                                         </v-card-actions>
                                     </v-card>
@@ -156,6 +167,7 @@
     .v-window__container {
         box-sizing: content-box !important;
     }
+
     div .container {
         margin-top: 30px;
     }
