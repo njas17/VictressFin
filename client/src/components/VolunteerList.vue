@@ -50,7 +50,7 @@
                     {{ item.state != null ? item.state + ', ' : '' }}{{ item.country }}
                 </template> -->
                 <template v-slot:[`item.dateapp`]="{ item }">
-                    {{ getLocaleDate(item.dateapp) }}
+                    {{ getLocaleDate(item.dateapp, true) }}
                 </template>
                 <template v-slot:[`item.action`]="{ item }">
                     <v-icon v-if="item.status === 'new'" color="blue darken-3" small class="mr-2"
@@ -69,20 +69,19 @@
 
 <script>
     import { HelperMixin } from '../mixins/HelperMixin';
+    import {fetch} from 'whatwg-fetch'
+
     export default {
         name: 'VolunteerList',
         mixins: [HelperMixin],
         props: {
-            eventName: String,
-            eventId: Number
+            userId: Number,
+            volunteers: Array,
         },
         data() {
             return {
-                userId: 1, //this.eventId,
-                eventTitle: this.eventName,
                 deleteDialog: false,
                 selectedVolunteer: 0,
-                volunteers: [],
                 search: '',
                 headers: [
                     {
@@ -101,11 +100,6 @@
             }
         },
         methods: {
-            getAllVolunteers() {
-                fetch("/api/volunteers/organizers/" + this.userId)
-                    .then(response => response.json())
-                    .then(data => this.volunteers = data);
-            },
             updateStatus(id, appstatus) {
                 const currDate = this.getLocaleDate();
 
@@ -118,7 +112,7 @@
                 }).then(res => {
                     // Continue fetch request here
                     res.json();
-                    this.getAllVolunteers();
+                    this.$emit("getVolunteers");
                 })
                     .catch(error => {
                         console.error("Error in approved application: ", error);
@@ -133,7 +127,7 @@
                 })
                     .then(response => {
                         response.json();
-                        this.getAllVolunteers();
+                        this.$emit("getVolunteers");
                         this.deleteDialog = false;
                     })
                     .catch(error => {
@@ -150,13 +144,7 @@
                 else if (status === 'declined') return 'blue'
                 else return 'green'
             }
-        },
-        created() {
-            this.getAllVolunteers();
-        },
-
-
-
+        }
     }   
 
 </script>
@@ -168,7 +156,8 @@
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-    top: -15px;    
+    top: -15px; 
+    font-size: large;   
 }
 .v-card-header {
     color: rgb(14, 13, 13) !important;
@@ -176,6 +165,6 @@
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-    top: -15px;
+    top: -20px;
 }
 </style>
