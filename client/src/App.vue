@@ -8,12 +8,10 @@
       <v-btn text to="/#eventsSection">Events</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
       <v-btn text to="/home">Donate</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
-      <!-- <v-btn v-if="isAuthenticated" text to="/member">Member</v-btn>
-      <v-btn v-if="isAuthenticated" text @click="signOut">Logout</v-btn> -->
-      <v-menu bottom min-width="200px" rounded offset-y>
+      <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">
           <v-btn icon x-large v-on="on">
-            <v-avatar v-if="isAuthenticated" color="pink lighten-1" size="38px">
+            <v-avatar color="pink lighten-1" size="38px">
               <span>{{ userInitial}}</span>
             </v-avatar>
           </v-btn>
@@ -26,7 +24,7 @@
               <v-divider class="my-3"></v-divider>
               <v-btn depressed rounded text to="/member">Dashboard</v-btn>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed rounded text  @click="signOut">Logout</v-btn>
+              <v-btn depressed rounded text @click="signOut">Logout</v-btn>
             </div>
           </v-list-item-content>
         </v-card>
@@ -108,7 +106,7 @@
       },
       userEmail() {
         const user = store.getters.getUserState;
-        return user.email;       
+        return user.email;
       }
     }
   };
@@ -119,6 +117,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+  }
+
+  .cardAlert {
+    padding: 20px;
+    border-left: 10px solid #00BCD4 !important;
   }
 
   .primary {

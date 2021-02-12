@@ -1,6 +1,6 @@
 <template>
   <v-app>
-      <v-carousel hide-delimiters height="570px" show-arrows-on-hover cycle>
+      <v-carousel hide-delimiters height="570px" show-arrows-on-hover cycle interval="15000" >
         <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
           <v-container fill-height>
             <v-row class="white--text mx-auto">
