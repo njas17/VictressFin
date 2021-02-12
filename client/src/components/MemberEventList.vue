@@ -7,7 +7,7 @@
                         Event successfully updated!
                         <v-spacer></v-spacer>
                         <v-btn fab x-small dark color="cyan" @click="updateMessageDialog=false">
-                           <v-icon>mdi-close</v-icon>
+                            <v-icon>mdi-close</v-icon>
                         </v-btn>
                     </v-card-actions>
                 </v-card>
