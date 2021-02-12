@@ -56,6 +56,7 @@
                                             item.totalvolunteer
                                             }}</div>
                                         <div>Closing date: {{ getLocaleDate(item.closing, true) }}</div>
+                                        <div>Location: {{ item.location }}</div>
                                     </v-card-text>
                                     <v-divider class="mx-2"></v-divider>
                                     <v-card-text class="descrWrap">
@@ -91,7 +92,7 @@
                             <span class="grey--text">Items per page</span>
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on, attrs }">
-                                    <v-btn dark text color="primary" class="ml-2" v-bind="attrs" v-on="on">
+                                    <v-btn dark text color="cyan" class="ml-2" v-bind="attrs" v-on="on">
                                         {{ itemsPerPage }}
                                         <v-icon>mdi-chevron-down</v-icon>
                                     </v-btn>
@@ -152,6 +153,7 @@
                     'Closing',
                     'Organization',
                     'TotalVolunteer',
+                    'Location'
                 ],
                 items: [{}],
                 newVolunteer: [],
