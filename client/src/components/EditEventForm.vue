@@ -178,6 +178,7 @@
                 this.eventform.contactnum = this.currentevent.contactnum;
                 this.eventform.contactemail = this.currentevent.contactemail;
                 this.eventform.totalvolunteer = this.currentevent.totalvolunteer;
+                this.eventform.images = this.currentevent.images;
 
 
                 this.$emit("updateevent", this.eventform);
