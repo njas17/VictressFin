@@ -39,7 +39,7 @@
                 //Change it so that it is 7 days in the past.
                 fromDate.setDate(fromDate.getDate() - 7);
 
-                const filterVol =  this.volunteers.filter(e => this.getLocaleDate(fromDate) < e.dateapp);
+                const filterVol =  this.volunteers.filter(e => this.getLocaleDate(fromDate) <= e.dateapp);
                 
                 let shortDate = "";
                 const groupByDate = filterVol.reduce((prevAcc, curr) => {

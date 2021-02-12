@@ -76,6 +76,7 @@ URI | HTTP Method | Description
 ```bash
   DB_NAME=sejiwa
   DB_PASS=YOURPASSWORD
+  JWT_SECRET=YOURSECRET
 ```
 
 - Replace `YOUR_PASSWORD` with your actual password
@@ -85,7 +86,7 @@ URI | HTTP Method | Description
 ### Run Your Development Servers
 
 - Run `npm start` in project directory to start the Express server on port 5000
-- `cd client` and run `npm run serve` to run your development build. The app will run on `http://localhost:8080` as the default port.
+- `cd client` and run `npm start` to run your development build. The app will run on `http://localhost:8080` as the default port.
 
 ## Reference
 
