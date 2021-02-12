@@ -64,8 +64,7 @@
                                 <v-card class="my-5" max-width="380">
                                     <v-img height="200" :src="item.images">
                                     </v-img>
-                                    <v-card-title class="pb-2 text-justify">{{ item.name | truncate(27, '...')
-                                        }}
+                                    <v-card-title class="pb-2 text-justify">{{ item.name | truncate(27, '...') }}
                                     </v-card-title>
                                     <v-card-text>
                                         <div class="my-3 subtitle-2">By: {{ item.organization }}</div>
@@ -73,7 +72,7 @@
                                             item.totalvolunteer
                                             }}</div>
                                         <div>Closing date: {{ getLocaleDate(item.closing, true) }}</div>
-                                        <div>Location: {{ item.location }}</div>
+                                        <div>Location: {{ item.location | truncate(18, '...') }}</div>
                                     </v-card-text>
                                     <v-divider class="mx-2"></v-divider>
                                     <v-card-text class="descrWrap">
@@ -93,7 +92,10 @@
                                     <v-expand-transition>
                                         <div v-if="isExpanded(item)">
                                             <v-card-text>
-                                                <h4>{{item.name}}</h4>
+                                                <h3>{{item.name}}</h3>
+                                                <h4> ({{ item.location }})</h4> 
+                                                Contact Person/Num:<p>{{ item.contactname }} ({{ item.contactnum }}) </p>
+                                                <p v-if="item.datefrom != null">Date(s): {{ getLocaleDate(item.datefrom, true) }} - {{ getLocaleDate(item.dateto, true) }}</p>
                                                 <v-spacer></v-spacer>
                                                 {{item.description}}
                                             </v-card-text>
@@ -155,7 +157,7 @@
         data() {
             return {
                 submitApplicationDialog: false,
-                singleExpand: false,
+                singleExpand: true,
                 volunteerDialog: false,
                 selectedEvent: 0,
                 itemsPerPageArray: [4, 8, 12],
