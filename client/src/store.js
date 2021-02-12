@@ -63,6 +63,9 @@ export default new Vuex.Store({
         .catch(error => {
           console.error("Error in verify token: ", error);
           dispatch('logout');
+          const redirectPath = this.$route.query.redirect || "/";
+          //console.log(redirectPath);
+          this.$router.push(redirectPath);
         });
     },
   }
