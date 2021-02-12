@@ -1,21 +1,38 @@
 <template>
     <v-container>
+        <v-dialog v-model="submitApplicationDialog" max-width="500px">
+            <v-card style="padding: 20px; border-left: 10px solid #00BCD4;">
+                <v-card-actions>
+                    Thank you for your application! The organiser will contact you soon.
+                    <v-spacer></v-spacer>
+                    <v-btn fab x-small dark color="cyan" @click="submitApplicationDialog=false">
+                       <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
         <v-dialog v-model="volunteerDialog" max-width="500px">
-            <v-toolbar dark color="primary">
-                <v-btn icon dark @click="volunteerDialog = false">
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
+            <v-toolbar color="grey lighten-2">
+                <v-btn icon @click="volunteerDialog = false">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
                 <v-toolbar-title>Volunteer Application</v-toolbar-title>
             </v-toolbar>
             <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication"
                 @closeForm="volunteerDialog=false" />
+            <v-system-bar height="10px" z-index="1" color="cyan darken-1"></v-system-bar>
         </v-dialog>
         <p id="eventsSection"></p>
         <div class="col-md-12">
             <v-card>
-                <v-card-title><h2>We can make a difference</h2></v-card-title>
-                <v-card-text>Volunteering is a life-changing oppurtunity to help others in your community. Whether for a one-day event or a year-long commitment, we have an opening that will enrich your life. 
-                    So let's team up by applying to volunteer to any of the events by our partners.</v-card-text>             
+                <v-card-title>
+                    <h2>We can make a difference</h2>
+                </v-card-title>
+                <v-card-text>Volunteering is a life-changing oppurtunity to help others in your community. Whether for a
+                    one-day event or a year-long commitment, we have an opening that will enrich your life.
+                    So let's team up by applying to volunteer to any of the events by our partners.</v-card-text>
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
                     :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" item-key="eid" :single-expand="singleExpand"
                     hide-default-footer class="eventTbl">
@@ -47,8 +64,7 @@
                                 <v-card class="my-5" max-width="380">
                                     <v-img height="200" :src="item.images">
                                     </v-img>
-                                    <v-card-title class="pb-2 text-justify">{{ item.name | truncate(27, '...')
-                                        }}
+                                    <v-card-title class="pb-2 text-justify">{{ item.name | truncate(27, '...') }}
                                     </v-card-title>
                                     <v-card-text>
                                         <div class="my-3 subtitle-2">By: {{ item.organization }}</div>
@@ -56,6 +72,7 @@
                                             item.totalvolunteer
                                             }}</div>
                                         <div>Closing date: {{ getLocaleDate(item.closing, true) }}</div>
+                                        <div>Location: {{ item.location | truncate(18, '...') }}</div>
                                     </v-card-text>
                                     <v-divider class="mx-2"></v-divider>
                                     <v-card-text class="descrWrap">
@@ -75,7 +92,10 @@
                                     <v-expand-transition>
                                         <div v-if="isExpanded(item)">
                                             <v-card-text>
-                                                <h4>{{item.name}}</h4>
+                                                <h3>{{item.name}}</h3>
+                                                <h4> ({{ item.location }})</h4> 
+                                                Contact Person/Num:<p>{{ item.contactname }} ({{ item.contactnum }}) </p>
+                                                <p v-if="item.datefrom != null">Date(s): {{ getLocaleDate(item.datefrom, true) }} - {{ getLocaleDate(item.dateto, true) }}</p>
                                                 <v-spacer></v-spacer>
                                                 {{item.description}}
                                             </v-card-text>
@@ -91,7 +111,7 @@
                             <span class="grey--text">Items per page</span>
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on, attrs }">
-                                    <v-btn dark text color="primary" class="ml-2" v-bind="attrs" v-on="on">
+                                    <v-btn dark text color="cyan" class="ml-2" v-bind="attrs" v-on="on">
                                         {{ itemsPerPage }}
                                         <v-icon>mdi-chevron-down</v-icon>
                                     </v-btn>
@@ -136,7 +156,8 @@
         mixins: [HelperMixin],
         data() {
             return {
-                singleExpand: false,
+                submitApplicationDialog: false,
+                singleExpand: true,
                 volunteerDialog: false,
                 selectedEvent: 0,
                 itemsPerPageArray: [4, 8, 12],
@@ -152,6 +173,7 @@
                     'Closing',
                     'Organization',
                     'TotalVolunteer',
+                    'Location'
                 ],
                 items: [{}],
                 newVolunteer: [],
@@ -196,6 +218,7 @@
             },
             submitApplication(data) {
                 // console.log("in events - data is:", JSON.stringify(data))
+                this.submitApplicationDialog = true;
                 this.volunteerDialog = false;
                 fetch("/api/volunteers", {
                     method: "POST",
@@ -219,6 +242,7 @@
     .v-card__title {
         font-size: 1em;
     }
+
     h2 {
         color: #00B8D4;
     }

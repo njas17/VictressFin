@@ -1,7 +1,7 @@
 <template>
+    <v-card>
     <ValidationObserver ref="observer">
         <v-form ref="form" lazy-validation style="padding: 30px;">
-            <h2>Update Event</h2><br/>
             <ValidationProvider v-slot="{ errors }" name="Title" rules="required|max:100" autocomplete="off">
                 <v-text-field v-model="currentevent.name" :counter="100" :error-messages="errors" label="Title" required>
                 </v-text-field>
@@ -87,11 +87,12 @@
 
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn text color="deep-purple accent-4" @click="handleClose"> Close </v-btn>
-                <v-btn text color="deep-purple accent-4" @click="handleUpdate"> Update </v-btn>
+                <v-btn text color="blue darken-3" @click="handleClose"> Close </v-btn>
+                <v-btn text color="blue darken-3" @click="handleUpdate"> Update </v-btn>
             </v-card-actions>
         </v-form>
     </ValidationObserver>
+</v-card>
 </template>
 
 <script>
@@ -177,6 +178,7 @@
                 this.eventform.contactnum = this.currentevent.contactnum;
                 this.eventform.contactemail = this.currentevent.contactemail;
                 this.eventform.totalvolunteer = this.currentevent.totalvolunteer;
+                this.eventform.images = this.currentevent.images;
 
 
                 this.$emit("updateevent", this.eventform);

@@ -1,8 +1,9 @@
 <template>
     <v-container>
         <v-dialog v-model="deleteDialog" max-width="300px" title="Delete">
-            <v-toolbar dark color="primary">
-                <v-btn icon dark @click="deleteDialog = false">
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
+            <v-toolbar color="grey lighten-2">
+                <v-btn icon  @click="deleteDialog = false">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
                 <v-toolbar-title small>Delete</v-toolbar-title>
@@ -24,13 +25,14 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
+            <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
         </v-dialog>
 
         <v-card>
             <v-card color="grey darken-1" elevation="6" class="v-card-header-white d-flex grow flex-wrap pa-6">
                 Volunteer List
                 <v-spacer></v-spacer>
-                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" white-text single-line hide-details>
+                <v-text-field v-model="search" dark append-icon="mdi-magnify" label="Search" clearable hide-details>
                 </v-text-field>
             </v-card>
 
@@ -152,6 +154,9 @@
 <style>
 .v-card-header-white {
     color: white !important;
+}
+
+.v-card-header, .v-card-header-white {
     position: relative;
     width: 95%;
     margin-left: auto;
@@ -161,10 +166,5 @@
 }
 .v-card-header {
     color: rgb(14, 13, 13) !important;
-    position: relative;
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-    top: -20px;
 }
 </style>
