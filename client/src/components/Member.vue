@@ -26,10 +26,13 @@
                                 <v-icon>mdi-calendar-plus</v-icon>
                             </v-tab>
                             <v-tab-item>
-                                <v-container style="align-items: center; padding-top: 30px;">
+                                <v-container style="align-items: center;">
+                                    <v-row style="margin-bottom: 50px;">
+                                        <dash-board :events="orgevents" :volunteer="volunteers"/>
+                                    </v-row>
                                     <v-row>
-                                        <v-col>
-                                            <v-flex style="padding-bottom: 30px;">
+                                        <v-col style="margin-right: 70px;">
+                                            <v-flex style="padding-bottom: 40px;">
                                                 <member-event-list :events="orgevents" @updateEvent="handleUpdate"
                                                     @deleteEvent="handleDelete" />
                                             </v-flex>
@@ -43,7 +46,7 @@
                                                 <campaign-chart :volunteers="volunteers" />
                                             </v-flex>
                                             <v-flex>
-                                                <v-card class="mx-auto" color="#26c6da" dark max-width="450">
+                                                <v-card class="mx-auto" color="#29B6F6" dark max-width="500">
                                                     <v-card-title>
                                                         <v-icon large left>
                                                             mdi-twitter
@@ -51,7 +54,7 @@
                                                         <span class="title font-weight-light">Twitter</span>
                                                     </v-card-title>
                                                     <v-card-text class="headline font-weight-bold">
-                                                        <a class="twitter-timeline" data-width="450" data-height="555"
+                                                        <a class="twitter-timeline" data-width="450" data-height="500"
                                                         data-theme="light"
                                                         href="https://twitter.com/sejiwaMalaysia/lists/inspiration-corner-10612?ref_src=twsrc%5Etfw">
                                                         A Twitter List by sejiwaMalaysia
@@ -94,10 +97,11 @@
     import CreateEventForm from './CreateEventForm';
     import CampaignChart from './CampaignChart';
     import store from './../store';
+    import DashBoard from './DashBoard.vue';
     // import {fetch} from 'whatwg-fetch';
 
     export default {
-        components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart },
+        components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart, DashBoard },
         name: "member",
         // props: {
         //     userId: Number

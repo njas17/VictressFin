@@ -6,7 +6,7 @@
                     Thank you for your application! The organiser will contact you soon.
                     <v-spacer></v-spacer>
                     <v-btn fab x-small dark color="cyan" @click="submitApplicationDialog=false">
-                       <v-icon>mdi-close</v-icon>
+                        <v-icon>mdi-close</v-icon>
                     </v-btn>
                 </v-card-actions>
             </v-card>

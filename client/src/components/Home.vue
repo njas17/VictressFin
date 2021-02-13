@@ -1,6 +1,6 @@
 <template>
   <v-app>
-      <v-carousel hide-delimiters height="570px" show-arrows-on-hover cycle interval="15000" >
+      <v-carousel hide-delimiters height="570px" show-arrows-on-hover cycle interval="8000" >
         <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
           <v-container fill-height>
             <v-row class="white--text mx-auto">
@@ -54,7 +54,7 @@
           src: "https://firebasestorage.googleapis.com/v0/b/sehati-sejiwa.appspot.com/o/rene-bernal-large-unsplash.jpg?alt=media&token=d5abca30-db32-4464-aa87-7aada0abe513"
         },
       ],
-      quote: ["We make a living by what we get, but we make a life by what we give.", "Even if you just change one life, you’ve changed the world forever.”", "Volunteers do not necessarily have the time; they just have the heart.", "The smallest act of kindness is worth more than the grandest intention."],
+      quote: ["We make a living by what we get, but we make a life by what we give.", "Even if you just change one life, you’ve changed the world forever.", "Volunteers do not necessarily have the time; they just have the heart.", "The smallest act of kindness is worth more than the grandest intention."],
       writer: ["– Winston Churchill", "– Mike Satterfield", "– Elizabeth Andrew", "– Oscar Wilde"]
     }),
   }
