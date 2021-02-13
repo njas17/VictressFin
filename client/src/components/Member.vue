@@ -27,6 +27,9 @@
                             </v-tab>
                             <v-tab-item>
                                 <v-container style="align-items: center;">
+                                    <v-row style="margin-bottom: 50px;">
+                                        <dash-board :events="orgevents" :volunteer="volunteers"/>
+                                    </v-row>
                                     <v-row>
                                         <v-col style="margin-right: 70px;">
                                             <v-flex style="padding-bottom: 40px;">
