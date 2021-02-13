@@ -97,11 +97,11 @@
     import CreateEventForm from './CreateEventForm';
     import CampaignChart from './CampaignChart';
     import store from './../store';
-    // import DashBoard from './DashBoard.vue';
+    import DashBoard from './DashBoard.vue';
     // import {fetch} from 'whatwg-fetch';
 
     export default {
-        components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart },
+        components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart, DashBoard },
         name: "member",
         // props: {
         //     userId: Number
