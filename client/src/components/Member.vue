@@ -159,6 +159,7 @@
                 this.getOrgEvents();
             },
             getAllVolunteers() {
+                // window.twttr.widgets.load();
                 fetch("/api/volunteers/organizers/" + this.uid)
                     .then(response => response.json())
                     .then(data => this.volunteers = data);

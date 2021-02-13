@@ -27,7 +27,7 @@
                         <v-icon medium left>mdi-account-check</v-icon>
                         Accepted Application
                         <v-spacer/>
-                        1
+                        {{ approvedVol }}
                     </v-card-title>
                 </v-card>
             </v-col>
@@ -45,7 +45,15 @@ export default {
 
     },
     computed: {
-
+        approvedVol() {
+            let count = 0;
+            for(let i=0; i<this.volunteer.length; i++) {
+                if(this.volunteer[i].status === "accepted") {
+                    count += 1;
+                }
+            }
+            return count;
+        }
     },
 }
 

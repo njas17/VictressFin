@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import goTo from 'vuetify/es5/services/goto';
 import Home from './components/Home.vue';
+import Donate from './components/Donate.vue';
 import Member from './components/Member.vue';
 import AuthPage from './components/AuthPage.vue';
 import SignOut from './components/SignOut.vue';
@@ -34,6 +35,11 @@ const router = new VueRouter({
             path: '/#eventsSection',
             component: Home,
             hash: 'eventsSection'
+        },
+        {
+            name: 'donate',
+            path: '/donate',
+            component: Donate,
         },
         {
             name: 'member',
