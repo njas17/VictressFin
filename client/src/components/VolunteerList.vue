@@ -29,7 +29,7 @@
         </v-dialog>
 
         <v-card>
-            <v-card color="grey darken-1" elevation="6" class="v-card-header-white d-flex grow flex-wrap pa-6">
+            <v-card color="grey darken-2" elevation="6" class="v-card-header-white d-flex grow flex-wrap pa-6">
                 Volunteer List
                 <v-spacer></v-spacer>
                 <v-text-field v-model="search" dark append-icon="mdi-magnify" label="Search" clearable hide-details>

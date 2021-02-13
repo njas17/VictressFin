@@ -16,7 +16,8 @@
       "js",
       "json",
       "vue"
-    ],"transformIgnorePatterns": [
+    ],
+    "transformIgnorePatterns": [
       "node_modules/(?!(@babel)/)",
       "/node_modules/(?!vee-validate/dist/rules)"
     ],
@@ -32,7 +33,9 @@
     }
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "dependencies": {
     "core-js": "^3.6.5",

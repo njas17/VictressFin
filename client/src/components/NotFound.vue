@@ -7,3 +7,10 @@
         </p>
     </div>
 </template>
+
+<style scoped>
+    div {
+        color: white;
+        padding: 20px;
+    }
+</style>
