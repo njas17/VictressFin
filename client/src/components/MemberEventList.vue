@@ -7,7 +7,7 @@
                         Event successfully updated!
                         <v-spacer></v-spacer>
                         <v-btn fab x-small dark color="cyan" @click="updateMessageDialog=false">
-                           <v-icon>mdi-close</v-icon>
+                            <v-icon>mdi-close</v-icon>
                         </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -46,10 +46,10 @@
                 <v-system-bar height="10px" color="cyan darken-1"></v-system-bar>
             </v-dialog>
             <v-card>
-                <v-card color="grey lighten-1" elevation="6" class="v-card-header d-flex grow flex-wrap pa-6">
+                <v-card color="grey darken-2" elevation="6" class="v-card-header-white d-flex grow flex-wrap pa-6">
                     My Event(s)
                     <v-spacer></v-spacer>
-                    <v-text-field v-model="search" clearable hide-details append-icon="mdi-magnify" label="Search">
+                    <v-text-field v-model="search" dark clearable hide-details append-icon="mdi-magnify" label="Search">
                     </v-text-field>
                 </v-card>
                 <v-data-table :headers="headers" :items="events" :search="search" height="250px"

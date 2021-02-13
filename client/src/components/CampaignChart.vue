@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mt-4 mx-auto mb-5" max-width="450">
+    <v-card class="mt-4 mx-auto mb-5" max-width="500">
         <v-sheet class="v-sheet--offset mx-auto" color="cyan" elevation="12" max-width="calc(100% - 32px)">
             <v-sparkline stroke-linecap="round" smooth :labels="Object.keys(countResult)" :value="Object.values(countResult)" color="white" line-width="2" padding="16"></v-sparkline>  
             <v-card-title small v-if="Object.keys(countResult).length < 2">
