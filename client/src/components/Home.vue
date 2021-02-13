@@ -1,6 +1,6 @@
 <template>
   <v-app>
-      <v-carousel hide-delimiters height="570px" show-arrows-on-hover cycle interval="8000" >
+      <v-carousel hide-delimiters height="570px" show-arrows-on-hover cycle interval="12000" >
         <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
           <v-container fill-height>
             <v-row class="white--text mx-auto">
@@ -16,18 +16,7 @@
           </v-container>
         </v-carousel-item>
       </v-carousel>
-    <!-- <v-parallax dark src="https://firebasestorage.googleapis.com/v0/b/sehati-sejiwa.appspot.com/o/rene-bernal-small-unsplash.jpg?alt=media&token=50bb87b9-3227-44ad-b9f6-7c8b14666d80">
-      <v-row align="center" justify="center">
-        <v-col class="text-center" cols="12">
-          <h1 class="display-1 font-weight-thin mb-4">
-            {{msg}} <v-icon class="red--text">favorite</v-icon>
-          </h1>
-          <h4 class="subheading">
-            "Even if you just change one life, you’ve changed the world forever.” – Mike Satterfield
-          </h4>
-        </v-col>
-      </v-row>
-    </v-parallax> -->
+
     <events />
   </v-app>
 </template>
@@ -64,10 +53,6 @@
   .v-main__wrap, .container, .container--fluid {
     padding: 0 !important;
   }
-
-  /* .v-parallax {
-    height: 600px !important;
-  } */
 
   .animated {
     -webkit-animation-duration: 2s;

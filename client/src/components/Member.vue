@@ -27,9 +27,6 @@
                             </v-tab>
                             <v-tab-item>
                                 <v-container style="align-items: center;">
-                                    <v-row style="margin-bottom: 50px;">
-                                        <dash-board />
-                                    </v-row>
                                     <v-row>
                                         <v-col style="margin-right: 70px;">
                                             <v-flex style="padding-bottom: 40px;">
@@ -46,7 +43,7 @@
                                                 <campaign-chart :volunteers="volunteers" />
                                             </v-flex>
                                             <v-flex>
-                                                <v-card class="mx-auto" color="#29B6F6" dark max-width="500">
+                                                <v-card class="mx-auto" color="cyan" dark max-width="500">
                                                     <v-card-title>
                                                         <v-icon large left>
                                                             mdi-twitter
@@ -97,11 +94,11 @@
     import CreateEventForm from './CreateEventForm';
     import CampaignChart from './CampaignChart';
     import store from './../store';
-    import DashBoard from './DashBoard.vue';
+    // import DashBoard from './DashBoard.vue';
     // import {fetch} from 'whatwg-fetch';
 
     export default {
-        components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart, DashBoard },
+        components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart },
         name: "member",
         // props: {
         //     userId: Number
