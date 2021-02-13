@@ -5,10 +5,9 @@
                 <v-card color="#FF8A80" style="padding: 20px;">
                     <v-card-title class="justify-center">
                         <v-icon medium left>mdi-calendar-multiple</v-icon>
-                        <!-- <v-spacer/> -->
                         Number of Event(s)
                         <v-spacer/>
-                        2
+                        {{events.length}}
                     </v-card-title>
                 </v-card>
             </v-col>
@@ -18,7 +17,7 @@
                         <v-icon medium left>mdi-account-group</v-icon>
                         Total Volunteers
                         <v-spacer/>
-                        4
+                        {{volunteer.length}}
                     </v-card-title>
                 </v-card>
             </v-col>
@@ -39,10 +38,13 @@
 export default {
     name: 'DashBoard',      
     props: {
-        volunteers: Array,
-        orgevents: Array
+        volunteer: Array,
+        events: Array
     },
     method: {
+
+    },
+    computed: {
 
     },
 }
