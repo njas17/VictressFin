@@ -97,11 +97,11 @@
     import CreateEventForm from './CreateEventForm';
     import CampaignChart from './CampaignChart';
     import store from './../store';
-    // import DashBoard from './DashBoard.vue';
+    import DashBoard from './DashBoard.vue';
     // import {fetch} from 'whatwg-fetch';
 
     export default {
-        components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart },
+        components: { CreateEventForm, VolunteerList, MemberEventList, CampaignChart, DashBoard },
         name: "member",
         // props: {
         //     userId: Number
@@ -159,6 +159,7 @@
                 this.getOrgEvents();
             },
             getAllVolunteers() {
+                // window.twttr.widgets.load();
                 fetch("/api/volunteers/organizers/" + this.uid)
                     .then(response => response.json())
                     .then(data => this.volunteers = data);
