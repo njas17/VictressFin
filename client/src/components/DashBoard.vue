@@ -62,9 +62,6 @@
             volunteer: Array,
             events: Array
         },
-        method: {
-
-        },
         computed: {
             approvedVol() {
                 let count = 0;
@@ -79,7 +76,7 @@
                 let sum = 0;
                 for (let i = 0; i < this.events.length; i++) {
                     sum += this.events.totalvolunteer || 0;
-
+                }
                 return sum;
 
             }
