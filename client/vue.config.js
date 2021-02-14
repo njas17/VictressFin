@@ -6,7 +6,8 @@ module.exports = {
       '/api': {
         target: 'http://localhost:5000'
       }
-    }
+    },
+    disableHostCheck: true
   },
   "transpileDependencies": [
   "vuetify",
