@@ -158,7 +158,7 @@
 
 .v-card-header, .v-card-header-white {
     position: relative;
-    width: 95%;
+    width: 98%;
     margin-left: auto;
     margin-right: auto;
     top: -15px; 
