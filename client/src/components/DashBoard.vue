@@ -76,7 +76,7 @@
                 return count;
             },
             requiredVolunteers() {
-                return this.events.reduce((sum, curr) => sum.totalvolunteer + curr.totalvolunteer) || 0;
+                return this.events.reduce((sum, curr) => sum.totalvolunteer + curr.totalvolunteer, 0) || 0;
             }
         },
     }
