@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const db = require("../model/helper");
+const db = require("../../model/helper");
 const bcrypt = require('bcrypt');
 
-const utils = require('../auth/utils');
+const utils = require('../../auth/utils');
 const jwt = require('jsonwebtoken');
 
 router.use(express.json());
