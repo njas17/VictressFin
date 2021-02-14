@@ -29,7 +29,7 @@ A web application for members to create charity events and gather volunteers and
 
 ## Tech / Framework
 
-Built with Vue.Js, Node.Js/ Express.Js, MySQL, Firebase, OAuth API, Paypal/ Stripe API and Docker.
+Built with Vue.Js (Vuetify,VueRouter,Vuex), Node/Express.Js, MySQL, Firebase, Jest (Testing), Google Sign-in API, Donorbox with Stripe/Paypal API, Jira (Project Management) and Docker.
 
 ## Database Schema
 
