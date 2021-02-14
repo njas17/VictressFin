@@ -27,12 +27,16 @@
         <p id="eventsSection"></p>
         <div class="col-md-12">
             <v-card>
-                <v-card-title>
+                <v-card-title style="padding-left: 30px">
                     <h2>We can make a difference</h2>
                 </v-card-title>
-                <v-card-text>Volunteering is a life-changing oppurtunity to help others in your community. Whether for a
+                <v-card-text style="padding-left: 30px; line-height: 1.6;">
+                    <h3>
+                    Volunteering is a life-changing oppurtunity to help others in your community. Whether for a
                     one-day event or a year-long commitment, we have an opening that will enrich your life.
-                    So let's team up by applying to volunteer to any of the events by our partners.</v-card-text>
+                    So let's team up by applying to volunteer to any of the events by our partners.
+                    </h3>
+                </v-card-text>
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
                     :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" item-key="eid" :single-expand="singleExpand"
                     hide-default-footer class="eventTbl">
