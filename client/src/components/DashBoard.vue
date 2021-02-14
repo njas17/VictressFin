@@ -75,10 +75,9 @@
             requiredVolunteers() {
                 let sum = 0;
                 for (let i = 0; i < this.events.length; i++) {
-                    sum += this.events.totalvolunteer || 0;
+                    sum += this.events[i].totalvolunteer;
                 }
                 return sum;
-
             }
         },
     }
