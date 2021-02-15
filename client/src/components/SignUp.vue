@@ -51,7 +51,7 @@
                 <v-btn color="blue darken-1" text @click="resetFields">
                     Reset
                 </v-btn>
-                <v-btn color="blue darken-1" type="submit" text @click="userSignUp">
+                <v-btn color="blue darken-1" text @click="userSignUp">
                     Submit
                 </v-btn>
             </v-card-actions>
@@ -90,7 +90,8 @@
         },
         methods: {
             userSignUp() {
-                if (this.user.firstname === "" || this.user.lastname === "" || this.user.email === "" || this.user.password === "" || this.user.organization_id === null) {
+                this.$refs.form.preventDefault;
+                if (this.user.firstname === "" || this.user.lastname === "" || this.user.email === "" || this.user.password === null || this.user.organization_id === 0) {
                     this.errorMesg = "All fields are required. Please provide the information.";
                     return;
                 }
@@ -99,7 +100,6 @@
                     this.$refs.form.preventDefault;
                 } else {
                     this.checkAddUser();
-                    this.$refs.form.reset();
                 }
             },
             checkAddUser() {
@@ -125,6 +125,7 @@
                     .then(response => {
                         response.json();
                         this.isRegistered = true;
+                        this.$refs.form.reset();
                     })
                     .catch(error => {
                         console.error("Error in add user: ", error);

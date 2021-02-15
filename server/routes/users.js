@@ -17,6 +17,7 @@ router.get('/', function (req, res, next) {
 router.post("/users", async (req, res, next) => {
   try {
     const salt = await bcrypt.genSalt(7);
+
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPassword;
 
