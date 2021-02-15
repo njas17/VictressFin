@@ -90,7 +90,6 @@
         },
         methods: {
             userSignUp() {
-                //console.log(this.user);
                 this.$refs.form.preventDefault;
                 if (this.user.firstname === "" || this.user.lastname === "" || this.user.email === "" || this.user.password === null || this.user.organization_id === 0) {
                     this.errorMesg = "All fields are required. Please provide the information.";

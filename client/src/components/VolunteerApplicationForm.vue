@@ -86,7 +86,7 @@
                     address1: null,
                     address2: "",
                     state: null,
-                    country: null,
+                    country: "Malaysia",
                     postcode: "",
                     dateapp: null
                 }
