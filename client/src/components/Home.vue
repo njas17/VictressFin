@@ -1,6 +1,6 @@
 <template>
   <v-app>
-      <v-carousel hide-delimiters height="570px" show-arrows-on-hover cycle interval="12000" >
+      <v-carousel hide-delimiters height="700px" show-arrows-on-hover cycle interval="11000" >
         <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
           <v-container fill-height>
             <v-row class="white--text mx-auto">
@@ -55,15 +55,15 @@
   }
 
   .animated {
-    -webkit-animation-duration: 2s;
-    animation-duration: 2s;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
     }
 
     .animated.delay-1s {
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
     }
 
     @keyframes fadeInUp {
