@@ -29,7 +29,7 @@ A web application for members to create charity events and gather volunteers and
 
 ## Tech / Framework
 
-Built with Vue.Js, Node.Js/ Express.Js, MySQL, Firebase, OAuth API, Paypal/ Stripe API and Docker.
+Built with Vue.Js (Vuetify,VueRouter,Vuex), Node/Express.Js, MySQL, Firebase, Jest (Testing), Google Sign-in API, Donorbox with Stripe/Paypal API, Jira (Project Management) and Docker.
 
 ## Database Schema
 
@@ -39,18 +39,15 @@ Built with Vue.Js, Node.Js/ Express.Js, MySQL, Firebase, OAuth API, Paypal/ Stri
 
 URI | HTTP Method | Description
 --- | ----------- | -----------
-/api/users/:email | GET | Get user by email
-/api/events | GET | Get all events
-/api/events:id | GET | Get an event by id
-/api/events | POST | Add an event
-/api/events:id | DELETE | Delete an event by id
-/api/events:id | PUT | Update an event by id
+/api/events | GET/ POST | Get all events/ Add an event
+/api/events/organizer:id | GET | Get all events by an organizer
+/api/events:id | GET/ PUT/ DELETE | Get an event by id/ Update an event by id/ Delete an event by id
 /api/organizations | GET | Get all organizations
 /api/organizations:id | GET | Get an organization by id
-/api/volunteers/:id | GET | Get all volunteers by event
+/api/volunteers/:id | GET/ PUT/ DELETE | Get all volunteers by event/ Update volunteer's application/ Delete volunteer application
+/api/volunteers/organizers:id | GET | Get all volunteers under an organizer
 /api/volunteers/:id/application-status/:status | GET | Get all volunteers by event id and application status
 /api/volunteers | POST | Add an application to volunteers for an event
-/api/volunteers/:id | PUT | Update application
 
 ## User Flow Diagram
 
