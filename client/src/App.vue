@@ -5,8 +5,12 @@
         transition="scale-transition" width="180" />
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/#eventsSection">Events</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
-      <v-btn text to="/donate">Donate</v-btn>
+      <v-btn text to="/#eventsSection">Campaigns</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
+      <v-btn text to="/investCalculator">Investment Calculator</v-btn>
+       <v-btn text to="/donate">Invest Now</v-btn>
+       <v-btn text to="/genderLens">Gender Lens Score</v-btn>
+        <v-btn text to="/investCalculator">Gender Lens Investor Profiler</v-btn>
+        <v-btn text to="/financialdashboard">learn more about GL investing</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">

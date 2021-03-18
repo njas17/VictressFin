@@ -18,7 +18,7 @@
                 <v-btn icon @click="volunteerDialog = false">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
-                <v-toolbar-title>Volunteer Application</v-toolbar-title>
+                <v-toolbar-title>Application</v-toolbar-title>
             </v-toolbar>
             <volunteer-application-form :eventId="selectedEvent" @volunteerApplication="submitApplication"
                 @closeForm="volunteerDialog=false" />
@@ -32,9 +32,7 @@
                 </v-card-title>
                 <v-card-text style="padding-left: 30px; line-height: 1.6;">
                     <h3>
-                    Volunteering is a life-changing oppurtunity to help others in your community. Whether for a
-                    one-day event or a year-long commitment, we have an opening that will enrich your life.
-                    So let's team up by applying to volunteer to any of the events by our partners.
+                    Female entrepreneurs are disadvantaged in traditional funding markets.We attempt to change this status quo by giving alternative access while empowering women in general with data and education on finance and gender lens investing.
                     </h3>
                 </v-card-text>
                 <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :page="page" :search="search"
