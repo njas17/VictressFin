@@ -26,7 +26,7 @@
               
               <h2>Your score is</h2>
               <h2>{{score}}/{{questions.length}}</h2>
-              <h3>Score 4 and above: Well done!</h3>
+              <h3>Score 4 and above: Well done! You are ready to invest!</h3>
               <h3>Score below 4: Go to our learn more page for better understanding on Gender Lens Investing</h3>
               <div class="btn-restart">
                   <button @click="restartQuiz">Restart <i class="fas fa-sync-alt"></i></button>

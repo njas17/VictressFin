@@ -4,7 +4,7 @@
 
     <iframe
       v-if="loaded"
-      src="https://genderequalityfunds.org"
+      src="https://genderequalityfunds.org/funds"
       allowfullscreen
       :height="1500"
       :width="iframe.style.width"
