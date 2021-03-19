@@ -5,8 +5,13 @@
         transition="scale-transition" width="180" />
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/#eventsSection">Events</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
-      <v-btn text to="/donate">Donate</v-btn>
+      <v-btn text to="/#eventsSection">Invest in Women-led Campaigns</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
+      <!-- <v-btn text to="/investCalculator">Investment Calculator</v-btn>
+       <v-btn text to="/donate">Invest Now</v-btn>
+       <v-btn text to="/genderLens">Gender Lens Score</v-btn> -->
+       <v-btn text to="/genderLens">Gender Lens Score</v-btn>
+        <v-btn text to="/Quiz">Investor Profiler</v-btn>
+        <v-btn text to="/Education">Gender Equality Investments</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">
@@ -40,12 +45,12 @@
     <v-footer class="default" app>
       <v-col class="text-center" cols="12">
         <v-icon class="red--text">favorite</v-icon>
-        A student project created at <a class="cyan--text" href="http://CodeOp.tech"
-          target="_blank"><strong>CodeOp</strong>,</a>
-        Barcelona and TechSprint Academy's <a class="cyan--text" href="https://www.rebound.asia/breakthrough"
-          target="_blank"><strong>Rebound.Asia</strong>,</a>
-        Kuala Lumpur
-        | by team <strong class="red--text">return</strong> <strong class="orange--text">onCloud9;</strong>
+        A Finastra Hackation project <a class="cyan--text" href="http://CodeOp.tech"
+          target="_blank"><strong>Unbiash fintech</strong>,</a>
+         <a class="cyan--text" href="https://www.rebound.asia/breakthrough"
+          target="_blank"><strong></strong>,</a>
+        Kuala Lumpur, Malaysia
+        | by Victress Coders <strong class="red--text"></strong> <strong class="orange--text"></strong>
       </v-col>
     </v-footer>
   </v-app>
@@ -54,9 +59,21 @@
 <script>
   import * as easings from 'vuetify/es5/services/goto/easing-patterns';
   import store from './store.js';
+  // import genderLens from './genderLens.vue';
 
   export default {
     name: 'App',
+    //added components??
+    // components: {
+    //   genderLens,
+    //   financialdashboard,
+    //   investCalculator,
+    //   Quiz,
+          
+    // },
+
+
+    
     data() {
       return {
         showLogin: false,

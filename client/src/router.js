@@ -8,6 +8,11 @@ import AuthPage from './components/AuthPage.vue';
 import SignOut from './components/SignOut.vue';
 import NotFound from './components/NotFound.vue';
 import store from './store.js';
+import genderLens from './components/genderLens.vue';
+import Education from './components/Education.vue';
+// import financialdashboard from './components/financialdashboard.vue';
+// import investCalculator from './components/investCalculator.vue'
+import Quiz from './components/Quiz.vue';
 
 Vue.use(VueRouter);
 
@@ -66,7 +71,40 @@ const router = new VueRouter({
             alias: "*",
             component: NotFound
 
+        },
+        {
+            name: "genderLens",
+            path: "/genderLens",
+            component: genderLens
+            
+        },
+        {
+            name: "Education",
+            path: "/Education",
+            component: Education
+            
+        },
+        // {
+        //     name: "financialdashboard",
+        //     path: "/financialdashboard",
+        //     component: financialdashboard
+            
+        // },
+        // {
+        //     name: "investCalculator",
+        //     path: "/investCalculator",
+        //     component: investCalculator
+            
+        // },
+        {
+            name: "Quiz",
+            path: "/Quiz",
+            component: Quiz
+            
         }
+
+
+
     ]
 });
 
