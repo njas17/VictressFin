@@ -1,4 +1,4 @@
-<<template>
+<template>
   <div class="container-app">
 
         <div class="container-quiz">

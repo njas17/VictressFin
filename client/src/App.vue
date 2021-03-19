@@ -6,8 +6,9 @@
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
       <v-btn text to="/#eventsSection">Campaigns</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
-      <v-btn text to="/investCalculator">Investment Calculator</v-btn>
+      <!-- <v-btn text to="/investCalculator">Investment Calculator</v-btn>
        <v-btn text to="/donate">Invest Now</v-btn>
+       <v-btn text to="/genderLens">Gender Lens Score</v-btn> -->
        <v-btn text to="/genderLens">Gender Lens Score</v-btn>
         <v-btn text to="/Quiz">Gender Lens Investor Profiler</v-btn>
         <v-btn text to="/financialdashboard">learn more about GL investing</v-btn>
@@ -49,7 +50,7 @@
          <a class="cyan--text" href="https://www.rebound.asia/breakthrough"
           target="_blank"><strong></strong>,</a>
         Kuala Lumpur, Malaysia
-        | by Victress Coders <strong class="red--text">return</strong> <strong class="orange--text">onCloud9;</strong>
+        | by Victress Coders <strong class="red--text">return</strong> <strong class="orange--text"></strong>
       </v-col>
     </v-footer>
   </v-app>
@@ -58,16 +59,18 @@
 <script>
   import * as easings from 'vuetify/es5/services/goto/easing-patterns';
   import store from './store.js';
+  // import genderLens from './genderLens.vue';
 
   export default {
     name: 'App',
-    components: {
-      genderLens,
-      financialdashboard,
-      investCalculator,
-      Quiz,
+    //added components??
+    // components: {
+    //   genderLens,
+    //   financialdashboard,
+    //   investCalculator,
+    //   Quiz,
           
-    },
+    // },
 
 
     

@@ -83,12 +83,12 @@ const router = new VueRouter({
             component: financialdashboard
             
         },
-        {
-            name: "investCalculator",
-            path: "/investCalculator",
-            component: investCalculator
+        // {
+        //     name: "investCalculator",
+        //     path: "/investCalculator",
+        //     component: investCalculator
             
-        },
+        // },
         {
             name: "Quiz",
             path: "/Quiz",
