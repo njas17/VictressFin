@@ -11,7 +11,7 @@
        <v-btn text to="/genderLens">Gender Lens Score</v-btn> -->
        <v-btn text to="/genderLens">Gender Lens Score</v-btn>
         <v-btn text to="/Quiz">Gender Lens Investor Profiler</v-btn>
-        <v-btn text to="/financialdashboard">learn more about GL investing</v-btn>
+        <v-btn text to="/Education">More on Gender Equality Investments</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">

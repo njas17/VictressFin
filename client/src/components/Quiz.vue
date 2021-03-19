@@ -215,7 +215,7 @@ export default {
 .container-quiz {
   display: flex;
   width: 60%;
-  height: 150%;
+  height: 100%;
   background-color:pink;
   text-align: center;
   flex-flow: column;
