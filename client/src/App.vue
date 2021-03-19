@@ -9,7 +9,7 @@
       <v-btn text to="/investCalculator">Investment Calculator</v-btn>
        <v-btn text to="/donate">Invest Now</v-btn>
        <v-btn text to="/genderLens">Gender Lens Score</v-btn>
-        <v-btn text to="/investCalculator">Gender Lens Investor Profiler</v-btn>
+        <v-btn text to="/Quiz">Gender Lens Investor Profiler</v-btn>
         <v-btn text to="/financialdashboard">learn more about GL investing</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
@@ -44,12 +44,12 @@
     <v-footer class="default" app>
       <v-col class="text-center" cols="12">
         <v-icon class="red--text">favorite</v-icon>
-        A student project created at <a class="cyan--text" href="http://CodeOp.tech"
-          target="_blank"><strong>CodeOp</strong>,</a>
-        Barcelona and TechSprint Academy's <a class="cyan--text" href="https://www.rebound.asia/breakthrough"
-          target="_blank"><strong>Rebound.Asia</strong>,</a>
-        Kuala Lumpur
-        | by team <strong class="red--text">return</strong> <strong class="orange--text">onCloud9;</strong>
+        A Finastra Hackation project <a class="cyan--text" href="http://CodeOp.tech"
+          target="_blank"><strong>Unbiash fintech</strong>,</a>
+         <a class="cyan--text" href="https://www.rebound.asia/breakthrough"
+          target="_blank"><strong></strong>,</a>
+        Kuala Lumpur, Malaysia
+        | by Victress Coders <strong class="red--text">return</strong> <strong class="orange--text">onCloud9;</strong>
       </v-col>
     </v-footer>
   </v-app>
@@ -61,6 +61,16 @@
 
   export default {
     name: 'App',
+    components: {
+      genderLens,
+      financialdashboard,
+      investCalculator,
+      Quiz,
+          
+    },
+
+
+    
     data() {
       return {
         showLogin: false,

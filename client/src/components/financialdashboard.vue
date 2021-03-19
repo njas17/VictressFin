@@ -184,7 +184,7 @@ import axios from 'axios'
 export default {
   name: "financialdashboard",
   props: {
-    msg: String
+    text: String
   },
   data() {
     return {
