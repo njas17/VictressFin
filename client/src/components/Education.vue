@@ -1,20 +1,16 @@
 <template>
-  <div id="app">
+  <div container="app">
     <div id="editor" ref="editor"></div>
-    
-      <iframe 
-        v-if="loaded"
-        
-  
-    src="https://genderequalityfunds.org/"
-    allowfullscreen
-    :height="iframe.style.height"
-        :width="iframe.style.width"
-        type="application/pdf"
-        frameborder="0"
-      ></iframe>
-    </div>
-  
+
+    <iframe
+      v-if="loaded"
+      src="https://genderequalityfunds.org"
+      allowfullscreen
+      :height="1500"
+      :width="iframe.style.width"
+      frameborder="0"
+    ></iframe>
+  </div>
 </template>
 
 <script>
@@ -26,24 +22,24 @@ export default {
         src: window.location.href,
         style: null,
         wrapperStyle: null,
-      }
-    }
+      },
+    };
   },
   mounted() {
     let editor = this.$refs.editor;
     this.iframe.style = {
-      position: 'absolute',
+      position: "absolute",
       width: window.innerWidth,
       height: window.innerHeight,
       top: -editor.offsetTop + "px",
       left: -editor.offsetLeft + "px",
-    }    
+    };
     this.iframe.wrapperStyle = {
-      overflow: 'hidden',
+      overflow: "hidden",
       height: editor.clientHeight + "px",
       width: editor.clientWidth + "px",
-    } 
+    };
     this.loaded = true;
-  }
-}
+  },
+};
 </script>

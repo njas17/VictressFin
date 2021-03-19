@@ -50,7 +50,7 @@
          <a class="cyan--text" href="https://www.rebound.asia/breakthrough"
           target="_blank"><strong></strong>,</a>
         Kuala Lumpur, Malaysia
-        | by Victress Coders <strong class="red--text">return</strong> <strong class="orange--text"></strong>
+        | by Victress Coders <strong class="red--text"></strong> <strong class="orange--text"></strong>
       </v-col>
     </v-footer>
   </v-app>
