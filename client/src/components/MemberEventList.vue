@@ -4,7 +4,7 @@
             <v-dialog v-model="updateMessageDialog" max-width="500px">
                 <v-card class="cardAlert">
                     <v-card-actions>
-                        Event successfully updated!
+                        Investment successfully updated!
                         <v-spacer></v-spacer>
                         <v-btn fab x-small dark color="cyan" @click="updateMessageDialog=false">
                             <v-icon>mdi-close</v-icon>
@@ -19,7 +19,7 @@
                     <v-btn icon @click="eventDialog = false">
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
-                    <v-toolbar-title>Update Event</v-toolbar-title>
+                    <v-toolbar-title>Update Investment</v-toolbar-title>
                 </v-toolbar>
                 <edit-event-form :currentevent="currentevent" @updateevent="updateEvent"
                     @closeEditForm="eventDialog=false" />
@@ -35,7 +35,7 @@
                 </v-toolbar>
                 <v-card>
                     <v-card-text>
-                        <v-row class="mx-0">This event record will be deleted. Are you sure?</v-row>
+                        <v-row class="mx-0">Thisinvestment record will be deleted. Are you sure?</v-row>
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
@@ -47,7 +47,7 @@
             </v-dialog>
             <v-card>
                 <v-card color="grey darken-2" elevation="6" class="v-card-header-white d-flex grow flex-wrap pa-6">
-                    My Event(s)
+                    My Investment(s)
                     <v-spacer></v-spacer>
                     <v-text-field v-model="search" dark clearable hide-details append-icon="mdi-magnify" label="Search">
                     </v-text-field>

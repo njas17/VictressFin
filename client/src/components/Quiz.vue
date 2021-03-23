@@ -1,6 +1,6 @@
 <template>
   <div class="container-app">
-
+        
         <div class="container-quiz">
           <div class="header-quiz">
             <h1>Gender Lens Quiz and Profiler</h1>

@@ -11,16 +11,16 @@
         </v-sheet>
         <v-card-text class="pt-0">
             <div class="title font-weight-light mb-2">
-                Volunteer Registrations
+                Investors/Mentors Registrations
             </div>
             <div class="subheading font-weight-light grey--text">
-                Current and Last Campaign Performance
+                Current and Last Investment Performance
             </div>
             <v-divider class="my-2"></v-divider>
             <v-icon class="mr-2" small>
                 mdi-calendar
             </v-icon>
-            <span class="caption grey--text font-weight-light">*last 7 days of volunteer application</span>
+            <span class="caption grey--text font-weight-light">xxx</span>
         </v-card-text>
     </v-card>
 </template>
