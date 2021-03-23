@@ -13,6 +13,8 @@ import Education from './components/Education.vue';
 // import financialdashboard from './components/financialdashboard.vue';
 // import investCalculator from './components/investCalculator.vue'
 import Quiz from './components/Quiz.vue';
+import textAnalyzer from './components/textAnalyzer.vue';
+
 
 Vue.use(VueRouter);
 
@@ -82,6 +84,19 @@ const router = new VueRouter({
             name: "Education",
             path: "/Education",
             component: Education
+            
+            
+        },
+        {
+            name: "Quiz",
+            path: "/Quiz",
+            component: Quiz
+            
+        },
+        {
+            name: "textAnalyzer",
+            path: "/textAnalyzer",
+            component: textAnalyzer
             
         },
         // {
