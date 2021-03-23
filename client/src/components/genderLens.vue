@@ -1,11 +1,13 @@
 <template>
-  <div class="container-app">
 
-        <div class="container-quiz">
-          <div class="header-quiz">
+  <div class="container-app">
+        
+
+       <div class="container-quiz">
+           <div class="header-quiz">
             <h1>Gender Lens Score Card</h1>
-          </div>
-          <div class="step-progress" :style="{'width':progress + '%'}"></div>
+            </div>
+             <div class="step-progress" :style="{'width':progress + '%'}"></div>
           <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
               
               <div class="box-question">
@@ -51,7 +53,9 @@
           
             
         </div>
+        
   </div>
+  
 </template>
 
 <script>
