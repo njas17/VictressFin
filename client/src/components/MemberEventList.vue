@@ -35,7 +35,7 @@
                 </v-toolbar>
                 <v-card>
                     <v-card-text>
-                        <v-row class="mx-0">Thisinvestment record will be deleted. Are you sure?</v-row>
+                        <v-row class="mx-0">This investment record will be deleted. Are you sure?</v-row>
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
@@ -47,7 +47,7 @@
             </v-dialog>
             <v-card>
                 <v-card color="grey darken-2" elevation="6" class="v-card-header-white d-flex grow flex-wrap pa-6">
-                    My Investment(s)
+                    My Campaign(s)
                     <v-spacer></v-spacer>
                     <v-text-field v-model="search" dark clearable hide-details append-icon="mdi-magnify" label="Search">
                     </v-text-field>
