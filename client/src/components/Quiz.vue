@@ -23,11 +23,11 @@
           </div>
           <div class="box-score" v-if="score_show">
               
-              
               <h2>Your score is</h2>
               <h2>{{score}}/{{questions.length}}</h2>
               <h3>Score 4 and above: Well done! You are ready to invest!</h3>
-              <h3>Score below 4: Talk to Us</h3>
+              <h3>Score below 4: Talk to Us or watch video below to learn more</h3>
+              <iframe text-align= center width="560" height="505" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <div class="btn-restart">
                   <button @click="restartQuiz">Restart <i class="fas fa-sync-alt"></i></button>
               </div>
