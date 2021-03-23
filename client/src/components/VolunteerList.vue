@@ -11,7 +11,7 @@
             <v-card>
                 <v-card-text>
                     <v-row class="mx-0">
-                        This volunteer record will be deleted.
+                        This investor/mentor record will be deleted.
                         Are you sure?
                     </v-row>
                 </v-card-text>
@@ -30,7 +30,7 @@
 
         <v-card>
             <v-card color="grey darken-2" elevation="6" class="v-card-header-white d-flex grow flex-wrap pa-6">
-                Volunteer List
+                Investor/Mentors List
                 <v-spacer></v-spacer>
                 <v-text-field v-model="search" dark append-icon="mdi-magnify" label="Search" clearable hide-details>
                 </v-text-field>

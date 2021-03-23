@@ -2,14 +2,32 @@
   <div container="app">
     <div id="editor" ref="editor"></div>
 
-    <iframe
+    <b-container class="bv-example-row">
+  <b-row>
+     <b-col><iframe
       v-if="loaded"
+      style="max-width: 1500px; min-width: 250px; max-height:none!important; padding: 0px; padding left: 10px;"
       src="https://genderequalityfunds.org/funds"
-      allowfullscreen
       :height="1500"
-      :width="iframe.style.width"
+      :width="950"
       frameborder="0"
-    ></iframe>
+    ></iframe></b-col>
+  </b-row>
+</b-container>
+    <b-row>
+     <b-col><iframe
+      v-if="loaded"
+      style="max-width: 500px; min-width: 250px; max-height:none!important; padding: 0px; padding-right: 10px;"
+      src="https://blog.genderequalityfunds.org/"
+
+      :height="1500"
+      :width="450"
+      frameborder="0"
+    ></iframe></b-col>
+  </b-row>
+       
+    
+    
   </div>
 </template>
 

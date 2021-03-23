@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <v-app-bar app color="grey darken-4" dark>
-      <v-img alt="Sejiwa Logo" class="shrink mr-2" contain :src="require('@/assets/sejiwa.png')"
-        transition="scale-transition" width="180" />
+      <v-img alt="Victress Logo" class="shrink mr-2" contain :src="require('@/assets/favicon.png')"
+        transition="scale-transition" width="150" />
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
       <v-btn text to="/#eventsSection">Invest in Women-led Campaigns</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
@@ -13,7 +13,7 @@
        <v-btn text to="/genderLens">Gender Lens Score test</v-btn>
         <v-btn text to="/Quiz">Investor Profiler</v-btn>
         <v-btn text to="/textAnalyzer">Text Analyzer</v-btn>
-        <v-btn text to="/Education">Gender Equality Investments</v-btn>
+        <v-btn text to="/Education">Gender Equality Funds</v-btn>
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">

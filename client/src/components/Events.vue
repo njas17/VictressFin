@@ -3,7 +3,7 @@
         <v-dialog v-model="submitApplicationDialog" max-width="500px">
             <v-card class="cardAlert">
                 <v-card-actions>
-                    Thank you for your application! The organiser will contact you soon.
+                    We have emailed you the prospective and instructions to invest.
                     <v-spacer></v-spacer>
                     <v-btn fab x-small dark color="cyan" @click="submitApplicationDialog=false">
                         <v-icon>mdi-close</v-icon>
@@ -70,7 +70,7 @@
                                     </v-card-title>
                                     <v-card-text>
                                         <div class="my-3 subtitle-2">By: {{ item.organization }}</div>
-                                        <div class="font-weight-medium">Total volunteer required: {{
+                                        <div class="font-weight-medium">Total funds required: {{
                                             item.totalvolunteer
                                             }}</div>
                                         <div>Closing date: {{ getLocaleDate(item.closing, true) }}</div>
@@ -83,7 +83,7 @@
                                     <v-card-actions>
                                         <v-btn class="apply" text color="deep-purple accent-4"
                                             @click="openVolunteerForm(item.eid)">
-                                            Apply
+                                            Invest Now
                                         </v-btn>
                                         <v-spacer></v-spacer>
                                         <v-switch :input-value="isExpanded(item)"
@@ -174,8 +174,10 @@
                     'Description',
                     'Closing',
                     'Organization',
-                    'TotalVolunteer',
-                    'Location'
+                    'Total Funds Required',
+                    'Returns',
+                    'Location',
+                    
                 ],
                 items: [{}],
                 newVolunteer: [],

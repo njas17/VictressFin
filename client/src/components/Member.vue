@@ -18,11 +18,11 @@
                         <v-tabs v-model="tab" centered dark icons-and-text>
                             <v-tabs-slider></v-tabs-slider>
                             <v-tab>
-                                My Event(s)
+                                My Investment(s)
                                 <v-icon>mdi-calendar-heart</v-icon>
                             </v-tab>
                             <v-tab>
-                                Create Event
+                                Add New Investment(S)
                                 <v-icon>mdi-calendar-plus</v-icon>
                             </v-tab>
                             <v-tab-item>
@@ -56,8 +56,8 @@
                                                     <v-card-text class="headline font-weight-bold">
                                                         <a class="twitter-timeline" data-width="450" data-height="500"
                                                         data-theme="light"
-                                                        href="https://twitter.com/sejiwaMalaysia/lists/inspiration-corner-10612?ref_src=twsrc%5Etfw">
-                                                        A Twitter List by sejiwaMalaysia
+                                                        href="https://twitter.com/i/lists/1374249932157120514">
+                                                        A Twitter List by VictressFin
                                                     </a>
                                                     </v-card-text>
                                                 </v-card>
@@ -70,7 +70,7 @@
                                 <v-dialog v-model="createEventDialog" max-width="500px">
                                     <v-card class="cardAlert">
                                         <v-card-actions>
-                                            Event successfully created!
+                                            Investment successfully added!
                                             <v-spacer></v-spacer>
                                             <v-btn fab x-small dark color="cyan" @click="createEventDialog=false">
                                                 <v-icon>mdi-close</v-icon>
