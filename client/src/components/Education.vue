@@ -4,24 +4,26 @@
 
     <b-container class="bv-example-row">
   <b-row>
-     <b-col><iframe
+     <b-col>
+    <iframe
       v-if="loaded"
-      style="max-width: 1500px; min-width: 250px; max-height:none!important; padding: 0px; padding left: 10px;"
-      src="https://genderequalityfunds.org/funds"
+      src="https://gendergaptracker.research.sfu.ca/apps/textanalyzer"
+      allowfullscreen
       :height="1500"
-      :width="950"
+      :width="900"
       frameborder="0"
-    ></iframe></b-col>
+    ></iframe>
+    </b-col>
   </b-row>
 </b-container>
     <b-row>
      <b-col><iframe
       v-if="loaded"
       style="max-width: 500px; min-width: 250px; max-height:none!important; padding: 0px; padding-right: 10px;"
-      src="https://blog.genderequalityfunds.org/"
+      src="https://www.independent.co.uk/topic/gender-equality"
 
       :height="1500"
-      :width="450"
+      :width="500"
       frameborder="0"
     ></iframe></b-col>
   </b-row>

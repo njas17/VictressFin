@@ -4,7 +4,7 @@
 
     <iframe
       v-if="loaded"
-      src="https://gendergaptracker.research.sfu.ca/apps/textanalyzer"
+      src="https://genderequalityfunds.org/funds"
       allowfullscreen
       :height="1500"
       :width="iframe.style.width"

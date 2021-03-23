@@ -19,14 +19,14 @@
                 <v-alert color="pink" dark icon="mdi-charity" border="right" prominent>
                     We're looking for:
                     <v-spacer />
-                    {{requiredVolunteers}} worth of funds.
+                    {{requiredVolunteers}} worth of funds(MYR).
                 </v-alert>               
             </v-col>
             <v-col>
                 <v-alert color="orange" dark icon="mdi-account-group" border="right" prominent>
                     We received:
                     <v-spacer />
-                    {{volunteer.length}} worth of fund(s).
+                    {{volunteer.length}} investor(s).
                 </v-alert>
                 <!-- <v-card color="cyan" style="padding: 20px;">
                     <v-card-title class="justify-center">

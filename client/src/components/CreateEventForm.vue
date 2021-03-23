@@ -106,7 +106,7 @@
                                 <ValidationProvider v-slot="{ errors }" name="Total Funds Required Needed" rules="required"
                                     autocomplete="off">
                                     <v-text-field type="number" min="1" v-model="eform.totalvolunteer"
-                                        :error-messages="errors" label="Total Funds Required" placeholder=" "
+                                        :error-messages="errors" label="Total Funds Required(MYR)" placeholder=" "
                                         required></v-text-field><br />
                                 </ValidationProvider>
                                 <ValidationProvider>
