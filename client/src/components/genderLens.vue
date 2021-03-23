@@ -6,7 +6,10 @@
        <div class="container-quiz">
            <div class="header-quiz">
             <h1>Gender Lens Score Card</h1>
+            
             </div>
+            <h3>Assess your business today using SEAF's Six Parameters</h3>
+            
              <div class="step-progress" :style="{'width':progress + '%'}"></div>
           <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
               

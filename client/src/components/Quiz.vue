@@ -4,6 +4,7 @@
         <div class="container-quiz">
           <div class="header-quiz">
             <h1>Gender Lens Quiz and Profiler</h1>
+            <h3>Check your level awareness on Gender Lens Investing</h3>
           </div>
           <div class="step-progress" :style="{'width':progress + '%'}"></div>
           <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
@@ -64,7 +65,7 @@ export default {
           ]
         },
         {
-          question:"How does algorithm make finance unbias?",
+          question:"How does algorithm make finance biased?",
           propositions:[
             {props:'Boost bank profitability',},
             {props:'Equal opportunities to all',},
