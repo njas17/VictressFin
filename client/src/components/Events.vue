@@ -3,7 +3,7 @@
         <v-dialog v-model="submitApplicationDialog" max-width="500px">
             <v-card class="cardAlert">
                 <v-card-actions>
-                    We have emailed you the prospective and instructions to invest.
+                    We have emailed you the prospectus and instructions to invest.
                     <v-spacer></v-spacer>
                     <v-btn fab x-small dark color="cyan" @click="submitApplicationDialog=false">
                         <v-icon>mdi-close</v-icon>

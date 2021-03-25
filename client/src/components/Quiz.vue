@@ -4,7 +4,7 @@
         <div class="container-quiz">
           <div class="header-quiz">
             <h1>Gender Lens Quiz and Profiler</h1>
-            <h3>Check your level awareness on Gender Lens Investing</h3>
+            <h3>Check your level awareness and investment appetite</h3>
           </div>
           <div class="step-progress" :style="{'width':progress + '%'}"></div>
           <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
@@ -112,10 +112,21 @@ export default {
         {
           question:"What are the internationally-benchmarked parameters for a healthy gender lens score card as laid out by SEAF ?",
           propositions:[
-            {props:'Bpard representation', correct:true},
+            {props:'Board representation', correct:true},
             {props:'Pay',correct:true},
             {props:'Hours'},
             {props:'Family friendly policies'},
+            
+          ]
+          
+        },
+        {
+          question:"What are the kind of returns you are looking for?",
+          propositions:[
+            {props:'Returns that has social impact', correct:true},
+            {props:'High returns with or without social impact'},
+            {props:'Higher than risk-free rate and capital guaranteed'},
+            
             
           ]
           
@@ -236,7 +247,7 @@ export default {
   border-bottom: 1px solid #e7eae0;
   justify-content: center;
   align-items: center;
-  background-color: #e7eae0;
+  background-color: #83d48b;
   border-radius: 10px 10px 0px 0px;
 }
 
