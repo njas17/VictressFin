@@ -63,7 +63,9 @@
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+// import donutChart from './components/donutChart.vue';
+// import DoughnutExample from './components/DoughnutExample.vue';
+
 export default {
   data(){
     return{

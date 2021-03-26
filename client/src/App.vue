@@ -10,6 +10,7 @@
        <v-btn text to="/genderLens">Gender Lens Score test</v-btn>
         <v-btn text to="/Quiz">Investor Profiler</v-btn>
         <v-btn text to="/Education">Media Analyzer</v-btn>
+        <!-- <v-btn text to="/donutChart">My Gender Lens Donut Chart</v-btn> -->
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">
