@@ -4,6 +4,7 @@
         <div class="container-quiz">
           <div class="header-quiz">
             <h1>Gender Lens Quiz and Profiler</h1>
+            <h3>Check your level awareness and investment appetite</h3>
           </div>
           <div class="step-progress" :style="{'width':progress + '%'}"></div>
           <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
@@ -17,17 +18,23 @@
                   <li v-for="(proposition,index) in question.propositions" :key="index" class="li" @click="selectResponse(proposition,index)" :class=" correct ? check(proposition) : ''">{{proposition.props}} <div class="fas fa-check" v-if="correct ?  proposition.correct: ''"></div><div class="fas fa-times" v-if="correct ?  !proposition.correct: ''"></div></li>
                   
                 </ul>
+                <iframe src="https://codesandbox.io/embed/r1r0p8543m?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="Vue Template"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
               </div>
               
               
           </div>
           <div class="box-score" v-if="score_show">
               
-              
               <h2>Your score is</h2>
               <h2>{{score}}/{{questions.length}}</h2>
               <h3>Score 4 and above: Well done! You are ready to invest!</h3>
-              <h3>Score below 4: Talk to Us</h3>
+              <h3>Score below 4: Talk to Us or watch video below to learn more</h3>
+              <iframe text-align= center width="560" height="505" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <div class="btn-restart">
                   <button @click="restartQuiz">Restart <i class="fas fa-sync-alt"></i></button>
               </div>
@@ -50,6 +57,8 @@
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
+
+
 export default {
   data(){
     return{
@@ -64,7 +73,7 @@ export default {
           ]
         },
         {
-          question:"How does algorithm make finance unbias?",
+          question:"How does algorithm make finance biased?",
           propositions:[
             {props:'Boost bank profitability',},
             {props:'Equal opportunities to all',},
@@ -111,10 +120,21 @@ export default {
         {
           question:"What are the internationally-benchmarked parameters for a healthy gender lens score card as laid out by SEAF ?",
           propositions:[
-            {props:'Bpard representation', correct:true},
+            {props:'Board representation', correct:true},
             {props:'Pay',correct:true},
             {props:'Hours'},
             {props:'Family friendly policies'},
+            
+          ]
+          
+        },
+        {
+          question:"What are the kind of returns you are looking for?",
+          propositions:[
+            {props:'Returns that has social impact', correct:true},
+            {props:'High returns with or without social impact'},
+            {props:'Higher than risk-free rate and capital guaranteed'},
+            
             
           ]
           
@@ -235,7 +255,7 @@ export default {
   border-bottom: 1px solid #e7eae0;
   justify-content: center;
   align-items: center;
-  background-color: #e7eae0;
+  background-color: #83d48b;
   border-radius: 10px 10px 0px 0px;
 }
 

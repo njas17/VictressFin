@@ -5,15 +5,12 @@
         transition="scale-transition" width="150" />
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/#eventsSection">Invest in Women-led Campaigns</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
-      <!-- <v-btn text to="/investCalculator">Investment Calculator</v-btn>
-       <v-btn text to="/donate">Invest Now</v-btn>
-       <v-btn text to="/genderLens">Gender Lens Score</v-btn> -->
-       
+      <v-btn text to="/#eventsSection">Gender Equality Crowdfunding</v-btn> <!-- //@click="$vuetify.goTo(target, options)" -->
+      <v-btn text to="/textAnalyzer">Gender Equality Funds</v-btn>       
        <v-btn text to="/genderLens">Gender Lens Score test</v-btn>
         <v-btn text to="/Quiz">Investor Profiler</v-btn>
-        <v-btn text to="/textAnalyzer">Gender Equality Funds</v-btn>
         <v-btn text to="/Education">Media Analyzer</v-btn>
+        <!-- <v-btn text to="/donutChart">My Gender Lens Donut Chart</v-btn> -->
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">
@@ -40,7 +37,7 @@
 
     <v-main>
       <v-container fluid>
-          <iframe text-align= center width="560" height="315" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          
         <router-view />
       </v-container>
     

@@ -13,6 +13,7 @@ import Education from './components/Education.vue';
 // import financialdashboard from './components/financialdashboard.vue';
 // import investCalculator from './components/investCalculator.vue'
 import Quiz from './components/Quiz.vue';
+// import donutChart from './components/donutChart.vue;'
 import textAnalyzer from './components/textAnalyzer.vue';
 
 
@@ -99,6 +100,12 @@ const router = new VueRouter({
             component: textAnalyzer
             
         },
+        // {
+        //     name: "donutChart",
+        //     path: "/donutChart",
+        //     component: donutChart
+            
+        // },
         // {
         //     name: "financialdashboard",
         //     path: "/financialdashboard",

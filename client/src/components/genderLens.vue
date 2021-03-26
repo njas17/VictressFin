@@ -6,7 +6,10 @@
        <div class="container-quiz">
            <div class="header-quiz">
             <h1>Gender Lens Score Card</h1>
+            
             </div>
+            <h3>Assess your business today using SEAF's Six Parameters</h3>
+            
              <div class="step-progress" :style="{'width':progress + '%'}"></div>
           <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
               
@@ -34,7 +37,8 @@
               <h2>{{score}}/{{questions.length}}</h2>
               <h3>Score 5-6: Role Model</h3>
               <h3>Score 3-4: Nearly there, try harder, not sure how?contact us</h3>
-              <h3>Score 1-2: Talk to us.More needed to be done</h3>
+              <h3>Score 1-2: Talk to us.More needed to be done or watch the video below to learn more</h3>
+              <iframe text-align="center" width="560" height="505" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               
               <div class="btn-restart">
                   <button @click="restartQuiz">Restart <i class="fas fa-sync-alt"></i></button>
@@ -59,7 +63,9 @@
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+// import donutChart from './components/donutChart.vue';
+// import DoughnutExample from './components/DoughnutExample.vue';
+
 export default {
   data(){
     return{
