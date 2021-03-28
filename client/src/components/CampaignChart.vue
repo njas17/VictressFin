@@ -42,12 +42,12 @@
                 let fromDate = new Date();
 
                 //Change it so that it is 7 days in the past.
-                fromDate.setDate(fromDate.getDate() - 7);
+                fromDate.setDate(fromDate.getDate() - 28);
                 const filterVol =  this.volunteers.filter(e => this.getLocaleDate(fromDate) < e.dateapp);
                 
                 let shortDate = "";
                 const groupByDate = filterVol.reduce((prevAcc, curr) => {
-                    shortDate = new Date(curr.dateapp).toLocaleString("en-MY").slice(0,5); //(this.getLocaleDate(curr.dateapp)).slice(5,10).replace("-", "/");
+                    shortDate = new Date(curr.dateapp).toLocaleString("en-MY").slice(0,2); //(this.getLocaleDate(curr.dateapp)).slice(5,10).replace("-", "/");
                     prevAcc[shortDate] = prevAcc[shortDate] + 1 || 1;
                     return prevAcc;
                 }, {});
