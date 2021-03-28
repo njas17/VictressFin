@@ -1,8 +1,8 @@
-# sejiwa
+# VictreeFin
 
 ![Frontend](support/home-page.png)
 
-A web application for members to create charity events and gather volunteers and public users to search for charity events and sign-up as volunteers.
+A web application for members to create ........
 
 ## Motivation
 
@@ -12,8 +12,8 @@ A web application for members to create charity events and gather volunteers and
 
 ## Features
 
-- Create charity events
-- Sign-up as volunteer
+- Create crowdfunding events
+- Sign-up as investor/mentor
 
 ## Feature Wish List
 
@@ -67,11 +67,11 @@ URI | HTTP Method | Description
 ### Database Prep
 
 - Access the MySQL interface in your terminal by running `mysql -u root -p`
-- Create a new database called sejiwa: `create database sejiwa;`
+- Create a new database called victressfin: `create database victressfin;`
 - Create a `.env` file in project directory and add
 
 ```bash
-  DB_NAME=sejiwa
+  DB_NAME=victressfin
   DB_PASS=YOURPASSWORD
   JWT_SECRET=YOURSECRET
 ```
