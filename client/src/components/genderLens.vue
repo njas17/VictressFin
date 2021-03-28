@@ -2,7 +2,7 @@
 
   <div class="container-app">
         
-
+test geder
        <div class="container-quiz">
            <div class="header-quiz">
             <h1>Gender Lens Score Card</h1>
@@ -148,7 +148,7 @@ export default {
       
     }
   },
-  name: 'App',
+  name: 'GenderLens',
   components: {
     //HelloWorld
   },
