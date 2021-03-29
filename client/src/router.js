@@ -8,6 +8,14 @@ import AuthPage from './components/AuthPage.vue';
 import SignOut from './components/SignOut.vue';
 import NotFound from './components/NotFound.vue';
 import store from './store.js';
+import GenderLens from './components/GenderLens.vue';
+import Education from './components/Education.vue';
+// import financialdashboard from './components/financialdashboard.vue';
+// import investCalculator from './components/investCalculator.vue'
+import Quiz from './components/Quiz.vue';
+// import donutChart from './components/donutChart.vue;'
+import textAnalyzer from './components/textAnalyzer.vue';
+
 
 Vue.use(VueRouter);
 
@@ -66,7 +74,59 @@ const router = new VueRouter({
             alias: "*",
             component: NotFound
 
+        },
+        {
+            name: "GenderLens",
+            path: "/GenderLens",
+            component: GenderLens
+            
+        },
+        {
+            name: "Education",
+            path: "/Education",
+            component: Education
+            
+            
+        },
+        {
+            name: "Quiz",
+            path: "/Quiz",
+            component: Quiz
+            
+        },
+        {
+            name: "textAnalyzer",
+            path: "/textAnalyzer",
+            component: textAnalyzer
+            
+        },
+        // {
+        //     name: "donutChart",
+        //     path: "/donutChart",
+        //     component: donutChart
+            
+        // },
+        // {
+        //     name: "financialdashboard",
+        //     path: "/financialdashboard",
+        //     component: financialdashboard
+            
+        // },
+        // {
+        //     name: "investCalculator",
+        //     path: "/investCalculator",
+        //     component: investCalculator
+            
+        // },
+        {
+            name: "Quiz",
+            path: "/Quiz",
+            component: Quiz
+            
         }
+
+
+
     ]
 });
 

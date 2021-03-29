@@ -4,7 +4,7 @@
             <v-col cols="12" sm="10" md="8">
                 <v-card class="create-event" max-width="750" flat >
                     <v-card-title>
-                        <h2>Create Event</h2>
+                        <h2>Add New Campaign</h2>
                     </v-card-title>
                     <v-card-text class="createForm pt-10">
                         <ValidationObserver ref="observer" v-slot="{ invalid }">
@@ -103,10 +103,10 @@
                                         label="Email (optional)" placeholder=" ">
                                     </v-text-field>
                                 </ValidationProvider>
-                                <ValidationProvider v-slot="{ errors }" name="Total Volunteers Needed" rules="required"
+                                <ValidationProvider v-slot="{ errors }" name="Total Funds Required Needed" rules="required"
                                     autocomplete="off">
                                     <v-text-field type="number" min="1" v-model="eform.totalvolunteer"
-                                        :error-messages="errors" label="Total Volunteers Needed" placeholder=" "
+                                        :error-messages="errors" label="Total Funds Required(MYR)" placeholder=" "
                                         required></v-text-field><br />
                                 </ValidationProvider>
                                 <ValidationProvider>

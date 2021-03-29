@@ -18,11 +18,11 @@
                         <v-tabs v-model="tab" centered dark icons-and-text>
                             <v-tabs-slider></v-tabs-slider>
                             <v-tab>
-                                My Event(s)
+                                My Campaign(s)
                                 <v-icon>mdi-calendar-heart</v-icon>
                             </v-tab>
                             <v-tab>
-                                Create Event
+                                Add New Campaign(s)
                                 <v-icon>mdi-calendar-plus</v-icon>
                             </v-tab>
                             <v-tab-item>
@@ -54,11 +54,9 @@
                                                         <span class="title font-weight-light">Twitter</span>
                                                     </v-card-title>
                                                     <v-card-text class="headline font-weight-bold">
-                                                        <a class="twitter-timeline" data-width="450" data-height="500"
-                                                        data-theme="light"
-                                                        href="https://twitter.com/sejiwaMalaysia/lists/inspiration-corner-10612?ref_src=twsrc%5Etfw">
-                                                        A Twitter List by sejiwaMalaysia
-                                                    </a>
+                                                       <a class="twitter-timeline" href="https://twitter.com/rafaellawai/lists/gender-equality-finance-27714?ref_src=twsrc%5Etfw">A Twitter List by Victress Fin</a> 
+                                                        
+                                                    
                                                     </v-card-text>
                                                 </v-card>
                                             </v-flex>
@@ -70,7 +68,7 @@
                                 <v-dialog v-model="createEventDialog" max-width="500px">
                                     <v-card class="cardAlert">
                                         <v-card-actions>
-                                            Event successfully created!
+                                            Campaign successfully added!
                                             <v-spacer></v-spacer>
                                             <v-btn fab x-small dark color="cyan" @click="createEventDialog=false">
                                                 <v-icon>mdi-close</v-icon>

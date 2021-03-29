@@ -1,5 +1,11 @@
 <template>
   <v-app>
+    <b-embed
+    type="iframe"
+    aspect="16by9"
+    src="https://genderequalityfunds.org/"
+    
+  ></b-embed>
       <v-carousel hide-delimiters height="700px" show-arrows-on-hover cycle interval="11000" >
         <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
           <v-container fill-height>
@@ -19,6 +25,7 @@
 
     <events />
   </v-app>
+  
 </template>
 
 <script>

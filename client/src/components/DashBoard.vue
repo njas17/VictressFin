@@ -3,7 +3,7 @@
         <v-row>
             <v-col>
                 <v-alert color="primary" dark icon="mdi-calendar-multiple" border="right" prominent>
-                    Total Events:
+                    Total Investments:
                     <v-spacer />
                     {{events.length}}
                 </v-alert>
@@ -19,14 +19,14 @@
                 <v-alert color="pink" dark icon="mdi-charity" border="right" prominent>
                     We're looking for:
                     <v-spacer />
-                    {{requiredVolunteers}} volunteer(s).
+                    {{requiredVolunteers}} worth of funds(MYR).
                 </v-alert>               
             </v-col>
             <v-col>
                 <v-alert color="orange" dark icon="mdi-account-group" border="right" prominent>
                     We received:
                     <v-spacer />
-                    {{volunteer.length}} volunteer application(s).
+                    {{volunteer.length}} investor(s).
                 </v-alert>
                 <!-- <v-card color="cyan" style="padding: 20px;">
                     <v-card-title class="justify-center">
@@ -41,7 +41,7 @@
                 <v-alert color="deep-purple darken-1" dark icon="mdi-account-check" border="right" prominent>
                     We accepted:
                     <v-spacer />
-                    {{ approvedVol }} volunteer(s)
+                    {{ approvedVol }} fund(s)
                 </v-alert>
                 <!-- <v-card color="#FFF59D" class="justify-center" style="padding: 20px;">
                     <v-card-title>
