@@ -8,7 +8,7 @@ import AuthPage from './components/AuthPage.vue';
 import SignOut from './components/SignOut.vue';
 import NotFound from './components/NotFound.vue';
 import store from './store.js';
-import GenderLens from './components/GenderLens.vue';
+import genderLens from './components/genderLens.vue';
 import Education from './components/Education.vue';
 // import financialdashboard from './components/financialdashboard.vue';
 // import investCalculator from './components/investCalculator.vue'
@@ -76,9 +76,9 @@ const router = new VueRouter({
 
         },
         {
-            name: "GenderLens",
-            path: "/GenderLens",
-            component: GenderLens
+            name: "genderLens",
+            path: "/genderLens",
+            component: genderLens
             
         },
         {
