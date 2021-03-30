@@ -31,13 +31,15 @@
                 <v-row>
                   <v-col class="score">
                     <h2 style="padding-bottom: 30px;">Your score is <span style="color: indigo;">{{score}}/{{questions.length}}</span></h2>
-                    <h3>Score 4 and above</h3>
-                    <h3 style="color: teal; padding-bottom:30px;">Well done! You are ready to invest!</h3>
-                    <h3>Score below 4</h3>
-                    <h3 style="color: salmon; padding-bottom:15px;">Talk to us or watch the following video to learn more.</h3>
+                    <h3>80 - 100%</h3>
+                    <h3 style="color: teal; padding-bottom:30px;">Aggressive (Equity / Crowdfunding)</h3>
+                    <h3>50 - 79%</h3>
+                    <h3 style="color: rgb(106, 128, 202); padding-bottom:15px;">Moderate (Crowdfunding / Mutual Funds)</h3>
+                    <h3>0 - 49%</h3>
+                    <h3 style="color: salmon; padding-bottom:15px;">Talk to Us (Retail Bonds / Cash)</h3>
                   </v-col>
                   <v-col>
-                    <div v-if="percentage > 57 && percentage <= 100" style="padding-top: 5px; padding-bottom: 33px;">
+                    <div v-if="percentage > 79 && percentage <= 100" style="padding-top: 5px; padding-bottom: 33px;">
                       <v-progress-linear
                         v-model="percentage"
                         color="teal"
@@ -47,8 +49,21 @@
                           <strong>{{ Math.ceil(value) }}%</strong>
                         </template>
                       </v-progress-linear>
+                      <h2 style="padding-top: 15px; color: teal;">Aggressive</h2>
                     </div>
-                    <div v-else-if="percentage < 57" style="padding-top: 5px; padding-bottom: 33px;">
+                    <div v-if="percentage < 80 && percentage > 49" style="padding-top: 5px; padding-bottom: 33px;">
+                      <v-progress-linear
+                        v-model="percentage"
+                        color="rgb(106, 128, 202)"
+                        height="55"
+                      >
+                        <template v-slot:default="{ value }">
+                          <strong>{{ Math.ceil(value) }}%</strong>
+                        </template>
+                      </v-progress-linear>
+                      <h2 style="padding-top: 15px; color: rgb(106, 128, 202);">Moderate</h2>
+                    </div>
+                    <div v-else-if="percentage < 50" style="padding-top: 5px; padding-bottom: 33px;">
                       <v-progress-linear
                         v-model="percentage"
                         color="red"
@@ -58,6 +73,7 @@
                           <strong>{{ Math.ceil(value) }}%</strong>
                         </template>
                       </v-progress-linear>
+                      <h2 style="padding-top: 15px; color: salmon;">Talk to Us</h2>
                     </div>
                     <div class="yt-container">
                       <iframe text-align="center" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="video"></iframe>
