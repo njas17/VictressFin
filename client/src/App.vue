@@ -72,7 +72,7 @@
         <v-icon class="red--text">favorite</v-icon>
         A Finastra Hackation project
         <a class="cyan--text" href="http://CodeOp.tech" target="_blank"
-          ><strong>Unbiash fintech</strong>,</a
+          ><strong>Unbiased Fintech Future</strong></a
         >
         <a
           class="cyan--text"

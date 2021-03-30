@@ -1,58 +1,85 @@
 <template>
-  <div class="container-app">
-        
-        <div class="container-quiz">
-          <div class="header-quiz">
-            <h1>Gender Lens Quiz and Profiler</h1>
-            <h3>Check your level awareness and investment appetite</h3>
-          </div>
-          <div class="step-progress" :style="{'width':progress + '%'}"></div>
-          <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
-              
-              <div class="box-question">
-                <h2>Question {{b}}/{{questions.length}}</h2>
-                <p>{{question.question}}</p>
+  <v-app>
+    <v-container fill-height fluid>
+      <v-row align-self="center">
+        <v-col align-self="center">
+          <v-card class="mx-auto" max-width="60%" style="background-color: pink;" align="center">
+            <div class="header-quiz">
+              <h1>Gender Lens Quiz and Profiler</h1>
+              <h3>Check your level awareness and investment appetite</h3>
+            </div>
+            <div style="padding: 20px;">
+              <div class="step-progress" :style="{'width':progress + '%'}"></div>
+              <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
+                <div class="box-question">
+                  <h2>Question {{b}}/{{questions.length}}</h2>
+                  <p>{{question.question}}</p>
+                </div>
+                <div class="box-propositions">
+                  <ul>
+                    <li v-for="(proposition,index) in question.propositions" :key="index" class="li" @click="selectResponse(proposition,index)" :class=" correct ? check(proposition) : ''">{{proposition.props}} <div class="fas fa-check" v-if="correct ?  proposition.correct: ''"></div><div class="fas fa-times" v-if="correct ?  !proposition.correct: ''"></div></li>
+                  </ul>
+                  <!-- <iframe src="https://codesandbox.io/embed/r1r0p8543m?fontsize=14&hidenavigation=1&theme=dark"
+                    style="width:80%; height:300px; border:0; border-radius: 0px; overflow:hidden;"
+                    title="My Profile"
+                    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                  ></iframe> -->
+                </div>
               </div>
-              <div class="box-propositions">
-                <ul>
-                  <li v-for="(proposition,index) in question.propositions" :key="index" class="li" @click="selectResponse(proposition,index)" :class=" correct ? check(proposition) : ''">{{proposition.props}} <div class="fas fa-check" v-if="correct ?  proposition.correct: ''"></div><div class="fas fa-times" v-if="correct ?  !proposition.correct: ''"></div></li>
-                  
-                </ul>
-                <!-- <iframe src="https://codesandbox.io/embed/r1r0p8543m?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:80%; height:300px; border:0; border-radius: 0px; overflow:hidden;"
-     title="My Profile"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe> -->
+              <div class="box-score" v-if="score_show">
+                <v-row>
+                  <v-col class="score">
+                    <h2 style="padding-bottom: 30px;">Your score is <span style="color: indigo;">{{score}}/{{questions.length}}</span></h2>
+                    <h3>Score 4 and above</h3>
+                    <h3 style="color: teal; padding-bottom:30px;">Well done! You are ready to invest!</h3>
+                    <h3>Score below 4</h3>
+                    <h3 style="color: salmon; padding-bottom:15px;">Talk to us or watch the following video to learn more.</h3>
+                  </v-col>
+                  <v-col>
+                    <div v-if="percentage > 57 && percentage <= 100" style="padding-top: 5px; padding-bottom: 33px;">
+                      <v-progress-linear
+                        v-model="percentage"
+                        color="teal"
+                        height="55"
+                      >
+                        <template v-slot:default="{ value }">
+                          <strong>{{ Math.ceil(value) }}%</strong>
+                        </template>
+                      </v-progress-linear>
+                    </div>
+                    <div v-else-if="percentage < 57" style="padding-top: 5px; padding-bottom: 33px;">
+                      <v-progress-linear
+                        v-model="percentage"
+                        color="red"
+                        height="55"
+                      >
+                        <template v-slot:default="{ value }">
+                          <strong>{{ Math.ceil(value) }}%</strong>
+                        </template>
+                      </v-progress-linear>
+                    </div>
+                    <div class="yt-container">
+                      <iframe text-align="center" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="video"></iframe>
+                    </div>
+                  </v-col>
+                </v-row>
               </div>
-              
-              
-          </div>
-          <div class="box-score" v-if="score_show">
-              
-              <h2>Your score is</h2>
-              <h2>{{score}}/{{questions.length}}</h2>
-              <h3>Score 4 and above: Well done! You are ready to invest!</h3>
-              <h3>Score below 4: Talk to Us or watch video below to learn more</h3>
-              <iframe text-align= center width="560" height="505" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              <div class="btn-restart">
-                  <button @click="restartQuiz">Restart <i class="fas fa-sync-alt"></i></button>
+            </div>
+            <div class="footer-quiz">
+              <div v-if="progress < 100" class="box-button">
+                <button  @click="skipQuestion()" :style="next ? 'background-color: rgb(106, 128, 202)' : ''">Skip</button>
+                <button  @click="nextQuestion()" :style="!next ? 'background-color: rgb(106, 128, 202)' : ''">Next</button>
               </div>
-          </div>
-          <div class="footer-quiz">
-                <div v-if="progress < 100" class="box-button">
-                    <button  @click="skipQuestion()" :style="next ? 'background-color: rgb(106, 128, 202)' : ''">Skip</button>
-                    <button  @click="nextQuestion()" :style="!next ? 'background-color: rgb(106, 128, 202)' : ''">Next</button>
-                </div>  
-                  
-                  
-                  
-          </div>
-          
-          
-            
-        </div>
-  </div>
+              <div v-if="score_show" class="btn-restart" style="margin-top: 5px;">
+                <button @click="restartQuiz">Restart <i class="fas fa-sync-alt"></i></button>
+              </div>  
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -78,8 +105,6 @@ export default {
             {props:'Boost bank profitability',},
             {props:'Equal opportunities to all',},
             {props:'Marginalise women and certain segments of society',correct:true},
-            
-            
           ]
           
         },
@@ -90,8 +115,6 @@ export default {
             {props:'Petty cash'},
             {props:'Crowdfunding',correct:true},
             {props:'Own savings'},
-            
-            
           ]
           
         },
@@ -102,8 +125,6 @@ export default {
             {props:'Provide equitable access to financing via open banking',correct:true},
             {props:'Regulation',},
             {props:'Protest',},
-            
-            
           ]
           
         },
@@ -118,13 +139,12 @@ export default {
           
         },
         {
-          question:"What are the internationally-benchmarked parameters for a healthy gender lens score card as laid out by SEAF ?",
+          question:"What are the internationally-benchmarked parameters for a healthy gender lens score card as laid out by SEAF?",
           propositions:[
             {props:'Board representation', correct:true},
-            {props:'Pay',correct:true},
+            {props:'Pay', correct:true},
             {props:'Hours'},
             {props:'Family friendly policies'},
-            
           ]
           
         },
@@ -134,8 +154,6 @@ export default {
             {props:'Returns that has social impact', correct:true},
             {props:'High returns with or without social impact'},
             {props:'Higher than risk-free rate and capital guaranteed'},
-            
-            
           ]
           
         }
@@ -148,10 +166,11 @@ export default {
       score:0,
       correct:false,
       progress:0,
+      percentage:0,
       
     }
   },
-  name: 'App',
+  name: 'Quiz',
   components: {
     //HelloWorld
   },
@@ -159,13 +178,13 @@ export default {
       
   },
   methods:{
-    
     selectResponse(e){
       this.correct = true;
       this.next = false;
       if (e.correct) {
         this.score++;
       }
+      this.percentage = (this.score/7)*100
     },
     check(status){
         if (status.correct) {
@@ -188,9 +207,7 @@ export default {
         this.b++;
         this.correct = false;
         this.next = true;
-        
       }
-      
     },
     skipQuestion(){
       if (!this.next) {
@@ -200,39 +217,34 @@ export default {
       if(this.questions.length - 1 == this.a){
         this.score_show = true;
         this.quiz = false;
-        
-        
       }else{
         this.a++;
         this.b++;
-        
       }
-      
     },
     
     restartQuiz(){
-      
       Object.assign(this.$data, this.$options.data()); // reset data in vue
-       
     },
-    
   }
 }
 </script>
 
 
 <style scoped>
-
-
-.container-app {
+v-card {
   display: flex;
-  width: 100%;
-  height:100%;
-  justify-content: center;
-  background-color: pink;
 }
 
-.container-quiz {
+/* .container-app {
+  display: flex;
+  width: 80%;
+  height:80%;
+  justify-content: center;
+  background-color: pink;
+} */
+
+/* .container-quiz {
   display: flex;
   width: 60%;
   height: 100%;
@@ -246,10 +258,10 @@ export default {
   bottom: 0;
   margin: auto;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
+} */
 
 .header-quiz {
-  display: flex;
+  display: inline-flexbox;
   width: 100%;
   height: 20%;
   border-bottom: 1px solid #e7eae0;
@@ -257,15 +269,16 @@ export default {
   align-items: center;
   background-color: #83d48b;
   border-radius: 10px 10px 0px 0px;
+  padding: 15px;
 }
 
-.container-quiz .box {
+/* .container-quiz .box {
   display: flex;
   width: 100%;
   height: 70%;
   flex-flow: column;
   margin: auto;
-}
+} */
 
 .box-question {
   margin-top: 20px;
@@ -273,6 +286,7 @@ export default {
 
 .box-question p {
   margin-top: 20px;
+  padding: 15px;
 }
 
 .box-propositions {
@@ -280,7 +294,6 @@ export default {
   display: flex;
   width: 100%;
   justify-content: center;
-  
 }
 
 ul {
@@ -289,7 +302,6 @@ ul {
   margin: 0;
   padding: 0;
   flex-flow: column;
-  
 }
 
 li {
@@ -319,18 +331,19 @@ li>div {
   color: rgb(74, 219, 74);
 }
 
-.close {
+/* .close {
   color: rgb(240, 117, 100);
-}
+} */
 
 .footer-quiz {
   display: flex;
   width: 100%;
-  height: 10%;
+  height: 15%;
   justify-content: center;
   border-top: 1px solid #e7eae0;
   background-color: #e7eae0;
   border-radius: 0px 0px 10px 10px;
+  padding-top: 5px;
 }
 
 .box-button {
@@ -372,11 +385,12 @@ li.incorrect {
   width: 100%;
   height: 70%;
   flex-flow: column;
+  padding: 20px;
 }
 
-.box-score h2 {
+/* .box-score h2 {
   margin-top: 40px;
-}
+} */
 
 i {
   display: none;
@@ -396,7 +410,7 @@ i {
   width: 100%;
   height: auto;
   justify-content: center;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .btn-restart button {
@@ -418,18 +432,34 @@ i {
   background-color: rgb(106, 128, 202);
 }
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
   .container-quiz {
       width: 60%;
   }
-}
+} */
 
 @media screen and (max-width: 720px) {
-  .container-quiz {
+  /* .container-quiz {
       width: 80%;
-  }
+  } */
   .footer-quiz .box-button button {
       width: 100px;
   }
 }
+
+.yt-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 </style>
