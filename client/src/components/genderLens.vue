@@ -8,7 +8,7 @@
               <h1>Gender Lens Score Card</h1>
             </div>
             <div style="padding: 20px;">
-              <h3 style="padding: 15px;">Assess your business today using SEAF's Six Parameters</h3>
+              <h3 style="padding: 15px;">Assess your business today using SEAF's Parameters</h3>
 
               <div class="step-progress" :style="{ width: progress + '%' }"></div>
               <div
@@ -182,7 +182,7 @@ export default {
           ],
         },
         {
-          question: "Women’s turnover ratio percent of male turnover)",
+          question: "Workforce Participation:Women’s turnover ratio percent of male turnover.",
           propositions: [
             { props: "More than 150%" },
             { props: "106% to 115%" },
