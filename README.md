@@ -1,21 +1,21 @@
-# VictreeFin
+# VictressFin
 
-![Frontend](support/home-page.png)
+<!-- ![Frontend](support/home-page.png) -->
 
 A web application for members to create ........
 
-## Motivation
+<!-- ## Motivation
 
 **FOR** individuals or small associations **WHO** want to organize a charity drive; **THE** product **IS** a web application **THAT** gathers volunteers to sign-up for the event **UNLIKE** having insufficient volunteers or sponsors; **OUR PRODUCT** helps the organizers reach out to a wider audience and create awareness to the public.
 
-**FOR** the public **WHO** wants to give back to the community; **THE** product **IS** a web application **THAT** gives information about upcoming charity events and allow users to sign-up as a volunteer **UNLIKE** having to browse through many sites; **OUR PRODUCT** helps the user search for a charity event with ease.
+**FOR** the public **WHO** wants to give back to the community; **THE** product **IS** a web application **THAT** gives information about upcoming charity events and allow users to sign-up as a volunteer **UNLIKE** having to browse through many sites; **OUR PRODUCT** helps the user search for a charity event with ease. -->
 
 ## Features
 
 - Create crowdfunding events
 - Sign-up as investor/mentor
 
-## Feature Wish List
+<!-- ## Feature Wish List
 
 ### Nice To Have Features
 
@@ -25,13 +25,13 @@ A web application for members to create ........
 
 - A networking platform for our app members to connect with bigger NGO/ other organizations with community projects
 
-- Our app to provide API service of community projects and volunteers lists in Malaysia
+- Our app to provide API service of community projects and volunteers lists in Malaysia -->
 
 ## Tech / Framework
 
-Built with Vue.Js (Vuetify,VueRouter,Vuex), Node/Express.Js, MySQL, Firebase, Jest (Testing), Google Sign-in API, Donorbox with Stripe/Paypal API, Jira (Project Management) and Docker.
+Built with Vue.Js (Vuetify,VueRouter,Vuex), Node/Express.Js, MySQL, Firebase, Jest (Testing), Google Sign-in API, ...
 
-## Database Schema
+<!-- ## Database Schema
 
 ![Database_Schema](support/database-schema.png)
 
@@ -55,7 +55,7 @@ URI | HTTP Method | Description
 
 ## Architecture Drawing
 
-![Architecture](support/architecture.png)
+![Architecture](support/architecture.png) -->
 
 ## Setup
 
@@ -85,7 +85,7 @@ URI | HTTP Method | Description
 - Run `npm start` in project directory to start the Express server on port 5000
 - `cd client` and run `npm start` to run your development build. The app will run on `http://localhost:8080` as the default port.
 
-## Reference
+<!-- ## Reference
 
 - [Charity Article](https://vulcanpost.com/693014/covid-19-charity-donation-malaysia-food-medical-supplies/)
 - [Web Charity API List](https://www.programmableweb.com/category/charity/api)
@@ -94,4 +94,4 @@ URI | HTTP Method | Description
 
 ## Notes
 
-_This is a student project that was created at [CodeOp](http://CodeOp.tech), a full stack development bootcamp in Barcelona and [Rebound.Asia](https://www.rebound.asia/breakthrough), by TechSprint Academy (Malaysia’s first women only coding academy)._
+_This is a student project that was created at [CodeOp](http://CodeOp.tech), a full stack development bootcamp in Barcelona and [Rebound.Asia](https://www.rebound.asia/breakthrough), by TechSprint Academy (Malaysia’s first women only coding academy)._ -->

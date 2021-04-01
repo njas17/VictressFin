@@ -5,8 +5,8 @@
         <v-col align-self="center">
           <v-card class="mx-auto" max-width="60%" style="background-color: pink;" align="center">
             <div class="header-quiz">
-              <h1>Gender Lens Quiz and Profiler</h1>
-              <h3>Check your level awareness and investment appetite</h3>
+              <h1>Gender Lens and Risk Profiler</h1>
+              <h3>Check your awareness level and investment appetite</h3>
             </div>
             <div style="padding: 20px;">
               <div class="step-progress" :style="{'width':progress + '%'}"></div>
@@ -31,13 +31,16 @@
                 <v-row>
                   <v-col class="score">
                     <h2 style="padding-bottom: 30px;">Your score is <span style="color: indigo;">{{score}}/{{questions.length}}</span></h2>
-                    <h3>Score 4 and above</h3>
-                    <h3 style="color: teal; padding-bottom:30px;">Well done! You are ready to invest!</h3>
-                    <h3>Score below 4</h3>
-                    <h3 style="color: salmon; padding-bottom:15px;">Talk to us or watch the following video to learn more.</h3>
+                    <h3>Your risk appetite:</h3>
+                    <h3>80 - 100%</h3>
+                    <h3 style="color: teal; padding-bottom:30px;">Aggressive: Equity / Crowdfunding</h3>
+                    <h3>50 - 79%</h3>
+                    <h3 style="color: rgb(106, 128, 202); padding-bottom:15px;">Moderate: Crowdfunding / Mutual Funds/Retail Bonds </h3>
+                    <h3>0 - 49%</h3>
+                    <h3 style="color: salmon; padding-bottom:15px;">Talk to Us</h3>
                   </v-col>
                   <v-col>
-                    <div v-if="percentage > 57 && percentage <= 100" style="padding-top: 5px; padding-bottom: 33px;">
+                    <div v-if="percentage > 79 && percentage <= 100" style="padding-top: 5px; padding-bottom: 33px;">
                       <v-progress-linear
                         v-model="percentage"
                         color="teal"
@@ -47,8 +50,21 @@
                           <strong>{{ Math.ceil(value) }}%</strong>
                         </template>
                       </v-progress-linear>
+                      <h2 style="padding-top: 15px; color: teal;">Aggressive</h2>
                     </div>
-                    <div v-else-if="percentage < 57" style="padding-top: 5px; padding-bottom: 33px;">
+                    <div v-if="percentage < 80 && percentage > 49" style="padding-top: 5px; padding-bottom: 33px;">
+                      <v-progress-linear
+                        v-model="percentage"
+                        color="rgb(106, 128, 202)"
+                        height="55"
+                      >
+                        <template v-slot:default="{ value }">
+                          <strong>{{ Math.ceil(value) }}%</strong>
+                        </template>
+                      </v-progress-linear>
+                      <h2 style="padding-top: 15px; color: rgb(106, 128, 202);">Moderate</h2>
+                    </div>
+                    <div v-else-if="percentage < 50" style="padding-top: 5px; padding-bottom: 33px;">
                       <v-progress-linear
                         v-model="percentage"
                         color="red"
@@ -58,6 +74,7 @@
                           <strong>{{ Math.ceil(value) }}%</strong>
                         </template>
                       </v-progress-linear>
+                      <h2 style="padding-top: 15px; color: salmon;">Talk to Us</h2>
                     </div>
                     <div class="yt-container">
                       <iframe text-align="center" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="video"></iframe>
@@ -93,8 +110,8 @@ export default {
         {
           question:"How many percent of venture capital was secured by women in recent years?",
           propositions:[
-            {props:'less than 10%',correct:true},
-            {props:'More than 10%'},
+            {props:'About 15%',correct:true},
+            {props:'More than 20%'},
             {props:'More than 50%',},
             {props:'Equal to men',}
           ]
@@ -109,12 +126,12 @@ export default {
           
         },
         {
-          question:"What are the alternatives (regulated) to financing for women?",
+          question:"What are the avenues (regulated) to financing for women apart from loans and venture capital?",
           propositions:[
             {props:'Family and friends'},
-            {props:'Petty cash'},
+            {props:'Bonds',correct:true},
             {props:'Crowdfunding',correct:true},
-            {props:'Own savings'},
+            {props:'Stock Market or Equity',correct:true},
           ]
           
         },
@@ -149,6 +166,33 @@ export default {
           
         },
         {
+          question:"Gender Lens investing is not for men?",
+          propositions:[
+            {props:'False', correct:true},
+            {props:'True'},
+            
+          ]
+          
+        },
+        {
+          question:"Women founders deliver more returns versus male for every dollar invested despite only securing 15% of venture capital",
+          propositions:[
+            {props:'True', correct:true},
+            {props:'False'},
+            
+          ]
+          
+        },{
+          question:"What will be your cut loss position in any investment?",
+          propositions:[
+            {props:'No more than 20%',},
+            {props:'More than 20%',correct:true },
+            {props:'I dont want to lose any of my capital'},
+            
+          ]
+          
+        },
+        {
           question:"What are the kind of returns you are looking for?",
           propositions:[
             {props:'Returns that has social impact', correct:true},
@@ -156,7 +200,19 @@ export default {
             {props:'Higher than risk-free rate and capital guaranteed'},
           ]
           
-        }
+        },
+        {
+          question:"What is/are your investment objective(s)?",
+          propositions:[
+            {props:'To diversify income into instruments with social impact', correct:true},
+            {props:'To have stable returns over the medium to longer term,', correct:true},
+            {props:'For retirement, education and big items purchase,', correct:true},
+            {props:'Any returns that is better than current savings or fixed deposit,'},
+
+          ]
+          
+        },
+
       ],
       a:0,
       b:1,
@@ -184,7 +240,7 @@ export default {
       if (e.correct) {
         this.score++;
       }
-      this.percentage = (this.score/7)*100
+      this.percentage = (this.score/11)*100
     },
     check(status){
         if (status.correct) {

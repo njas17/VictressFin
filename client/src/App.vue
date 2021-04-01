@@ -11,20 +11,21 @@
       />
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/#eventsSection">Equality Crowdfunding</v-btn>
+      <v-btn text to="/#eventsSection">Crowdfunding</v-btn>
       <!-- //@click="$vuetify.goTo(target, options)" -->
-      <v-btn text to="/textAnalyzer">Equality Funds</v-btn>
+      <v-btn text to="/textAnalyzer">Mutual Funds</v-btn>
+      <v-btn text to="/Equity">Equity</v-btn>
 
       <div class="text-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn dark v-bind="attrs" v-on="on" class="bottom">
-              Lens Tool Kit
+              Gender Lens Tool Kit
             </v-btn>
           </template>
           <v-list>
             <v-list-item>
-              <v-btn text to="/GenderLens">Gender Lens Score test</v-btn>
+              <v-btn text to="/genderLens">Gender Lens Score test</v-btn>
             </v-list-item>
             <v-list-item>
               <v-btn text to="/Quiz">Investor Profiler</v-btn>
