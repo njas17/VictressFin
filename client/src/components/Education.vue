@@ -1,28 +1,35 @@
 <template>
   <v-app>
     <v-container class="bv-example-row" fill-height fluid>
-      <v-row id="editor" ref="editor" align="center">
+      <v-row id="editor" ref="editor" align="top">
         <v-col align="center">
           <iframe
             v-if="loaded"
-            style="max-height:none!important; border-radius: 5px; margin-left: 55px;"
+            style="max-height:none!important; border-radius: 5px; margin-left: 30px;"
             src="https://gendergaptracker.research.sfu.ca/apps/textanalyzer"
             :height="555"
-            :width="665"
+            :width="920"
             frameborder="0"
           ></iframe>
         </v-col>
         <v-col>
-          <iframe
-            v-if="loaded"
-            style="max-height:none!important; border-radius: 5px; margin-left: 30px;"
-            src="https://www.independent.co.uk/topic/gender-equality"
-
-            :height="555"
-            :width="520"
-            frameborder="0"
-          ></iframe>
-        </v-col>
+                                            
+                                            <v-flex>
+                                                <v-card class="mx-auto" color="cyan" dark max-width="400">
+                                                    <v-card-title>
+                                                        <v-icon large left>
+                                                            mdi-twitter
+                                                        </v-icon>
+                                                        <span class="title font-weight-light">Twitter</span>
+                                                    </v-card-title>
+                                                    <v-card-text class="headline font-weight-bold">
+                                                       <a class="twitter-timeline" href="https://twitter.com/rafaellawai/lists/gender-equality-finance-27714?ref_src=twsrc%5Etfw">A Twitter List by Victress Fin</a> 
+                                                        
+                                                    
+                                                    </v-card-text>
+                                                </v-card>
+                                            </v-flex>
+                                        </v-col>
       </v-row>
     </v-container>
   </v-app>
