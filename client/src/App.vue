@@ -11,15 +11,15 @@
       />
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/#eventsSection">Gender Equality Crowdfunding</v-btn>
+      <v-btn text to="/#eventsSection">Equality Crowdfunding</v-btn>
       <!-- //@click="$vuetify.goTo(target, options)" -->
-      <v-btn text to="/textAnalyzer">Gender Equality Funds</v-btn>
+      <v-btn text to="/textAnalyzer">Equality Funds</v-btn>
 
       <div class="text-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn dark v-bind="attrs" v-on="on" class="bottom">
-              Gender Lens Tool Kit
+              Lens Tool Kit
             </v-btn>
           </template>
           <v-list>
@@ -64,6 +64,7 @@
     <v-main>
       <v-container fluid>
         <router-view />
+        <div>Benchmark {{ this.info }}</div>
       </v-container>
     </v-main>
 
@@ -89,12 +90,16 @@
 </template>
 
 <script>
+import axios from "axios";
 import * as easings from "vuetify/es5/services/goto/easing-patterns";
 import store from "./store.js";
 // import genderLens from './genderLens.vue';
 
 export default {
   name: "App",
+  // mounted() {
+  //   this.getBenchmark();
+  // },
   //added components??
   // components: {
   //   genderLens,
@@ -103,7 +108,6 @@ export default {
   //   Quiz,
 
   // },
-
   data() {
     return {
       showLogin: false,
@@ -125,9 +129,30 @@ export default {
       store.dispatch("logout");
       this.$router.push({ name: "logout" });
     },
+    async getBenchmark() {
+      try {
+        const response = await axios.get("http://localhost:3000/benchmarks");
+        // this.info = response.data;
+        console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // getBenchmark() {
+    //   fetch("http://localhost:3000/benchmarks", {})
+    //     .then((response) =>
+    //       // this.info = response.data
+    //       console.log(response, "<<response")
+    //     )
+    //     .catch((err) => {
+    //       console.error("Error", err);
+    //     });
+    //   return this.info;
+    // },
   },
   created() {
     store.dispatch("verifyToken");
+    this.getBenchmark();
   },
   beforeCreate() {
     store.dispatch("verifyToken");
