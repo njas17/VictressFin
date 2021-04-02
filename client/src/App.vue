@@ -63,10 +63,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid>
-        <router-view />
-        <div>Benchmark {{ this.info }}</div>
-      </v-container>
+      <v-container fluid> <router-view /> </v-container>
     </v-main>
 
     <v-footer class="default" app>
@@ -91,16 +88,12 @@
 </template>
 
 <script>
-import axios from "axios";
 import * as easings from "vuetify/es5/services/goto/easing-patterns";
 import store from "./store.js";
 // import genderLens from './genderLens.vue';
 
 export default {
   name: "App",
-  // mounted() {
-  //   this.getBenchmark();
-  // },
   //added components??
   // components: {
   //   genderLens,
@@ -130,26 +123,6 @@ export default {
       store.dispatch("logout");
       this.$router.push({ name: "logout" });
     },
-    async getBenchmark() {
-      try {
-        const response = await axios.get("http://localhost:3000/benchmarks");
-        // this.info = response.data;
-        console.log(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    // getBenchmark() {
-    //   fetch("http://localhost:3000/benchmarks", {})
-    //     .then((response) =>
-    //       // this.info = response.data
-    //       console.log(response, "<<response")
-    //     )
-    //     .catch((err) => {
-    //       console.error("Error", err);
-    //     });
-    //   return this.info;
-    // },
   },
   created() {
     store.dispatch("verifyToken");
