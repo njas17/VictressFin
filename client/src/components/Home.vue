@@ -35,10 +35,10 @@
     name: 'home',
     components: { Events },
     data: () => ({
-      msg: 'Welcome to Sejiwa ',
+      msg: 'Welcome to Focal',
       items: [
         {
-          src: "https://firebasestorage.googleapis.com/v0/b/sehati-sejiwa.appspot.com/o/pexels-pixabay-99551.jpg?alt=media&token=6ce73ebd-2ca5-4eca-b3d3-4a9c86522cc1"
+          src: "/assets/quotebanner1.png"
         },
         {
           src: "https://firebasestorage.googleapis.com/v0/b/sehati-sejiwa.appspot.com/o/hudson-hintze-vpxeE7s-my4-unsplash.jpg?alt=media&token=ba62b28a-30e5-47e8-9ab8-a461facf33c4"
