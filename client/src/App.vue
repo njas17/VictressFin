@@ -91,7 +91,6 @@
 import * as easings from "vuetify/es5/services/goto/easing-patterns";
 import store from "./store.js";
 // import genderLens from './genderLens.vue';
-
 export default {
   name: "App",
   //added components??
@@ -100,7 +99,6 @@ export default {
   //   financialdashboard,
   //   investCalculator,
   //   Quiz,
-
   // },
   data() {
     return {
@@ -169,12 +167,10 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-
 .cardAlert {
   padding: 20px;
   border-left: 10px solid #00bcd4 !important;
 }
-
 .primary {
   background-color: #bdbdbd !important;
 }
