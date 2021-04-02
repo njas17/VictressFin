@@ -74,7 +74,7 @@
             </ValidationProvider>
             <ValidationProvider v-slot="{ errors }" name="Total Volunteers Needed" rules="required" autocomplete="off">
                 <v-text-field type="number" v-model="currentevent.totalvolunteer" :error-messages="errors"
-                    label="Total Volunteers Needed" required></v-text-field>
+                    label="Total Funds Needed" required></v-text-field>
             </ValidationProvider>
             <ValidationProvider>
                 <template>

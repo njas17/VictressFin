@@ -65,7 +65,7 @@
     <v-main>
       <v-container fluid>
         <router-view />
-        <div>Benchmark {{ this.info }}</div>
+        <!-- <div>Benchmark {{ this.info }}</div> -->
       </v-container>
     </v-main>
 
