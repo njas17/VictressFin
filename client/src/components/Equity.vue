@@ -1,44 +1,132 @@
 <template>
-  <div class="home">
-    <BarChart
-      class="chart"
-      :data-set="data"
-      :margin-left="40"
-      :margin-top="40"
-      :tick-count="5"
-      :bar-padding="0.5"
-    />
-  </div>
+  <v-app>
+    <v-container>
+      <v-card class="media-body container-fluid" style="padding: 50px; margin: 20px;">
+        <apexchart type="bar" :options="options" :series="series"></apexchart>
+        <v-card-text style="border: 2px solid lightgray !important; border-radius: 5px; margin-top: 20px;">
+          <v-row>
+            <v-col>
+              <p><strong>MSCI-1:</strong> MSCI EM Ex BRIC</p>
+              <p><strong>MSCI-2:</strong> MSCI World No Tobacco, Alcohol, Weapons</p>
+              <p><strong>MSCI-3:</strong> MSCI World</p>
+            </v-col>
+            <v-col>
+              <p><strong>MSCI-4:</strong> MSCI World Sharia Compliant</p>
+              <p><strong>MSCI-5:</strong> MSCI WORLD ex EMU NR EUR</p>
+              <p><strong>BFGEI:</strong> IND Bloomberg Financial Services Gender-Equality Index</p>
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-import BarChart from "./components/BarChart.vue";
-
+// import axios from "axios";
 export default {
-  name: "home",
+  name: "Equity",
   data() {
     return {
-      data: [
-        ["MSCI", 33],
-        ["Robin", 24],
-        ["Mark", 22],
-        ["Joe", 29],
-        ["Eve", 38],
-        ["Karen", 21],
-        ["Kirsty", 25],
-        ["Chris", 30]
-      ]
+      options: {
+        chart: {
+          id: "bar-chart",
+          type: 'bar',
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            vertical: true,
+          }
+        },
+        title: {
+          text: 'Equity Benchmark Indices for 1 Year Performance 2020 - 2021',
+          align: 'center',
+          margin: 33,
+          style: {
+            fontSize: '22px',
+            color: 'indigo'
+          }
+        },
+        xaxis: {
+          categories: [
+            "MSCI-1",
+            "MSCI-2",
+            "MSCI-3",
+            "MSCI-4",
+            "MSCI-5",
+            "BFGEI",
+          ],
+        },
+        colors: [
+          function({ value}) {
+            if (value > 50.0) {
+              return '#FDA4BA'
+            } else {
+              return '#008080'
+            }
+          }
+        ],
+      },
+      series: [
+        {
+          name: "Growth Percentage % ",
+          data: [7.75, 20.48, 16.5, 9.0, 7.76, 58.28],
+        },
+      ],
+      legend: {
+        show: true,
+        
+      }
     };
   },
-  components: {
-    BarChart
-  }
+// "MSCI EM Ex BRIC",
+// "MSCI World No Tobacco, Alcohol, Weapons",
+// "MSCI World",
+// "MSCI World Sharia Compliant",
+// "MSCI WORLD ex EMU NR EUR",
+// "BFGEI:IND Bloomberg Financial Services Gender-Equality Index",
+  //   created() {
+  //     this.getBenchmack();
+  //   },
+  //   methods: {
+  //     async getBenchmark() {
+  //       try {
+  //         const response = await axios.get(
+  //           "../assets/GetAllBenmarkResponse.json"
+  //         );
+  //         this.info = response.data;
+  //         console.log(response.data);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     },
+  // getBenchmark() {
+  //   fetch("http://localhost:3000/benchmarks", {})
+  //     .then((response) =>
+  //       // this.info = response.data
+  //       console.log(response, "<<response")
+  //     )
+  //     .catch((err) => {
+  //       console.error("Error", err);
+  //     });
+  //   return this.info;
+  // },
+  //   },
 };
 </script>
 
-<style scoped>
-.chart {
-  margin: 40px auto 0;
-  display: block;
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.cardAlert {
+  padding: 20px;
+  border-left: 10px solid #00bcd4 !important;
+}
+.primary {
+  background-color: #bdbdbd !important;
 }
 </style>
