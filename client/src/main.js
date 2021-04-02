@@ -5,6 +5,8 @@ import store from './store';
 import "vuetify/dist/vuetify.min.css";
 import VueTelInputVuetify from "vue-tel-input-vuetify";
 import vuetify from './plugins/vuetify';
+import './plugins/apexcharts';
+
 
 Vue.use(VueTelInputVuetify, {
   vuetify,
