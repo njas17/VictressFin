@@ -12,7 +12,6 @@
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
       <v-btn text to="/#eventsSection">Crowdfunding</v-btn>
-      <!-- //@click="$vuetify.goTo(target, options)" -->
       <v-btn text to="/textAnalyzer">Mutual Funds</v-btn>
       <v-btn text to="/Equity">Equity</v-btn>
 
@@ -37,7 +36,6 @@
         </v-menu>
       </div>
 
-      <!-- <v-btn text to="/donutChart">My Gender Lens Donut Chart</v-btn> -->
       <v-btn v-if="!isAuthenticated" text to="/login">Login</v-btn>
       <v-menu v-if="isAuthenticated" bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">
@@ -90,16 +88,8 @@
 <script>
 import * as easings from "vuetify/es5/services/goto/easing-patterns";
 import store from "./store.js";
-// import genderLens from './genderLens.vue';
 export default {
   name: "App",
-  //added components??
-  // components: {
-  //   genderLens,
-  //   financialdashboard,
-  //   investCalculator,
-  //   Quiz,
-  // },
   data() {
     return {
       showLogin: false,
@@ -124,7 +114,6 @@ export default {
   },
   created() {
     store.dispatch("verifyToken");
-    // this.getBenchmark();
   },
   beforeCreate() {
     store.dispatch("verifyToken");

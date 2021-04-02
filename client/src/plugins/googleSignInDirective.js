@@ -1,4 +1,3 @@
-// plugins from https://github.com/mejiamanuel57/vue-google-signin-button-directive
 import Vue from 'vue'
 
 export default Vue.directive('google-signin-button', {
@@ -23,19 +22,8 @@ export default Vue.directive('google-signin-button', {
         )
       })
     }
-    // function attachSignin(element) {
-    //   console.log(element.id);
-    //   auth2.attachClickHandler(element, {},
-    //       function(googleUser) {
-    //         document.getElementById('name').innerText = "Signed in: " +
-    //             googleUser.getBasicProfile().getName();
-    //       }, function(error) {
-    //         alert(JSON.stringify(error, undefined, 2));
-    //       });
-    // }
     function OnSuccess(googleUser) {
-      vnode.context.OnGoogleAuthSuccess(googleUser.getAuthResponse().id_token, googleUser.getBasicProfile());
-      //console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      vnode.context.OnGoogleAuthSuccess(googleUser.getAuthResponse().id_token, googleUser.getBasicProfile());      
       googleUser.disconnect()
     }
     function Onfail(error) {

@@ -96,13 +96,6 @@ const router = new VueRouter({
             component: textAnalyzer
             
         },
-        
-        // {
-        //     name: "Equity",
-        //     path: "/Equity",
-        //     component: Equity
-            
-        // },
         {
             name: "Quiz",
             path: "/Quiz",
@@ -122,7 +115,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth )) { //console.log(to.meta.requiresAuth);
+    if (to.matched.some(record => record.meta.requiresAuth )) { 
         if (!store.state.isAuthenticated) {
             next({
                 name: "login",

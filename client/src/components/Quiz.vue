@@ -3,44 +3,81 @@
     <v-container fill-height fluid>
       <v-row align-self="center">
         <v-col align-self="center">
-          <v-card class="mx-auto" max-width="60%" style="background-color: pink;" align="center">
+          <v-card
+            class="mx-auto"
+            max-width="60%"
+            style="background-color: pink;"
+            align="center"
+          >
             <div class="header-quiz">
               <h1>Gender Lens and Risk Profiler</h1>
               <h3>Check your awareness level and investment appetite</h3>
             </div>
             <div style="padding: 20px;">
-              <div class="step-progress" :style="{'width':progress + '%'}"></div>
-              <div class="box" v-for="(question,index) in questions.slice(a,b)" :key="index" v-show="quiz">
+              <div
+                class="step-progress"
+                :style="{ width: progress + '%' }"
+              ></div>
+              <div
+                class="box"
+                v-for="(question, index) in questions.slice(a, b)"
+                :key="index"
+                v-show="quiz"
+              >
                 <div class="box-question">
-                  <h2>Question {{b}}/{{questions.length}}</h2>
-                  <p>{{question.question}}</p>
+                  <h2>Question {{ b }}/{{ questions.length }}</h2>
+                  <p>{{ question.question }}</p>
                 </div>
                 <div class="box-propositions">
                   <ul>
-                    <li v-for="(proposition,index) in question.propositions" :key="index" class="li" @click="selectResponse(proposition,index)" :class=" correct ? check(proposition) : ''">{{proposition.props}} <div class="fas fa-check" v-if="correct ?  proposition.correct: ''"></div><div class="fas fa-times" v-if="correct ?  !proposition.correct: ''"></div></li>
+                    <li
+                      v-for="(proposition, index) in question.propositions"
+                      :key="index"
+                      class="li"
+                      @click="selectResponse(proposition, index)"
+                      :class="correct ? check(proposition) : ''"
+                    >
+                      {{ proposition.props }}
+                      <div
+                        class="fas fa-check"
+                        v-if="correct ? proposition.correct : ''"
+                      ></div>
+                      <div
+                        class="fas fa-times"
+                        v-if="correct ? !proposition.correct : ''"
+                      ></div>
+                    </li>
                   </ul>
-                  <!-- <iframe src="https://codesandbox.io/embed/r1r0p8543m?fontsize=14&hidenavigation=1&theme=dark"
-                    style="width:80%; height:300px; border:0; border-radius: 0px; overflow:hidden;"
-                    title="My Profile"
-                    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-                    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-                  ></iframe> -->
                 </div>
               </div>
               <div class="box-score" v-if="score_show">
                 <v-row>
                   <v-col class="score">
-                    <h2 style="padding-bottom: 30px;">Your score is <span style="color: indigo;">{{score}}/{{questions.length}}</span></h2>
+                    <h2 style="padding-bottom: 30px;">
+                      Your score is
+                      <span style="color: indigo;"
+                        >{{ score }}/{{ questions.length }}</span
+                      >
+                    </h2>
                     <h3>Your risk appetite:</h3>
                     <h3>80 - 100%</h3>
-                    <h3 style="color: teal; padding-bottom:30px;">Aggressive: Equity / Crowdfunding</h3>
+                    <h3 style="color: teal; padding-bottom:30px;">
+                      Aggressive: Equity / Crowdfunding
+                    </h3>
                     <h3>50 - 79%</h3>
-                    <h3 style="color: rgb(106, 128, 202); padding-bottom:15px;">Moderate: Crowdfunding / Mutual Funds/Retail Bonds </h3>
+                    <h3 style="color: rgb(106, 128, 202); padding-bottom:15px;">
+                      Moderate: Crowdfunding / Mutual Funds/Retail Bonds
+                    </h3>
                     <h3>0 - 49%</h3>
-                    <h3 style="color: salmon; padding-bottom:15px;">Talk to Us</h3>
+                    <h3 style="color: salmon; padding-bottom:15px;">
+                      Talk to Us
+                    </h3>
                   </v-col>
                   <v-col>
-                    <div v-if="percentage > 79 && percentage <= 100" style="padding-top: 5px; padding-bottom: 33px;">
+                    <div
+                      v-if="percentage > 79 && percentage <= 100"
+                      style="padding-top: 5px; padding-bottom: 33px;"
+                    >
                       <v-progress-linear
                         v-model="percentage"
                         color="teal"
@@ -50,9 +87,14 @@
                           <strong>{{ Math.ceil(value) }}%</strong>
                         </template>
                       </v-progress-linear>
-                      <h2 style="padding-top: 15px; color: teal;">Aggressive</h2>
+                      <h2 style="padding-top: 15px; color: teal;">
+                        Aggressive
+                      </h2>
                     </div>
-                    <div v-if="percentage < 80 && percentage > 49" style="padding-top: 5px; padding-bottom: 33px;">
+                    <div
+                      v-if="percentage < 80 && percentage > 49"
+                      style="padding-top: 5px; padding-bottom: 33px;"
+                    >
                       <v-progress-linear
                         v-model="percentage"
                         color="rgb(106, 128, 202)"
@@ -62,9 +104,14 @@
                           <strong>{{ Math.ceil(value) }}%</strong>
                         </template>
                       </v-progress-linear>
-                      <h2 style="padding-top: 15px; color: rgb(106, 128, 202);">Moderate</h2>
+                      <h2 style="padding-top: 15px; color: rgb(106, 128, 202);">
+                        Moderate
+                      </h2>
                     </div>
-                    <div v-else-if="percentage < 50" style="padding-top: 5px; padding-bottom: 33px;">
+                    <div
+                      v-else-if="percentage < 50"
+                      style="padding-top: 5px; padding-bottom: 33px;"
+                    >
                       <v-progress-linear
                         v-model="percentage"
                         color="red"
@@ -74,10 +121,20 @@
                           <strong>{{ Math.ceil(value) }}%</strong>
                         </template>
                       </v-progress-linear>
-                      <h2 style="padding-top: 15px; color: salmon;">Talk to Us</h2>
+                      <h2 style="padding-top: 15px; color: salmon;">
+                        Talk to Us
+                      </h2>
                     </div>
                     <div class="yt-container">
-                      <iframe text-align="center" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="video"></iframe>
+                      <iframe
+                        text-align="center"
+                        src="https://www.youtube.com/embed/A5QRZCc50HI"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        class="video"
+                      ></iframe>
                     </div>
                   </v-col>
                 </v-row>
@@ -85,12 +142,28 @@
             </div>
             <div class="footer-quiz">
               <div v-if="progress < 100" class="box-button">
-                <button  @click="skipQuestion()" :style="next ? 'background-color: rgb(106, 128, 202)' : ''">Skip</button>
-                <button  @click="nextQuestion()" :style="!next ? 'background-color: rgb(106, 128, 202)' : ''">Next</button>
+                <button
+                  @click="skipQuestion()"
+                  :style="next ? 'background-color: rgb(106, 128, 202)' : ''"
+                >
+                  Skip
+                </button>
+                <button
+                  @click="nextQuestion()"
+                  :style="!next ? 'background-color: rgb(106, 128, 202)' : ''"
+                >
+                  Next
+                </button>
               </div>
-              <div v-if="score_show" class="btn-restart" style="margin-top: 5px;">
-                <button @click="restartQuiz">Restart <i class="fas fa-sync-alt"></i></button>
-              </div>  
+              <div
+                v-if="score_show"
+                class="btn-restart"
+                style="margin-top: 5px;"
+              >
+                <button @click="restartQuiz">
+                  Restart <i class="fas fa-sync-alt"></i>
+                </button>
+              </div>
             </div>
           </v-card>
         </v-col>
@@ -100,221 +173,192 @@
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-
-
 export default {
-  data(){
-    return{
-      questions:[
+  data() {
+    return {
+      questions: [
         {
-          question:"How many percent of venture capital was secured by women in recent years?",
-          propositions:[
-            {props:'About 15%',correct:true},
-            {props:'More than 20%'},
-            {props:'More than 50%',},
-            {props:'Equal to men',}
-          ]
+          question:
+            "How many percent of venture capital was secured by women in recent years?",
+          propositions: [
+            { props: "About 15%", correct: true },
+            { props: "More than 20%" },
+            { props: "More than 50%" },
+            { props: "Equal to men" },
+          ],
         },
         {
-          question:"How does algorithm make finance biased?",
-          propositions:[
-            {props:'Boost bank profitability',},
-            {props:'Equal opportunities to all',},
-            {props:'Marginalise women and certain segments of society',correct:true},
-          ]
-          
+          question: "How does algorithm make finance biased?",
+          propositions: [
+            { props: "Boost bank profitability" },
+            { props: "Equal opportunities to all" },
+            {
+              props: "Marginalise women and certain segments of society",
+              correct: true,
+            },
+          ],
         },
         {
-          question:"What are the avenues (regulated) to financing for women apart from loans and venture capital?",
-          propositions:[
-            {props:'Family and friends'},
-            {props:'Bonds',correct:true},
-            {props:'Crowdfunding',correct:true},
-            {props:'Stock Market or Equity',correct:true},
-          ]
-          
+          question:
+            "What are the avenues (regulated) to financing for women apart from loans and venture capital?",
+          propositions: [
+            { props: "Family and friends" },
+            { props: "Bonds", correct: true },
+            { props: "Crowdfunding", correct: true },
+            { props: "Stock Market or Equity", correct: true },
+          ],
         },
         {
-          question:"How can we eridicate unbiased finance towards women ?",
-          propositions:[
-            {props:'Nothing',},
-            {props:'Provide equitable access to financing via open banking',correct:true},
-            {props:'Regulation',},
-            {props:'Protest',},
-          ]
-          
+          question: "How can we eridicate unbiased finance towards women ?",
+          propositions: [
+            { props: "Nothing" },
+            {
+              props: "Provide equitable access to financing via open banking",
+              correct: true,
+            },
+            { props: "Regulation" },
+            { props: "Protest" },
+          ],
         },
         {
-          question:"What is the ultimate impact for funding women founders in society?",
-          propositions:[
-            {props:'Boost economy with creation of jobs',},
-            {props:'Equitable and inclusive finance for all'},
-            {props:'Innovation and creativity'},
-            {props:'ALL THE ABOVE',correct:true},
-          ]
-          
+          question:
+            "What is the ultimate impact for funding women founders in society?",
+          propositions: [
+            { props: "Boost economy with creation of jobs" },
+            { props: "Equitable and inclusive finance for all" },
+            { props: "Innovation and creativity" },
+            { props: "ALL THE ABOVE", correct: true },
+          ],
         },
         {
-          question:"What are the internationally-benchmarked parameters for a healthy gender lens score card as laid out by SEAF?",
-          propositions:[
-            {props:'Board representation', correct:true},
-            {props:'Pay', correct:true},
-            {props:'Hours'},
-            {props:'Family friendly policies'},
-          ]
-          
+          question:
+            "What are the internationally-benchmarked parameters for a healthy gender lens score card as laid out by SEAF?",
+          propositions: [
+            { props: "Board representation", correct: true },
+            { props: "Pay", correct: true },
+            { props: "Hours" },
+            { props: "Family friendly policies" },
+          ],
         },
         {
-          question:"Gender Lens investing is not for men?",
-          propositions:[
-            {props:'False', correct:true},
-            {props:'True'},
-            
-          ]
-          
+          question: "Gender Lens investing is not for men?",
+          propositions: [{ props: "False", correct: true }, { props: "True" }],
         },
         {
-          question:"Women founders deliver more returns versus male for every dollar invested despite only securing 15% of venture capital",
-          propositions:[
-            {props:'True', correct:true},
-            {props:'False'},
-            
-          ]
-          
-        },{
-          question:"What will be your cut loss position in any investment?",
-          propositions:[
-            {props:'No more than 20%',},
-            {props:'More than 20%',correct:true },
-            {props:'I dont want to lose any of my capital'},
-            
-          ]
-          
+          question:
+            "Women founders deliver more returns versus male for every dollar invested despite only securing 15% of venture capital",
+          propositions: [{ props: "True", correct: true }, { props: "False" }],
         },
         {
-          question:"What are the kind of returns you are looking for?",
-          propositions:[
-            {props:'Returns that has social impact', correct:true},
-            {props:'High returns with or without social impact'},
-            {props:'Higher than risk-free rate and capital guaranteed'},
-          ]
-          
+          question: "What will be your cut loss position in any investment?",
+          propositions: [
+            { props: "No more than 20%" },
+            { props: "More than 20%", correct: true },
+            { props: "I dont want to lose any of my capital" },
+          ],
         },
         {
-          question:"What is/are your investment objective(s)?",
-          propositions:[
-            {props:'To diversify income into instruments with social impact', correct:true},
-            {props:'To have stable returns over the medium to longer term,', correct:true},
-            {props:'For retirement, education and big items purchase,', correct:true},
-            {props:'Any returns that is better than current savings or fixed deposit,'},
-
-          ]
-          
+          question: "What are the kind of returns you are looking for?",
+          propositions: [
+            { props: "Returns that has social impact", correct: true },
+            { props: "High returns with or without social impact" },
+            { props: "Higher than risk-free rate and capital guaranteed" },
+          ],
         },
-
+        {
+          question: "What is/are your investment objective(s)?",
+          propositions: [
+            {
+              props: "To diversify income into instruments with social impact",
+              correct: true,
+            },
+            {
+              props: "To have stable returns over the medium to longer term,",
+              correct: true,
+            },
+            {
+              props: "For retirement, education and big items purchase,",
+              correct: true,
+            },
+            {
+              props:
+                "Any returns that is better than current savings or fixed deposit,",
+            },
+          ],
+        },
       ],
-      a:0,
-      b:1,
-      next:true,
-      score_show:false,
-      quiz:true,
-      score:0,
-      correct:false,
-      progress:0,
-      percentage:0,
-      
-    }
+      a: 0,
+      b: 1,
+      next: true,
+      score_show: false,
+      quiz: true,
+      score: 0,
+      correct: false,
+      progress: 0,
+      percentage: 0,
+    };
   },
-  name: 'Quiz',
+  name: "Quiz",
   components: {
     //HelloWorld
   },
-  computed:{
-      
-  },
-  methods:{
-    selectResponse(e){
+  computed: {},
+  methods: {
+    selectResponse(e) {
       this.correct = true;
       this.next = false;
       if (e.correct) {
         this.score++;
       }
-      this.percentage = (this.score/11)*100
+      this.percentage = (this.score / 11) * 100;
     },
-    check(status){
-        if (status.correct) {
-          return 'correct'
-        }else{
-          return 'incorrect' 
-        }
+    check(status) {
+      if (status.correct) {
+        return "correct";
+      } else {
+        return "incorrect";
+      }
     },
-    nextQuestion(){
+    nextQuestion() {
       if (this.next) {
         return;
       }
-      this.progress = this.progress + (100/this.questions.length);
-      if(this.questions.length - 1 == this.a){
+      this.progress = this.progress + 100 / this.questions.length;
+      if (this.questions.length - 1 == this.a) {
         this.score_show = true;
-        this.quiz = false;    
-      }
-      else{
+        this.quiz = false;
+      } else {
         this.a++;
         this.b++;
         this.correct = false;
         this.next = true;
       }
     },
-    skipQuestion(){
+    skipQuestion() {
       if (!this.next) {
         return;
       }
-      this.progress = this.progress + (100/this.questions.length);
-      if(this.questions.length - 1 == this.a){
+      this.progress = this.progress + 100 / this.questions.length;
+      if (this.questions.length - 1 == this.a) {
         this.score_show = true;
         this.quiz = false;
-      }else{
+      } else {
         this.a++;
         this.b++;
       }
     },
-    
-    restartQuiz(){
+
+    restartQuiz() {
       Object.assign(this.$data, this.$options.data()); // reset data in vue
     },
-  }
-}
+  },
+};
 </script>
-
 
 <style scoped>
 v-card {
   display: flex;
 }
-
-/* .container-app {
-  display: flex;
-  width: 80%;
-  height:80%;
-  justify-content: center;
-  background-color: pink;
-} */
-
-/* .container-quiz {
-  display: flex;
-  width: 60%;
-  height: 100%;
-  background-color:pink;
-  text-align: center;
-  flex-flow: column;
-  border: 1px solid #e7eae0;
-  border-radius: 20px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-} */
 
 .header-quiz {
   display: inline-flexbox;
@@ -327,14 +371,6 @@ v-card {
   border-radius: 10px 10px 0px 0px;
   padding: 15px;
 }
-
-/* .container-quiz .box {
-  display: flex;
-  width: 100%;
-  height: 70%;
-  flex-flow: column;
-  margin: auto;
-} */
 
 .box-question {
   margin-top: 20px;
@@ -372,11 +408,10 @@ li {
 }
 
 li:hover {
-  /*transform: scale(1.1);*/
   background-color: #e7eae0;
 }
 
-li>div {
+li > div {
   float: right;
   margin-top: 7px;
   margin-right: 7px;
@@ -386,10 +421,6 @@ li>div {
 .check {
   color: rgb(74, 219, 74);
 }
-
-/* .close {
-  color: rgb(240, 117, 100);
-} */
 
 .footer-quiz {
   display: flex;
@@ -444,10 +475,6 @@ li.incorrect {
   padding: 20px;
 }
 
-/* .box-score h2 {
-  margin-top: 40px;
-} */
-
 i {
   display: none;
   color: white;
@@ -466,7 +493,6 @@ i {
   width: 100%;
   height: auto;
   justify-content: center;
-  /* margin-top: 50px; */
 }
 
 .btn-restart button {
@@ -488,18 +514,9 @@ i {
   background-color: rgb(106, 128, 202);
 }
 
-/* @media screen and (max-width: 900px) {
-  .container-quiz {
-      width: 60%;
-  }
-} */
-
 @media screen and (max-width: 720px) {
-  /* .container-quiz {
-      width: 80%;
-  } */
   .footer-quiz .box-button button {
-      width: 100px;
+    width: 100px;
   }
 }
 
@@ -517,5 +534,4 @@ i {
   width: 100%;
   height: 100%;
 }
-
 </style>

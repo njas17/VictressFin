@@ -57,14 +57,12 @@ export default new Vuex.Store({
         .then(response => response.json())
         .then(data => {
           commit('authenticateTrue', data.user);
-          //console.log("valiated", this.state.isAuthenticated);
 
         })
         .catch(error => {
           console.error("Error in verify token: ", error);
           dispatch('logout');
           const redirectPath = this.$route.query.redirect || "/";
-          //console.log(redirectPath);
           this.$router.push(redirectPath);
         });
     },

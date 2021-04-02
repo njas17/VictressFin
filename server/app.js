@@ -16,7 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Serve static files from the React frontend app
-//app.use(express.static(path.join(__dirname, "client/dist")));
 
 app.get("/", function(req, res, next) {
   res.send("Access the API at path /api");
@@ -28,9 +27,6 @@ app.use('/api/auth', userRouter)
 const port = 5000;
 
 // Anything that doesn't match the above, send back index.html
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname + "/client/dist/index.html"));
-// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
