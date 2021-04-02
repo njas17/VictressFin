@@ -11,9 +11,10 @@
       />
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
-      <v-btn text to="/#eventsSection">Gender Equality Crowdfunding</v-btn>
+      <v-btn text to="/#eventsSection">Crowdfunding</v-btn>
       <!-- //@click="$vuetify.goTo(target, options)" -->
-      <v-btn text to="/textAnalyzer">Gender Equality Funds</v-btn>
+      <v-btn text to="/textAnalyzer">Mutual Funds</v-btn>
+      <v-btn text to="/Equity">Equity</v-btn>
 
       <div class="text-center">
         <v-menu offset-y>
@@ -24,7 +25,7 @@
           </template>
           <v-list>
             <v-list-item>
-              <v-btn text to="/GenderLens">Gender Lens Score test</v-btn>
+              <v-btn text to="/genderLens">Gender Lens Score test</v-btn>
             </v-list-item>
             <v-list-item>
               <v-btn text to="/Quiz">Investor Profiler</v-btn>
@@ -62,9 +63,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid>
-        <router-view />
-      </v-container>
+      <v-container fluid> <router-view /> </v-container>
     </v-main>
 
     <v-footer class="default" app>
@@ -103,7 +102,6 @@ export default {
   //   Quiz,
 
   // },
-
   data() {
     return {
       showLogin: false,
@@ -128,6 +126,7 @@ export default {
   },
   created() {
     store.dispatch("verifyToken");
+    this.getBenchmark();
   },
   beforeCreate() {
     store.dispatch("verifyToken");
