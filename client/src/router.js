@@ -9,6 +9,7 @@ import SignOut from './components/SignOut.vue';
 import NotFound from './components/NotFound.vue';
 import store from './store.js';
 import genderLens from './components/genderLens.vue';
+import Equity from './components/Equity.vue';
 import Education from './components/Education.vue';
 // import financialdashboard from './components/financialdashboard.vue';
 // import investCalculator from './components/investCalculator.vue'
@@ -122,6 +123,12 @@ const router = new VueRouter({
             name: "Quiz",
             path: "/Quiz",
             component: Quiz
+            
+        },
+        {
+            name: "Equity",
+            path: "/Equity",
+            component: Equity
             
         }
 
