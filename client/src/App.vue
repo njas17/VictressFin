@@ -126,7 +126,7 @@ export default {
   },
   created() {
     store.dispatch("verifyToken");
-    this.getBenchmark();
+    // this.getBenchmark();
   },
   beforeCreate() {
     store.dispatch("verifyToken");
