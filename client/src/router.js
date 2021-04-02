@@ -85,12 +85,6 @@ const router = new VueRouter({
             
         },
         {
-            name: "Quiz",
-            path: "/Quiz",
-            component: Quiz
-            
-        },
-        {
             name: "textAnalyzer",
             path: "/textAnalyzer",
             component: textAnalyzer
