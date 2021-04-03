@@ -212,7 +212,6 @@ export default {
       percentage: 0,
     };
   },
-  name: "GenderLens",
   components: {
     //HelloWorld
   },
