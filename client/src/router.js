@@ -74,7 +74,7 @@ const router = new VueRouter({
         {
             name: "genderLens",
             path: "/genderLens",
-            component: genderLens
+            component: GenderLens
             
         },
         {
