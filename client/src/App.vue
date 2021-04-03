@@ -14,7 +14,7 @@
       <v-btn text to="/#eventsSection">Crowdfunding</v-btn>
       <!-- //@click="$vuetify.goTo(target, options)" -->
       <v-btn text to="/textAnalyzer">Mutual Funds</v-btn>
-      <v-btn text to="/Equity">Equity</v-btn>
+      <v-btn text to="/equity">Equity</v-btn>
 
       <div class="text-center">
         <v-menu offset-y>
@@ -28,10 +28,10 @@
               <v-btn text to="/genderLens">Gender Lens Score test</v-btn>
             </v-list-item>
             <v-list-item>
-              <v-btn text to="/Quiz">Investor Profiler</v-btn>
+              <v-btn text to="/quiz">Investor Profiler</v-btn>
             </v-list-item>
             <v-list-item>
-              <v-btn text to="/Education">Media Analyzer</v-btn>
+              <v-btn text to="/education">Media Analyzer</v-btn>
             </v-list-item>
           </v-list>
         </v-menu>
