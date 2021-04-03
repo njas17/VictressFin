@@ -51,7 +51,7 @@
         },
       ],
       quote: ["In 2019, the proportion of women in leadership roles within financial services firms is 21.9 %, which is projected to grow to 31% by 2030—still below parity", "Firms that appoint a woman to the position generate increased profits and share price returns in her first two years than they did under her male predecessor.", "Since the onset of the pandemic, female founders, particularly those of color, report lower capital buffers and a higher likelihood of pausing prior plans to raise capital.","For every dollar of investment raised, female-run startups generated 78 cents in revenue, whereas male-run startups generated only 31 cents."],
-      writer: ["–Deloitte", "– S&P Global Market Intelligence", "– All Raise", "-Boston consulting group"]
+      writer: ["–Deloitte", "– S&P Global Market Intelligence", "– All Raise", "-Boston Consulting Group"]
     }),
   }
 </script>
