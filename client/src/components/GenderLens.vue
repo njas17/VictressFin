@@ -140,6 +140,7 @@
 // import DoughnutExample from './components/DoughnutExample.vue';
 
 export default {
+  name: "GenderLens",
   data() {
     return {
       questions: [
