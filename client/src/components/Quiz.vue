@@ -4,9 +4,8 @@
       <v-row align-self="center">
         <v-col align-self="center">
           <v-card class="mx-auto" max-width="60%" style="background-color: pink;" align="center">
-            <div class="header-quiz">
-              <h1>Gender Lens and Risk Profiler</h1>
-              <h3>Check your awareness level and investment appetite</h3>
+            <div class="header-quiz">  
+              <h2>Check your awareness level and investment appetite</h2>
             </div>
             <div style="padding: 20px;">
               <div class="step-progress" :style="{'width':progress + '%'}"></div>
@@ -156,7 +155,7 @@ export default {
           
         },
         {
-          question:"What are the internationally-benchmarked parameters for a healthy gender lens score card as laid out by SEAF?",
+          question:"What are the internationally-benchmarked parameters for a healthy gender lens scorecard as laid out by SEAF?",
           propositions:[
             {props:'Board representation', correct:true},
             {props:'Pay', correct:true},

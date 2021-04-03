@@ -25,7 +25,7 @@
           </template>
           <v-list>
             <v-list-item>
-              <v-btn text to="/genderLens">Gender Lens Score test</v-btn>
+              <v-btn text to="/genderLens">Gender Lens Scorecard</v-btn>
             </v-list-item>
             <v-list-item>
               <v-btn text to="/quiz">Investor Profiler</v-btn>
@@ -88,7 +88,7 @@ export default {
       easing: "easeInOutCubic",
       easings: Object.keys(easings),
       items: [
-        { title: "Gender Lens Score test" },
+        { title: "Gender Equality Scorecard" },
         { title: "Investor Profiler" },
         { title: "Media Analyzer" },
       ],
