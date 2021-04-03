@@ -19,7 +19,7 @@
       <div class="text-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" class="bottom">
+            <v-btn v-bind="attrs" v-on="on" class="bottom" elevation="0">
               Gender Lens Toolkit
             </v-btn>
           </template>
