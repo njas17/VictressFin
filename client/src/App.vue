@@ -1,14 +1,15 @@
 <template>
   <v-app>
-    <v-app-bar app color="grey darken-4" dark>
+    <v-app-bar>
       <v-img
-        alt="Victress Logo"
+        alt="Focal Logo"
         class="shrink mr-2"
         contain
         :src="require('@/assets/favicon.png')"
         transition="scale-transition"
         width="63"
       />
+      <h1>Focal</h1>
       <v-spacer></v-spacer>
       <v-btn text to="/" exact>Home</v-btn>
       <v-btn text to="/#eventsSection">Crowdfunding</v-btn>
@@ -93,13 +94,6 @@ import store from "./store.js";
 // import genderLens from './genderLens.vue';
 export default {
   name: "App",
-  //added components??
-  // components: {
-  //   genderLens,
-  //   financialdashboard,
-  //   investCalculator,
-  //   Quiz,
-  // },
   data() {
     return {
       showLogin: false,
