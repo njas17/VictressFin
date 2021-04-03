@@ -42,15 +42,7 @@
               <div class="box-score" v-if="score_show">
                 <v-row>
                   <v-col class="score">
-                    <h2 style="padding-bottom: 15px;">Your score is <span style="color: indigo;">{{ score }}/{{ questions.length }}</span></h2>
-                    <h3>80 - 100%</h3>
-                    <h3 style="color: teal; padding-bottom:15px;">Role Model!</h3>
-                    <h3>50 - 79%</h3>
-                    <h3 style="color: rgb(106, 128, 202); padding-bottom:15px;">Nearly there, try harder. Not sure how? Contact us.</h3>
-                    <h3>0 - 49%</h3>
-                    <h3 style="color: salmon; padding-bottom:15px;">Talk to us. More needed to be done or watch the following video to learn more.</h3>
-                  </v-col>
-                  <v-col>
+                    <h2 style="padding-bottom: 15px;">Your score></h2>
                     <div v-if="percentage > 79 && percentage <= 100" style="padding-top: 5px; padding-bottom: 33px;">
                       <v-progress-linear
                         v-model="percentage"
@@ -87,6 +79,14 @@
                       </v-progress-linear>
                       <h2 style="padding-top: 15px; color: salmon;">Talk to Us</h2>
                     </div>
+                    <h3>80% - 100%</h3>
+                    <h3 style="padding-bottom:15px;">Role model!</h3>
+                    <h3>50% - 79%</h3>
+                    <h3 style="padding-bottom:15px;">Great work, nearly there.</h3>
+                    <h3>0% - 49%</h3>
+                    <h3 style="padding-bottom:15px;">Talk to us.</h3>
+                  </v-col>
+                  <v-col>                    
                     <div class="yt-container">
                       <iframe
                         text-align="center"
