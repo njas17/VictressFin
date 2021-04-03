@@ -1,18 +1,20 @@
 <template>
   <v-app>
-    <v-container class="bv-example-row" fill-height fluid>
+    <v-container class="bv-example-row" fill-height fluid style="padding: 20px;">
       <v-row id="editor" ref="editor" align="top">
-        <v-col align="center">
+        <v-col align="center" style="margin-top: 20px;  margin-left: 20px; margin-bottom: 20px;">
           <iframe
+            allowtransparency="true"
             v-if="loaded"
-            style="max-height:none!important; border-radius: 5px; margin-left: 30px;"
+            style="max-height:none!important; border-radius: 5px;"
             src="https://gendergaptracker.research.sfu.ca/apps/textanalyzer"
             :height="555"
             :width="920"
             frameborder="0"
+
           ></iframe>
         </v-col>
-        <v-col>                                            
+        <v-col style="margin-top: 20px; margin-right: 20px; margin-bottom: 20px;">                                            
           <v-flex>
               <v-card class="mx-auto" color="cyan" dark max-width="400">
                   <v-card-title>
