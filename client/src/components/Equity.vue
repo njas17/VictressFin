@@ -24,7 +24,6 @@
 
 <script>
 // import axios from "axios";
-
 export default {
   name: "Equity",
   data() {
@@ -37,7 +36,7 @@ export default {
         plotOptions: {
           bar: {
             borderRadius: 4,
-            horizontal: true,
+            vertical: true,
           }
         },
         title: {
@@ -46,7 +45,7 @@ export default {
           margin: 33,
           style: {
             fontSize: '22px',
-            color: 'indigo'
+            color: 'black'
           }
         },
         xaxis: {
@@ -62,9 +61,9 @@ export default {
         colors: [
           function({ value}) {
             if (value > 50.0) {
-              return '#FDA4BA'
+              return '#F1B7B9'
             } else {
-              return '#008080'
+              return '#DF8270'
             }
           }
         ],
@@ -81,14 +80,12 @@ export default {
       }
     };
   },
-
 // "MSCI EM Ex BRIC",
 // "MSCI World No Tobacco, Alcohol, Weapons",
 // "MSCI World",
 // "MSCI World Sharia Compliant",
 // "MSCI WORLD ex EMU NR EUR",
 // "BFGEI:IND Bloomberg Financial Services Gender-Equality Index",
-
   //   created() {
   //     this.getBenchmack();
   //   },
@@ -125,12 +122,10 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-
 .cardAlert {
   padding: 20px;
   border-left: 10px solid #00bcd4 !important;
 }
-
 .primary {
   background-color: #bdbdbd !important;
 }
