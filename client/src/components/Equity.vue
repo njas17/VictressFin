@@ -45,7 +45,7 @@ export default {
           margin: 33,
           style: {
             fontSize: '22px',
-            color: 'indigo'
+            color: 'black'
           }
         },
         xaxis: {
@@ -61,9 +61,9 @@ export default {
         colors: [
           function({ value}) {
             if (value > 50.0) {
-              return '#FDA4BA'
+              return '#F1B7B9'
             } else {
-              return '#008080'
+              return '#DF8270'
             }
           }
         ],
