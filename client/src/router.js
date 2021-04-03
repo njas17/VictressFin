@@ -75,7 +75,6 @@ const router = new VueRouter({
             name: "genderLens",
             path: "/genderLens",
             component: GenderLens
-            
         },
         {
             name: "education",

@@ -140,6 +140,7 @@
 // import DoughnutExample from './components/DoughnutExample.vue';
 
 export default {
+  name: "GenderLens",
   data() {
     return {
       questions: [
@@ -211,7 +212,6 @@ export default {
       percentage: 0,
     };
   },
-  name: "GenderLens",
   components: {
     //HelloWorld
   },
