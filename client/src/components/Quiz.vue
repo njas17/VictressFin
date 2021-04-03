@@ -29,16 +29,7 @@
               <div class="box-score" v-if="score_show">
                 <v-row>
                   <v-col class="score">
-                    <h2 style="padding-bottom: 30px;">Your score is <span style="color: indigo;">{{score}}/{{questions.length}}</span></h2>
-                    <h3>Your risk appetite:</h3>
-                    <h3>80 - 100%</h3>
-                    <h3 style="color: teal; padding-bottom:30px;">Aggressive: Equity / Crowdfunding</h3>
-                    <h3>50 - 79%</h3>
-                    <h3 style="color: rgb(106, 128, 202); padding-bottom:15px;">Moderate: Crowdfunding / Mutual Funds/Retail Bonds </h3>
-                    <h3>0 - 49%</h3>
-                    <h3 style="color: salmon; padding-bottom:15px;">Talk to Us</h3>
-                  </v-col>
-                  <v-col>
+                    <h2 style="padding-bottom: 30px;">Your risk appetite</h2>
                     <div v-if="percentage > 79 && percentage <= 100" style="padding-top: 5px; padding-bottom: 33px;">
                       <v-progress-linear
                         v-model="percentage"
@@ -75,6 +66,14 @@
                       </v-progress-linear>
                       <h2 style="padding-top: 15px; color: salmon;">Talk to Us</h2>
                     </div>
+                    <h3>80 - 100%</h3>
+                    <h3 style="color: teal; padding-bottom:30px;">Aggressive: Equity / Crowdfunding</h3>
+                    <h3>50 - 79%</h3>
+                    <h3 style="color: rgb(106, 128, 202); padding-bottom:15px;">Moderate: Crowdfunding / Mutual Funds/Retail Bonds </h3>
+                    <h3>0 - 49%</h3>
+                    <h3 style="color: salmon; padding-bottom:15px;">Talk to Us</h3>
+                  </v-col>
+                  <v-col>                    
                     <div class="yt-container">
                       <iframe text-align="center" src="https://www.youtube.com/embed/A5QRZCc50HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="video"></iframe>
                     </div>
@@ -116,7 +115,7 @@ export default {
           ]
         },
         {
-          question:"How do algorithms make finance bias?",
+          question:"How do algorithms make finance biased?",
           propositions:[
             {props:'Boost bank profitability'},
             {props:'Equal opportunities to all'},
@@ -125,17 +124,17 @@ export default {
           
         },
         {
-          question:"What are the avenues (regulated) to financing for women apart from loans and venture capital?",
+          question:"What are the avenues (regulated) to finance women founders apart from loans and venture capital?",
           propositions:[
             {props:'Family and friends'},
             {props:'Bonds',correct:true},
             {props:'Crowdfunding',correct:true},
-            {props:'Stock Market or Equity',correct:true},
+            {props:'Stock market or equity',correct:true},
           ]
           
         },
         {
-          question:"How can we eridicate unbiased finance towards women ?",
+          question:"How can we eridicate unbiased finance towards women?",
           propositions:[
             {props:'Nothing'},
             {props:'Provide equitable access to financing via open banking',correct:true},
@@ -147,10 +146,10 @@ export default {
         {
           question:"What is the ultimate impact for funding women founders in society?",
           propositions:[
-            {props:'Boost economy with creation of jobs'},
+            {props:'Boost economy with job creation'},
             {props:'Equitable and inclusive finance for all'},
             {props:'Innovation and creativity'},
-            {props:'ALL THE ABOVE',correct:true},
+            {props:'all the above',correct:true},
           ]
           
         },
@@ -165,11 +164,10 @@ export default {
           
         },
         {
-          question:"Gender Lens investing is not for men?",
+          question:"Gender lens investing is not for men?",
           propositions:[
             {props:'False', correct:true},
-            {props:'True'},
-            
+            {props:'True'},            
           ]
           
         },
@@ -206,12 +204,9 @@ export default {
             {props:'To diversify income into instruments with social impact', correct:true},
             {props:'To have stable returns over the medium to longer term', correct:true},
             {props:'For retirement, education and big items purchase', correct:true},
-            {props:'Any returns that is better than current savings or fixed deposit'},
-
-          ]
-          
+            {props:'Any return that is better than current savings or fixed deposit'},
+          ]          
         },
-
       ],
       a:0,
       b:1,
@@ -225,13 +220,7 @@ export default {
       
     }
   },
-  name: 'Quiz',
-  components: {
-    //HelloWorld
-  },
-  computed:{
-      
-  },
+  name: 'Quiz', 
   methods:{
     selectResponse(e){
       this.correct = true;
@@ -436,9 +425,6 @@ i {
 }
 
 @media screen and (max-width: 720px) {
-  /* .container-quiz {
-      width: 80%;
-  } */
   .footer-quiz .box-button button {
       width: 100px;
   }
